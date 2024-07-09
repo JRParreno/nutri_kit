@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:nutri_kit/core/common/entities/user.dart';
 
 class UserModel extends User {
-  
   UserModel({
     required super.pk,
     required super.username,
@@ -11,7 +10,7 @@ class UserModel extends User {
     required super.lastName,
     required super.email,
     required super.profilePk,
-    required super.gender,
+    required super.age,
     super.profilePhoto,
   });
 
@@ -23,7 +22,7 @@ class UserModel extends User {
       lastName: '',
       email: '',
       profilePk: '',
-      gender: '',
+      age: -1,
     );
   }
 
@@ -35,7 +34,7 @@ class UserModel extends User {
     String? email,
     String? profilePk,
     String? profilePhoto,
-    String? gender,
+    int? age,
   }) {
     return UserModel(
       pk: pk ?? this.pk,
@@ -45,7 +44,7 @@ class UserModel extends User {
       email: email ?? this.email,
       profilePk: profilePk ?? this.profilePk,
       profilePhoto: profilePhoto ?? this.profilePhoto,
-      gender: gender ?? this.gender,
+      age: age ?? this.age,
     );
   }
 
@@ -58,7 +57,7 @@ class UserModel extends User {
       'email': email,
       'profilePk': profilePk,
       'profilePhoto': profilePhoto,
-      'gender': gender,
+      'age': age,
     };
   }
 
@@ -71,7 +70,7 @@ class UserModel extends User {
       email: map['email'] as String,
       profilePk: map['profilePk'] as String,
       profilePhoto: map['profilePhoto'] ?? '',
-      gender: map['gender'] ?? '',
+      age: map['age'] ?? '',
     );
   }
 

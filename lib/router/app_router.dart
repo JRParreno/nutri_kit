@@ -44,13 +44,14 @@ GoRouter routerConfig() {
           SharedPreferencesKeys.isOnBoarded, false);
 
       final loggingIn = state.matchedLocation == AppRoutes.login.path;
+      final signingIn = state.matchedLocation == AppRoutes.signup.path;
       final profilePath = state.matchedLocation == AppRoutes.profile.path;
 
       if (!isOnBoarded) {
         return AppRoutes.onBoarding.path;
       }
 
-      if (isLoggedIn && loggingIn) {
+      if (isLoggedIn && (loggingIn || signingIn)) {
         return AppRoutes.home.path;
       }
 

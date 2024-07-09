@@ -8,6 +8,8 @@ class AppTheme with ThemeMixin {
   static final lightThemeMode = ThemeData.light().copyWith(
     textTheme: Typography().white.apply(fontFamily: 'Signika'),
     scaffoldBackgroundColor: ColorName.primary.withOpacity(0.91),
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: ColorName.primary),
     appBarTheme: AppBarTheme(
       backgroundColor: ColorName.primary.withOpacity(0.91),
     ),

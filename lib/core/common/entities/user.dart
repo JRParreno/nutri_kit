@@ -6,7 +6,7 @@ class User {
   final String email;
   final String profilePk;
   final String? profilePhoto;
-  final String gender;
+  final int age;
 
   User({
     required this.pk,
@@ -15,7 +15,7 @@ class User {
     required this.lastName,
     required this.email,
     required this.profilePk,
-    required this.gender,
+    required this.age,
     this.profilePhoto,
   });
 }

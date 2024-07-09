@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/core/theme/theme.dart';
 import 'package:nutri_kit/dependency_injection_config.dart' as di;
+import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nutri_kit/router/app_router.dart';
 
 void main() async {
@@ -23,6 +24,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => di.serviceLocator<AppUserCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.serviceLocator<AuthBloc>(),
         ),
       ],
       child: const MyApp(),
@@ -56,14 +60,10 @@ class _MyAppState extends State<MyApp> {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       useInheritedMediaQuery: true,
-      child: BlocBuilder<AppUserCubit, AppUserState>(
-        builder: (context, state) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightThemeMode,
-            routerConfig: router,
-          );
-        },
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightThemeMode,
+        routerConfig: router,
       ),
     );
   }
