@@ -8,12 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
-  serviceLocator.registerFactory(() => AppUserCubit());
-
   // set env service
   await EnvService.init();
   // Shared preferences
   await setupSharedPreferencesDependencies();
+
+  serviceLocator.registerFactory(() => AppUserCubit());
 }
 
 Future<void> setupSharedPreferencesDependencies() async {

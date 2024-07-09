@@ -15,6 +15,14 @@ enum AppRoutes {
   home(
     name: 'home',
     path: '/home',
+  ),
+  search(
+    name: 'search',
+    path: '/search',
+  ),
+  profile(
+    name: 'profile',
+    path: '/profile',
   );
 
   const AppRoutes({

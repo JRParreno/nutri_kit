@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
+import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/auth/presentation/widgets/auth_field.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
@@ -43,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 26,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: goToHomePage,
                 child: const Text(
                   'Login',
                   style: TextStyle(
@@ -81,5 +85,13 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void goToHomePage() {
+    final sharedPreferencesNotifier =
+        GetIt.instance<SharedPreferencesNotifier>();
+
+    sharedPreferencesNotifier.setValue(SharedPreferencesKeys.isLoggedIn, true);
+    GoRouter.of(context).go(AppRoutes.login.path);
   }
 }

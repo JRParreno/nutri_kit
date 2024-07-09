@@ -30,7 +30,7 @@ void main() async {
   );
 }
 
-final router = AppRouter.router;
+final router = routerConfig();
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -56,10 +56,14 @@ class _MyAppState extends State<MyApp> {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       useInheritedMediaQuery: true,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightThemeMode,
-        routerConfig: router,
+      child: BlocBuilder<AppUserCubit, AppUserState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightThemeMode,
+            routerConfig: router,
+          );
+        },
       ),
     );
   }
