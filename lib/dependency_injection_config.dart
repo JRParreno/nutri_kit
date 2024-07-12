@@ -6,6 +6,7 @@ import 'package:nutri_kit/core/service/env_service.dart';
 import 'package:nutri_kit/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:nutri_kit/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:nutri_kit/features/auth/domain/repository/auth_repository.dart';
+import 'package:nutri_kit/features/auth/domain/usecase/current_user.dart';
 
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,9 +43,13 @@ void initAuth() {
     ..registerFactory(
       () => UserLogin(serviceLocator()),
     )
+    ..registerFactory(
+      () => CurrentUser(serviceLocator()),
+    )
     // Bloc
     ..registerFactory(
       () => AuthBloc(
+        currentUser: serviceLocator(),
         userLogin: serviceLocator(),
         userSignup: serviceLocator(),
         sharedPreferencesNotifier: serviceLocator(),

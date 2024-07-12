@@ -27,10 +27,10 @@ class DioInterceptor extends Interceptor {
       Map<String, dynamic> userResponse =
           await GetRefreshToken.refreshToken(refreshToken: refreshToken);
 
-      _sharedPreferencesNotifier.setValue(
-          SharedPreferencesKeys.accessToken, userResponse['accessToken']);
-      _sharedPreferencesNotifier.setValue(
-          SharedPreferencesKeys.refreshToken, userResponse['refreshToken']);
+      _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.accessToken,
+          userResponse['accessToken'] as String);
+      _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.refreshToken,
+          userResponse['refreshToken'] as String);
     }
     super.onError(err, handler);
   }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:nutri_kit/core/error/exceptions.dart';
+import 'package:nutri_kit/core/interceptor/api_interceptor.dart';
 import 'package:nutri_kit/core/service/env_service.dart';
 import 'package:nutri_kit/features/auth/data/models/index.dart';
 
@@ -16,10 +17,13 @@ abstract interface class AuthRemoteDataSource {
     required String password,
     required String confirmPassword,
   });
+
+  Future<UserModel> currentUser();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final Dio dio = Dio();
+  final apiInstance = ApiInterceptor.apiInstance();
 
   @override
   Future<LoginResponseModel> loginWithEmailPassword(
@@ -66,6 +70,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final response = await dio.post(url, data: data);
       return SignupResponseModel.fromMap(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel> currentUser() async {
+    try {
+      String url = '${EnvService.get('API_URL')}/api/profile';
+
+      final response = await apiInstance.get(url);
+      return UserModel.fromMap(response.data);
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',

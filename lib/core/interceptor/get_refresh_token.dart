@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,7 +7,7 @@ class GetRefreshToken {
   static FutureOr refreshToken({required String refreshToken}) async {
     await dotenv.load(fileName: '.env');
 
-    String url = '${dotenv.env['API_URL']}o/token/';
+    String url = '${dotenv.env['API_URL']}/o/token/';
     Map<String, dynamic> data = {
       'refresh_token': refreshToken,
       'grant_type': 'refresh_token',
@@ -22,12 +21,11 @@ class GetRefreshToken {
       return {'statusCode': userDetails.statusCode, 'data': userDetails.data};
     }
 
-    Map<String, dynamic> responseJson = jsonDecode(userDetails.data);
+    Map<String, dynamic> responseJson = userDetails.data;
     return {
       'accessToken': responseJson['access_token'],
       'refreshToken': responseJson['refresh_token'],
       'statusCode': userDetails.statusCode,
-      'surgeon': responseJson['surgeon'],
     };
   }
 }

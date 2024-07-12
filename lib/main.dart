@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    context.read<AuthBloc>().add(AuthIsUserLoggedIn());
 
     Future.delayed(const Duration(seconds: 2), () {
       FlutterNativeSplash.remove();

@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:nutri_kit/core/common/entities/user.dart';
 import 'package:nutri_kit/features/auth/domain/entities/login_response.dart';
 import 'package:nutri_kit/core/error/failure.dart';
 import 'package:nutri_kit/features/auth/domain/entities/signup_response.dart';
@@ -16,4 +17,6 @@ abstract interface class AuthRepository {
     required String password,
     required String confirmPassword,
   });
+
+   Future<Either<Failure, User>> currentUser();
 }
