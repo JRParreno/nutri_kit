@@ -1,5 +1,5 @@
 class ServerException implements Exception {
-  final String messsage;
+  final String message;
 
-  const ServerException(this.messsage);
+  const ServerException(this.message);
 }

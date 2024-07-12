@@ -41,7 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _currentUser(NoParams());
 
     res.fold(
-      (l) => emit(AuthFailure(l.messsage)),
+      (l) => emit(AuthFailure(l.message)),
       (r) => handleSetUserCubit(emit: emit, user: r),
     );
   }
@@ -57,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     res.fold(
-      (l) => emit(AuthFailure(l.messsage)),
+      (l) => emit(AuthFailure(l.message)),
       (r) {
         // this will save token in localstorage
         handleSetInfo(accessToken: r.accessToken, refreshToken: r.refreshToken);
@@ -81,7 +81,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ));
 
     res.fold(
-      (l) => emit(AuthFailure(l.messsage)),
+      (l) => emit(AuthFailure(l.message)),
       (r) {
         // this will save token in localstorage
         handleSetInfo(accessToken: r.accessToken, refreshToken: r.refreshToken);

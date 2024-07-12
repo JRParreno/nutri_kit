@@ -23,7 +23,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
       return right(response);
     } on ServerException catch (e) {
-      return left(Failure(e.messsage));
+      return left(Failure(e.message));
     }
   }
 
@@ -44,7 +44,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       return right(response);
     } on ServerException catch (e) {
-      return left(Failure(e.messsage));
+      return left(Failure(e.message));
     }
   }
 
@@ -54,7 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.currentUser();
       return right(response);
     } on ServerException catch (e) {
-      return left(Failure(e.messsage));
+      return left(Failure(e.message));
     }
   }
 }
