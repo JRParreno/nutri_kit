@@ -9,10 +9,12 @@ class AuthField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.isObscureText = false,
+    this.suffixIcon,
   });
 
   final TextEditingController controller;
   final bool isObscureText;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class AuthField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
+        suffixIcon: suffixIcon,
       ),
       validator: (value) {
         if (value!.isEmpty) {

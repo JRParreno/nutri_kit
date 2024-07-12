@@ -6,9 +6,11 @@ import 'package:nutri_kit/core/service/env_service.dart';
 import 'package:nutri_kit/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:nutri_kit/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:nutri_kit/features/auth/domain/repository/auth_repository.dart';
-import 'package:nutri_kit/features/auth/domain/usecase/user_signup.dart';
+
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'features/auth/domain/usecase/index.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -37,9 +39,13 @@ void initAuth() {
     ..registerFactory(
       () => UserSignup(serviceLocator()),
     )
+    ..registerFactory(
+      () => UserLogin(serviceLocator()),
+    )
     // Bloc
     ..registerFactory(
       () => AuthBloc(
+        userLogin: serviceLocator(),
         userSignup: serviceLocator(),
         sharedPreferencesNotifier: serviceLocator(),
         appUserCubit: serviceLocator(),

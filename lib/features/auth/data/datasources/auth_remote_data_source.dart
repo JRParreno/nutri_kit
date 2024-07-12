@@ -34,10 +34,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'client_secret': EnvService.get('CLIENT_SECRET')
       };
 
-      return await dio.post(url, data: data).then((value) {
-        return LoginResponseModel(
-            data: value.data, status: value.statusCode?.toString() ?? '');
-      });
+      final response = await dio.post(url, data: data);
+      return LoginResponseModel.fromMap(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_description'] ?? 'Something went wrong.',
+      );
     } catch (e) {
       throw ServerException(e.toString());
     }

@@ -1,17 +1,21 @@
 import 'package:equatable/equatable.dart';
+import 'package:nutri_kit/features/auth/data/models/index.dart';
 
 class LoginResponse extends Equatable {
-  final dynamic data;
-  final String status;
+  final String accessToken;
+  final String refreshToken;
+  final UserModel user;
 
   const LoginResponse({
-    required this.data,
-    required this.status,
+    required this.accessToken,
+    required this.refreshToken,
+    required this.user,
   });
 
   @override
   List<Object?> get props => [
-        data,
-        status,
+        accessToken,
+        refreshToken,
+        user,
       ];
 }

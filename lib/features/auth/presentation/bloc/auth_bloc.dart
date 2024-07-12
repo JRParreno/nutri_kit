@@ -4,7 +4,7 @@ import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/core/common/entities/user.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
-import 'package:nutri_kit/features/auth/domain/usecase/user_signup.dart';
+import 'package:nutri_kit/features/auth/domain/usecase/index.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -12,17 +12,42 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SharedPreferencesNotifier _sharedPreferencesNotifier;
   final UserSignup _userSignup;
+  final UserLogin _userLogin;
   final AppUserCubit _appUserCubit;
 
   AuthBloc({
     required UserSignup userSignup,
+    required UserLogin userLogin,
     required SharedPreferencesNotifier sharedPreferencesNotifier,
     required AppUserCubit appUserCubit,
   })  : _userSignup = userSignup,
+        _userLogin = userLogin,
         _appUserCubit = appUserCubit,
         _sharedPreferencesNotifier = sharedPreferencesNotifier,
         super(AuthInitial()) {
     on<AuthSignupEvent>(onAuthSignupEvent);
+    on<AuthLoginEvent>(onAuthLoginEvent);
+  }
+
+  Future<void> onAuthLoginEvent(
+      AuthLoginEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    final res = await _userLogin(
+      UserLoginParams(
+        email: event.email,
+        password: event.password,
+      ),
+    );
+
+    res.fold(
+      (l) => emit(AuthFailure(l.messsage)),
+      (r) {
+        // this will save token in localstorage
+        handleSetInfo(accessToken: r.accessToken, refreshToken: r.refreshToken);
+        // handle set user cubit and emit
+        handleSetUserCubit(emit: emit, user: r.user);
+      },
+    );
   }
 
   Future<void> onAuthSignupEvent(

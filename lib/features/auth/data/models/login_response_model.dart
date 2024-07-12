@@ -1,8 +1,18 @@
+import 'package:nutri_kit/features/auth/data/models/index.dart';
 import 'package:nutri_kit/features/auth/domain/entities/login_response.dart';
 
 class LoginResponseModel extends LoginResponse {
   const LoginResponseModel({
-    required super.data,
-    required super.status,
+    required super.accessToken,
+    required super.refreshToken,
+    required super.user,
   });
+
+  factory LoginResponseModel.fromMap(Map<String, dynamic> map) {
+    return LoginResponseModel(
+      accessToken: map['access_token'],
+      refreshToken: map['refresh_token'],
+      user: UserModel.fromMap(map),
+    );
+  }
 }

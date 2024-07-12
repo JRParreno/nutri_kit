@@ -25,6 +25,7 @@ class _SingupPageState extends State<SingupPage> {
   final firstNameCtrl = TextEditingController();
   final lastNameCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isObscureTextPass = true, isObscureTextConfirmPass = true;
 
   @override
   void dispose() {
@@ -90,6 +91,17 @@ class _SingupPageState extends State<SingupPage> {
                   AuthField(
                     controller: passwordCtrl,
                     hintText: 'Password',
+                    isObscureText: isObscureTextPass,
+                    suffixIcon: IconButton(
+                      onPressed: () => setState(
+                          () => isObscureTextPass = !isObscureTextPass),
+                      icon: Icon(
+                        isObscureTextPass
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 26,
@@ -97,6 +109,17 @@ class _SingupPageState extends State<SingupPage> {
                   AuthField(
                     controller: confirmPasswordCtrl,
                     hintText: 'Confirm Password',
+                    isObscureText: isObscureTextConfirmPass,
+                    suffixIcon: IconButton(
+                      onPressed: () => setState(() =>
+                          isObscureTextConfirmPass = !isObscureTextConfirmPass),
+                      icon: Icon(
+                        isObscureTextConfirmPass
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 26,
