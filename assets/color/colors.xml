@@ -2,4 +2,5 @@
     <color name="primary">#D3B69F</color>
     <color name="secondary">#1AC2AE</color>
     <color name="link">#7C7C7C</color>
+    <color name="card">#FFF8EB</color>
 </resources>

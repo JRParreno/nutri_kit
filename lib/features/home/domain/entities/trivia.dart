@@ -9,7 +9,7 @@ class Trivia extends Equatable {
   final DateTime updatedAt;
   final String questionText;
   final String difficulty;
-  final dynamic questionBanner;
+  final String? questionBanner;
 
   const Trivia({
     required this.id,
@@ -19,7 +19,7 @@ class Trivia extends Equatable {
     required this.updatedAt,
     required this.questionText,
     required this.difficulty,
-    required this.questionBanner,
+    this.questionBanner,
   });
 
   @override

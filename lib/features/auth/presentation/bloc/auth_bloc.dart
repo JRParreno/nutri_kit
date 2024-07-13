@@ -5,7 +5,6 @@ import 'package:nutri_kit/core/common/entities/user.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/core/usecase/usecase.dart';
-import 'package:nutri_kit/features/auth/domain/usecase/current_user.dart';
 import 'package:nutri_kit/features/auth/domain/usecase/index.dart';
 
 part 'auth_event.dart';
@@ -38,9 +37,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> onAuthIsUserLoggedIn(
       AuthIsUserLoggedIn event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    final res = await _currentUser(NoParams());
+    final response = await _currentUser(NoParams());
 
-    res.fold(
+    response.fold(
       (l) => emit(AuthFailure(l.message)),
       (r) => handleSetUserCubit(emit: emit, user: r),
     );
@@ -71,7 +70,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       AuthSignupEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
 
-    final res = await _userSignup.call(UserSignupParams(
+    final response = await _userSignup.call(UserSignupParams(
       firstName: event.firstName,
       lastName: event.lastName,
       age: event.age,
@@ -80,7 +79,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       email: event.email,
     ));
 
-    res.fold(
+    response.fold(
       (l) => emit(AuthFailure(l.message)),
       (r) {
         // this will save token in localstorage

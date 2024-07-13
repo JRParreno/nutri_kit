@@ -5,7 +5,10 @@ import 'package:nutri_kit/core/service/env_service.dart';
 import 'package:nutri_kit/features/home/data/models/index.dart';
 
 abstract interface class TriviaRemoteDataSource {
-  Future<TriviaResponseModel> getListTrivia();
+  Future<TriviaResponseModel> getListTrivia({
+    String? next,
+    String? previous,
+  });
   Future<TriviaModel> getDetailTrivia(int id);
 }
 
@@ -30,11 +33,14 @@ class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
   }
 
   @override
-  Future<TriviaResponseModel> getListTrivia() async {
+  Future<TriviaResponseModel> getListTrivia({
+    String? next,
+    String? previous,
+  }) async {
     String url = '${EnvService.get('API_URL')}/api/trivia/list';
 
     try {
-      final response = await apiInstance.get(url);
+      final response = await apiInstance.get(next ?? previous ?? url);
       return TriviaResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       throw ServerException(

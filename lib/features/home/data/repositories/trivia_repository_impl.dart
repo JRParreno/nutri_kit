@@ -22,9 +22,15 @@ class TriviaRepositoryImpl implements TriviaRepository {
   }
 
   @override
-  Future<Either<Failure, TriviaResponse>> getListTrivia() async {
+  Future<Either<Failure, TriviaResponse>> getListTrivia({
+    String? next,
+    String? previous,
+  }) async {
     try {
-      final response = await triviaRemoteDataSource.getListTrivia();
+      final response = await triviaRemoteDataSource.getListTrivia(
+        next: next,
+        previous: previous,
+      );
 
       return right(response);
     } on ServerException catch (e) {

@@ -13,6 +13,7 @@ import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/core/theme/theme.dart';
 import 'package:nutri_kit/dependency_injection_config.dart' as di;
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
 import 'package:nutri_kit/router/app_router.dart';
 
 void main() async {
@@ -34,6 +35,9 @@ void main() async {
         BlocProvider(
           create: (context) => di.serviceLocator<AuthBloc>(),
         ),
+        BlocProvider(
+          create: (context) => di.serviceLocator<TriviaBloc>(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -50,7 +54,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isConnectedToInternet = false;
+  bool isConnectedToInternet = true;
   StreamSubscription? _internetConnectionStreamSubscription;
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -113,12 +117,14 @@ class _MyAppState extends State<MyApp> {
         default:
           setState(() => isConnectedToInternet = false);
       }
-      final snackBar = SnackBar(
-        content: Text(
-            "You are ${isConnectedToInternet ? "connected" : "disconnected"} to the internet."),
-      );
 
-      scaffoldMessengerKey.currentState?.showSnackBar(snackBar);
+      if (!isConnectedToInternet) {
+        const snackBar = SnackBar(
+          content: Text("You are disconnected to the internet."),
+        );
+
+        scaffoldMessengerKey.currentState?.showSnackBar(snackBar);
+      }
     });
   }
 }
