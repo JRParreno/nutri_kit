@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+
 import 'package:nutri_kit/core/common/entities/list_response.dart';
-import 'package:nutri_kit/features/home/data/models/index.dart';
+import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class TriviaResponse extends Equatable {
+class FoodResponse extends Equatable {
   final ListResponse listResponse;
-  final List<TriviaModel> results;
+  final List<Food> results;
 
-  const TriviaResponse({
+  const FoodResponse({
     required this.listResponse,
     required this.results,
   });

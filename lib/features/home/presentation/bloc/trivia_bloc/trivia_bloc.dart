@@ -33,7 +33,7 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
     final state = this.state;
 
     if (state is TriviaLoaded) {
-      final next = state.triviaResponse.next;
+      final next = state.triviaResponse.listResponse.next;
       if (next == null) return;
 
       final response = await _getTriviaList(GetTriviaListParams(next: next));

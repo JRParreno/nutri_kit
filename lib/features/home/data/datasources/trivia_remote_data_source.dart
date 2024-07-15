@@ -14,10 +14,11 @@ abstract interface class TriviaRemoteDataSource {
 
 class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
   final apiInstance = ApiInterceptor.apiInstance();
+  final baseUrl = EnvService.get('API_URL');
 
   @override
   Future<TriviaModel> getDetailTrivia(int id) async {
-    String url = '${EnvService.get('API_URL')}/api/trivia/detail/$id';
+    String url = '$baseUrl/api/trivia/detail/$id';
 
     try {
       final response = await apiInstance.get(url);
@@ -37,7 +38,7 @@ class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
     String? next,
     String? previous,
   }) async {
-    String url = '${EnvService.get('API_URL')}/api/trivia/list';
+    String url = '$baseUrl/api/trivia/list';
 
     try {
       final response = await apiInstance.get(next ?? previous ?? url);
