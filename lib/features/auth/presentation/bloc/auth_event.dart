@@ -20,6 +20,8 @@ class AuthLoginEvent extends AuthEvent {
 
 class AuthIsUserLoggedIn extends AuthEvent {}
 
+class AuthRefreshUser extends AuthEvent {}
+
 class AuthSignupEvent extends AuthEvent {
   final String firstName;
   final String lastName;

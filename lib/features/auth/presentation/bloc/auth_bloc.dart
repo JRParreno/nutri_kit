@@ -32,6 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignupEvent>(onAuthSignupEvent);
     on<AuthLoginEvent>(onAuthLoginEvent);
     on<AuthIsUserLoggedIn>(onAuthIsUserLoggedIn);
+    on<AuthRefreshUser>(onAuthRefreshUser);
   }
 
   Future<void> onAuthIsUserLoggedIn(
@@ -40,7 +41,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final response = await _currentUser(NoParams());
 
     response.fold(
-      (l) => emit(AuthFailure(l.message)),
+      (l) => handleFailSetUserCubit(message: l.message, emit: emit),
+      (r) => handleSetUserCubit(emit: emit, user: r),
+    );
+  }
+
+  Future<void> onAuthRefreshUser(
+      AuthRefreshUser event, Emitter<AuthState> emit) async {
+    _appUserCubit.userLoggedIn();
+
+    final response = await _currentUser(NoParams());
+
+    response.fold(
+      (l) => handleFailSetUserCubit(message: l.message, emit: emit),
       (r) => handleSetUserCubit(emit: emit, user: r),
     );
   }
@@ -103,5 +116,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       {required User user, required Emitter<AuthState> emit}) {
     _appUserCubit.updateUser(user);
     emit(AuthSuccess(user));
+  }
+
+  void handleFailSetUserCubit(
+      {required String message, required Emitter<AuthState> emit}) {
+    _appUserCubit.failSetUser(message);
+    emit(AuthFailure(message));
   }
 }

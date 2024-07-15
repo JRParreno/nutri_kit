@@ -17,7 +17,11 @@ class TriviaSlider extends StatelessWidget {
       child: BlocBuilder<TriviaBloc, TriviaState>(
         builder: (context, state) {
           if (state is TriviaLoading) {
-            return const Text('Loading....');
+            return carouselContainer(
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           }
 
           if (state is TriviaLoaded) {
@@ -47,8 +51,8 @@ class TriviaSlider extends StatelessWidget {
                         children: results
                             .map(
                               (item) => Container(
-                                height: 15,
-                                width: 20,
+                                height: 10,
+                                width: state == results.indexOf(item) ? 20 : 15,
                                 margin: const EdgeInsets.only(right: 5),
                                 decoration: BoxDecoration(
                                   color: state == results.indexOf(item)
@@ -70,13 +74,49 @@ class TriviaSlider extends StatelessWidget {
             );
           }
 
+          if (state is TriviaFailure) {
+            return carouselContainer(
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Failed to retrieve data',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const Gap(10),
+                    SizedBox(
+                      height: 40,
+                      width: 135,
+                      child: ElevatedButton(
+                        child: const Text(
+                          'Refresh',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () {
+                          context.read<TriviaBloc>().add(TriviaGetList());
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return const SizedBox();
         },
       ),
     );
   }
 
-  Widget carouselCard(Trivia trivia) {
+  Widget carouselContainer({required Widget child}) {
     return Container(
       height: 200,
       padding: const EdgeInsets.all(25),
@@ -84,6 +124,12 @@ class TriviaSlider extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: ColorName.card,
       ),
+      child: child,
+    );
+  }
+
+  Widget carouselCard(Trivia trivia) {
+    return carouselContainer(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -118,33 +164,35 @@ class TriviaSlider extends StatelessWidget {
                     const Gap(5),
                   ],
                 ),
-                SizedBox(
-                  height: 40,
-                  width: 135,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.only(
-                        left: 25,
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Read Now',
-                          style: TextStyle(
-                            fontFamily: 'Signika',
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
+                Flexible(
+                  child: SizedBox(
+                    height: 40,
+                    width: 135,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.only(
+                          left: 25,
                         ),
-                        Gap(3),
-                        Icon(
-                          Icons.arrow_right_rounded,
-                          color: Colors.white,
-                          size: 25,
-                        )
-                      ],
+                      ),
+                      onPressed: () {},
+                      child: const Row(
+                        children: [
+                          Text(
+                            'Read Now',
+                            style: TextStyle(
+                              fontFamily: 'Signika',
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Gap(3),
+                          Icon(
+                            Icons.arrow_right_rounded,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )

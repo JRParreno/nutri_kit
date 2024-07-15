@@ -14,3 +14,9 @@ final class AppUserLoggedIn extends AppUserState {
 
   const AppUserLoggedIn(this.user);
 }
+
+final class AppUserFail extends AppUserState {
+  final String message;
+
+  const AppUserFail(this.message);
+}

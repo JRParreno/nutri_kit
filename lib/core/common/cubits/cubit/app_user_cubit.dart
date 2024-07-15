@@ -18,4 +18,12 @@ class AppUserCubit extends Cubit<AppUserState> {
   void logout() {
     emit(AppUserInitial());
   }
+
+  void failSetUser(String message) {
+    emit(AppUserFail(message));
+  }
+
+  void userLoggedIn() {
+    emit(GettingAppUser());
+  }
 }
