@@ -1,11 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:nutri_kit/core/common/entities/result.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/error/failure.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
-import 'package:nutri_kit/core/utils/safe_feature.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_deficiency.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_food.dart';
