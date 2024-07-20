@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     ProfileListTile(
                       iconData: Icons.person,
-                      onTap: () {},
+                      onTap: handleGoToUpdateProfile,
                       title: 'Edit Profile',
                     ),
                     const SizedBox(height: 15),
@@ -96,5 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
           context.go(AppRoutes.login.path);
         });
+  }
+
+  void handleGoToUpdateProfile() {
+    context.pushNamed(AppRoutes.updateProfile.name);
   }
 }

@@ -12,6 +12,7 @@ import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/profile.dart';
+import 'package:nutri_kit/features/profile/presentation/pages/update_profile.dart';
 import 'package:nutri_kit/features/search/presentation/pages/search.dart';
 import 'package:nutri_kit/router/index.dart';
 
@@ -129,15 +130,26 @@ GoRouter routerConfig() {
             navigatorKey: shellNavigatorProfileKey,
             routes: [
               GoRoute(
-                path: AppRoutes.profile.path,
-                name: AppRoutes.profile.name,
-                pageBuilder: (context, state) {
-                  return buildTransitionPage(
-                    localKey: state.pageKey,
-                    child: const ProfilePage(),
-                  );
-                },
-              ),
+                  path: AppRoutes.profile.path,
+                  name: AppRoutes.profile.name,
+                  pageBuilder: (context, state) {
+                    return buildTransitionPage(
+                      localKey: state.pageKey,
+                      child: const ProfilePage(),
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.updateProfile.path,
+                      name: AppRoutes.updateProfile.name,
+                      pageBuilder: (context, state) {
+                        return buildTransitionPage(
+                          localKey: state.pageKey,
+                          child: const UpdateProfilePage(),
+                        );
+                      },
+                    ),
+                  ]),
             ],
           ),
         ],
