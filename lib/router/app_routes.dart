@@ -23,6 +23,10 @@ enum AppRoutes {
   profile(
     name: 'profile',
     path: '/profile',
+  ),
+  updateProfile(
+    name: 'update_profile',
+    path: 'update_profile',
   );
 
   const AppRoutes({

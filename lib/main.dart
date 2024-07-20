@@ -14,6 +14,7 @@ import 'package:nutri_kit/core/theme/theme.dart';
 import 'package:nutri_kit/dependency_injection_config.dart' as di;
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
+import 'package:nutri_kit/features/profile/presentation/bloc/update_profile_bloc.dart';
 import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
 import 'package:nutri_kit/router/app_router.dart';
 
@@ -41,6 +42,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => di.serviceLocator<SearchBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.serviceLocator<UpdateProfileBloc>(),
         ),
       ],
       child: const MyApp(),
