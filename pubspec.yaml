@@ -58,6 +58,7 @@ dependencies:
   internet_connection_checker_plus: ^2.3.0
   carousel_slider: ^4.2.1
   gap: ^3.0.1
+  easy_debounce: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,7 @@ flutter:
     - assets/images/on_boarding/
     - assets/images/profile/
     - assets/images/icon/
+    - assets/images/placeholder/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

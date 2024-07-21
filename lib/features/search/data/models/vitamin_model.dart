@@ -1,6 +1,6 @@
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class VitaminModel extends Vitamin {
+class VitaminModel extends VitaminEntity {
   const VitaminModel({
     required super.id,
     required super.createdAt,

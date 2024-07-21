@@ -1,7 +1,7 @@
 import 'package:nutri_kit/features/search/data/models/index.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class FoodModel extends Food {
+class FoodModel extends FoodEntity {
   const FoodModel({
     required super.id,
     required super.category,

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Vitamin extends Equatable {
+class RemedyEntity extends Equatable {
   final int id;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -8,7 +8,7 @@ class Vitamin extends Equatable {
   final String description;
   final String? image;
 
-  const Vitamin({
+  const RemedyEntity({
     required this.id,
     required this.createdAt,
     required this.updatedAt,

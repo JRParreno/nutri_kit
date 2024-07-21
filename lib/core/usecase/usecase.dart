@@ -6,3 +6,15 @@ abstract interface class UseCase<SuccessfulType, Params> {
 }
 
 class NoParams {}
+
+class SearchParams {
+  final String keyword;
+  final String? next;
+  final String? previous;
+
+  const SearchParams({
+    required this.keyword,
+    this.next,
+    this.previous,
+  });
+}

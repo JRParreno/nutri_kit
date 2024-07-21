@@ -1,6 +1,6 @@
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class RemedyModel extends Remedy {
+class RemedyModel extends RemedyEntity {
   const RemedyModel({
     required super.id,
     required super.createdAt,

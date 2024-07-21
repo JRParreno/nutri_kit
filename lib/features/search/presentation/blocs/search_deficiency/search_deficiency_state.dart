@@ -10,7 +10,7 @@ sealed class SearchDeficiencyState extends Equatable {
 final class SearchDeficiencyInitial extends SearchDeficiencyState {}
 
 final class SearchDeficiencyLoaded extends SearchDeficiencyState {
-  final DeficiencyResponse deficiencyResponse;
+  final DeficiencyResponseEntity deficiencyResponse;
 
   const SearchDeficiencyLoaded(this.deficiencyResponse);
 

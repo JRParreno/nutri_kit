@@ -20,6 +20,12 @@ abstract interface class SearchRemoteDataSource {
     String? next,
     String? previous,
   });
+
+  Future<VitaminResponseModel> searchVitamins({
+    required String keyword,
+    String? next,
+    String? previous,
+  });
 }
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
@@ -77,6 +83,26 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     try {
       final response = await apiInstance.get(next ?? previous ?? url);
       return RemediesResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<VitaminResponseModel> searchVitamins({
+    required String keyword,
+    String? next,
+    String? previous,
+  }) async {
+    String url = '$baseUrl/api/vitamin/list?search=$keyword';
+
+    try {
+      final response = await apiInstance.get(next ?? previous ?? url);
+      return VitaminResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',

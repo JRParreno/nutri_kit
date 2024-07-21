@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
+import 'package:nutri_kit/features/search/presentation/widgets/search_field.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -10,6 +12,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final TextEditingController searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -20,12 +24,34 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: const Text(
+          'Search',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
-      body: BlocBuilder<SearchBloc, SearchState>(
-        builder: (context, state) {
-          return const Placeholder();
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            SearchField(
+              controller: searchController,
+              hintText: "Search",
+              onSearch: () {},
+              onChanged: () {
+                setState(() {});
+              },
+            ),
+            const Gap(30),
+            BlocConsumer<SearchBloc, SearchState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return const Placeholder();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

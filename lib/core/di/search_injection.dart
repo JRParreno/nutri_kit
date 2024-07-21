@@ -5,6 +5,7 @@ import 'package:nutri_kit/features/search/domain/repository/search_repository.da
 import 'package:nutri_kit/features/search/domain/usecase/search_deficiency.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_food.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_remedy.dart';
+import 'package:nutri_kit/features/search/domain/usecase/search_vitamin.dart';
 import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
 
 void initSearch(GetIt serviceLocator) {
@@ -19,13 +20,16 @@ void initSearch(GetIt serviceLocator) {
     ..registerFactory(() => SearchRemedy(serviceLocator()))
     ..registerFactory(() => SearchDeficiency(serviceLocator()))
     ..registerFactory(() => SearchFood(serviceLocator()))
+    ..registerFactory(() => SearchVitamin(serviceLocator()))
 
 // Blocs
     ..registerFactory(
       () => SearchBloc(
-          sharedPreferencesNotifier: serviceLocator(),
-          searchFood: serviceLocator(),
-          searchRemedy: serviceLocator(),
-          searchDeficiency: serviceLocator()),
+        sharedPreferencesNotifier: serviceLocator(),
+        searchFood: serviceLocator(),
+        searchRemedy: serviceLocator(),
+        searchDeficiency: serviceLocator(),
+        searchVitamin: serviceLocator(),
+      ),
     );
 }

@@ -4,15 +4,15 @@ import 'package:nutri_kit/core/usecase/usecase.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/domain/repository/search_repository.dart';
 
-class SearchRemedy implements UseCase<RemediesResponseEntity, SearchParams> {
+class SearchVitamin implements UseCase<VitaminResponseEntity, SearchParams> {
   final SearchRepository searchRepository;
 
-  const SearchRemedy(this.searchRepository);
+  const SearchVitamin(this.searchRepository);
 
   @override
-  Future<Either<Failure, RemediesResponseEntity>> call(
+  Future<Either<Failure, VitaminResponseEntity>> call(
       SearchParams params) async {
-    return await searchRepository.searchRemedies(
+    return await searchRepository.searchVitamins(
       keyword: params.keyword,
       next: params.next,
       previous: params.previous,

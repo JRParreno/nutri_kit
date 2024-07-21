@@ -5,30 +5,18 @@ import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/domain/repository/search_repository.dart';
 
 class SearchDeficiency
-    implements UseCase<DeficiencyResponse, SearchDeficiencyParams> {
+    implements UseCase<DeficiencyResponseEntity, SearchParams> {
   final SearchRepository searchRepository;
 
   const SearchDeficiency(this.searchRepository);
 
   @override
-  Future<Either<Failure, DeficiencyResponse>> call(
-      SearchDeficiencyParams params) async {
+  Future<Either<Failure, DeficiencyResponseEntity>> call(
+      SearchParams params) async {
     return await searchRepository.searchDeficiencies(
       keyword: params.keyword,
       next: params.next,
       previous: params.previous,
     );
   }
-}
-
-class SearchDeficiencyParams {
-  final String keyword;
-  final String? next;
-  final String? previous;
-
-  const SearchDeficiencyParams({
-    required this.keyword,
-    this.next,
-    this.previous,
-  });
 }

@@ -1,8 +1,9 @@
-export 'deficiency.dart';
-export 'food_category.dart';
-export 'food.dart';
-export 'remedy.dart';
-export 'vitamin.dart';
-export 'remedies_response.dart';
-export 'deficiency_response.dart';
-export 'food_response.dart';
+export 'deficiency_entity.dart';
+export 'food_category_entity.dart';
+export 'food_entity.dart';
+export 'remedy_entity.dart';
+export 'vitamin_entity.dart';
+export 'remedies_response_entity.dart';
+export 'deficiency_response_entity.dart';
+export 'food_response_entity.dart';
+export 'vitamin_response_entity.dart';

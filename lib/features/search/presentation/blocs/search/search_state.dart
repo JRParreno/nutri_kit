@@ -11,6 +11,8 @@ final class SearchInitial extends SearchState {}
 
 final class SearchLoading extends SearchState {}
 
+final class SearchEmpty extends SearchState {}
+
 final class SearchRecentLoaded extends SearchState {
   final List<String> keywords;
 
@@ -23,14 +25,16 @@ final class SearchRecentLoaded extends SearchState {
 }
 
 final class SearchSuccess extends SearchState {
-  final DeficiencyResponse? deficiencyResponse;
-  final RemediesResponse? remediesResponse;
-  final FoodResponse? foodResponse;
+  final DeficiencyResponseEntity? deficiencyResponse;
+  final RemediesResponseEntity? remediesResponse;
+  final FoodResponseEntity? foodResponse;
+  final VitaminResponseEntity? vitaminResponse;
 
   const SearchSuccess({
     this.deficiencyResponse,
     this.remediesResponse,
     this.foodResponse,
+    this.vitaminResponse,
   });
 
   @override
@@ -38,6 +42,7 @@ final class SearchSuccess extends SearchState {
         deficiencyResponse,
         remediesResponse,
         foodResponse,
+        vitaminResponse,
       ];
 }
 

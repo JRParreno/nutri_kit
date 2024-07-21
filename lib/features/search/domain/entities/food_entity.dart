@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class Food extends Equatable {
+class FoodEntity extends Equatable {
   final int id;
-  final FoodCategory category;
-  final List<Vitamin> vitamins;
+  final FoodCategoryEntity category;
+  final List<VitaminEntity> vitamins;
   final DateTime createdAt;
   final DateTime updatedAt;
   final String name;
@@ -12,7 +12,7 @@ class Food extends Equatable {
   final String description;
   final String? image;
 
-  const Food({
+  const FoodEntity({
     required this.id,
     required this.category,
     required this.vitamins,

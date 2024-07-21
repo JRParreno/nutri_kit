@@ -1,20 +1,18 @@
 import 'package:equatable/equatable.dart';
 
-class FoodCategory extends Equatable {
+class DeficiencyEntity extends Equatable {
   final int id;
   final DateTime createdAt;
   final DateTime updatedAt;
   final String name;
   final String description;
-  final String? image;
 
-  const FoodCategory({
+  const DeficiencyEntity({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
     required this.name,
     required this.description,
-    this.image,
   });
 
   @override
@@ -24,6 +22,5 @@ class FoodCategory extends Equatable {
         updatedAt,
         name,
         description,
-        image,
       ];
 }

@@ -3,11 +3,11 @@ import 'package:equatable/equatable.dart';
 import 'package:nutri_kit/core/common/entities/list_response.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class FoodResponse extends Equatable {
+class RemediesResponseEntity extends Equatable {
   final ListResponse listResponse;
-  final List<Food> results;
+  final List<RemedyEntity> results;
 
-  const FoodResponse({
+  const RemediesResponseEntity({
     required this.listResponse,
     required this.results,
   });

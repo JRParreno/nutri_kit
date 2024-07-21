@@ -1,6 +1,6 @@
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class DeficiencyModel extends Deficiency {
+class DeficiencyModel extends DeficiencyEntity {
   const DeficiencyModel({
     required super.id,
     required super.createdAt,

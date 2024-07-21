@@ -12,6 +12,8 @@ class AppTheme with ThemeMixin {
         const ProgressIndicatorThemeData(color: ColorName.primary),
     appBarTheme: AppBarTheme(
       backgroundColor: ColorName.primary.withOpacity(0.91),
+      titleTextStyle:
+          const AppBarTheme().titleTextStyle?.copyWith(color: Colors.white),
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: const TextStyle(
