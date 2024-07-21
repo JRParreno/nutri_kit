@@ -16,7 +16,7 @@ class VitaminModel extends VitaminEntity {
         updatedAt: DateTime.parse(json["updated_at"]),
         name: json["name"],
         description: json["description"],
-        image: json["image"] ?? "",
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {

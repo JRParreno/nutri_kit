@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
@@ -64,15 +62,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       SearchParams(keyword: event.keyword),
     );
 
-    final List<Either<Failure, Equatable>> results =
-        await Isolate.run<List<Either<Failure, Equatable>>>(() async {
-      return await Future.wait([
-        deficiencyResponse,
-        remedyResponse,
-        foodResponse,
-        vitaminResponse,
-      ]);
-    });
+    final results = await Future.wait([
+      deficiencyResponse,
+      remedyResponse,
+      foodResponse,
+      vitaminResponse,
+    ]);
 
     final deficiencyResult =
         results[0] as Either<Failure, DeficiencyResponseEntity>;
