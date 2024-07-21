@@ -20,9 +20,10 @@ class SearchDeficiencySuccess extends StatelessWidget {
 
     return SearchBaseHeaderSuccess(
       displayTitle: 'Deficiency',
-      isShowViewAll: data!.results.length > 3,
+      isShowViewAll: data!.results.length > 2,
       onTViewAll: () {},
       children: data!.results
+          .take(2)
           .map(
             (e) => SearchTileItem(
               defaultImage: Assets.images.placeholder.deficiency.image(),

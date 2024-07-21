@@ -43,7 +43,7 @@ class SearchFoodSuccess extends StatelessWidget {
           ],
         ),
         const Gap(10),
-        ...data!.results.take(3).map(
+        ...data!.results.take(2).map(
               (e) => Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
