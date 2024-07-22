@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 part 'search_deficiency_event.dart';
 part 'search_deficiency_state.dart';

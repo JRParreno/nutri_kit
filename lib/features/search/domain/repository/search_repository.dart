@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:nutri_kit/core/error/failure.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 abstract interface class SearchRepository {
   Future<Either<Failure, RemediesResponseEntity>> searchRemedies({

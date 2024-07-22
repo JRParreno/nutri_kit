@@ -10,6 +10,7 @@ import 'package:nutri_kit/features/search/domain/usecase/search_deficiency.dart'
 import 'package:nutri_kit/features/search/domain/usecase/search_food.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_remedy.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_vitamin.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';

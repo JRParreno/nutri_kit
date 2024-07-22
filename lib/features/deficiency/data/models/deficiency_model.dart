@@ -1,4 +1,4 @@
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 class DeficiencyModel extends DeficiencyEntity {
   const DeficiencyModel({

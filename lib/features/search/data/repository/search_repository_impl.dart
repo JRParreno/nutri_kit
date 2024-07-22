@@ -4,6 +4,7 @@ import 'package:nutri_kit/core/error/failure.dart';
 import 'package:nutri_kit/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/domain/repository/search_repository.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 class SearchRepositoryImpl implements SearchRepository {
   final SearchRemoteDataSource searchRemoteDataSource;

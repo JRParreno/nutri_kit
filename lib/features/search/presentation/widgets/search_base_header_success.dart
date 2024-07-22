@@ -27,7 +27,7 @@ class SearchBaseHeaderSuccess extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Remedy',
+              displayTitle,
               style: textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

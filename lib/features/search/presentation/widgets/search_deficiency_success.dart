@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/search_base_header_success.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/search_tile_item.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
+import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 class SearchDeficiencySuccess extends StatelessWidget {
   const SearchDeficiencySuccess({

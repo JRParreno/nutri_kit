@@ -25,7 +25,7 @@ class SearchVitaminSuccess extends StatelessWidget {
           .take(2)
           .map(
             (e) => SearchTileItem(
-              defaultImage: Assets.images.placeholder.deficiency.image(),
+              defaultImage: Assets.images.placeholder.vitamins.image(),
               title: e.name,
               description: e.description,
             ),
