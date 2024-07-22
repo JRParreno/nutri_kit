@@ -10,7 +10,6 @@ import 'package:nutri_kit/features/search/domain/usecase/search_deficiency.dart'
 import 'package:nutri_kit/features/search/domain/usecase/search_food.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_remedy.dart';
 import 'package:nutri_kit/features/search/domain/usecase/search_vitamin.dart';
-import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -81,7 +80,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     ]);
 
     final deficiencyResult =
-        results[0] as Either<Failure, DeficiencyResponseEntity>;
+        results[0] as Either<Failure, DeficiencySearchResponseEntity>;
     final remedyResult = results[1] as Either<Failure, RemediesResponseEntity>;
     final foodResult = results[2] as Either<Failure, FoodResponseEntity>;
     final vitaminResult = results[3] as Either<Failure, VitaminResponseEntity>;

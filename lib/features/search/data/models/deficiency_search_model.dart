@@ -1,7 +1,7 @@
-import 'package:nutri_kit/features/deficiency/domain/entities/index.dart';
+import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
-class DeficiencyModel extends DeficiencyEntity {
-  const DeficiencyModel({
+class DeficiencySearchModel extends DeficiencySearchEntity {
+  const DeficiencySearchModel({
     required super.id,
     required super.createdAt,
     required super.updatedAt,
@@ -9,8 +9,8 @@ class DeficiencyModel extends DeficiencyEntity {
     required super.description,
   });
 
-  factory DeficiencyModel.fromJson(Map<String, dynamic> json) =>
-      DeficiencyModel(
+  factory DeficiencySearchModel.fromJson(Map<String, dynamic> json) =>
+      DeficiencySearchModel(
         id: json["id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:nutri_kit/core/error/exceptions.dart';
 import 'package:nutri_kit/core/interceptor/api_interceptor.dart';
 import 'package:nutri_kit/core/service/env_service.dart';
-import 'package:nutri_kit/features/deficiency/data/models/index.dart';
 import 'package:nutri_kit/features/search/data/models/index.dart';
+import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
 abstract interface class SearchRemoteDataSource {
   Future<RemediesResponseModel> searchRemedies({
@@ -11,7 +11,7 @@ abstract interface class SearchRemoteDataSource {
     String? next,
     String? previous,
   });
-  Future<DeficiencyResponseModel> searchDeficiencies({
+  Future<DeficiencySearchResponseEntity> searchDeficiencies({
     required String keyword,
     String? next,
     String? previous,
@@ -34,7 +34,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   final baseUrl = EnvService.get('API_URL');
 
   @override
-  Future<DeficiencyResponseModel> searchDeficiencies({
+  Future<DeficiencySearchResponseEntity> searchDeficiencies({
     required String keyword,
     String? next,
     String? previous,

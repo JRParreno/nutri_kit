@@ -25,7 +25,7 @@ final class SearchRecentLoaded extends SearchState {
 }
 
 final class SearchSuccess extends SearchState {
-  final DeficiencyResponseEntity? deficiencyResponse;
+  final DeficiencySearchResponseEntity? deficiencyResponse;
   final RemediesResponseEntity? remediesResponse;
   final FoodResponseEntity? foodResponse;
   final VitaminResponseEntity? vitaminResponse;
