@@ -19,3 +19,5 @@ final class SearchTriggerEvent extends SearchEvent {
         keyword,
       ];
 }
+
+final class SearchClearRecentSearches extends SearchEvent {}

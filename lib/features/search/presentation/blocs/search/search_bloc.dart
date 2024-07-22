@@ -35,12 +35,22 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         super(SearchInitial()) {
     on<SearchGetRecentSearches>(onSearchGetRecentSearches);
     on<SearchTriggerEvent>(onSearchTriggerEvent);
+    on<SearchClearRecentSearches>(onSearchClearRecentSearches);
+  }
+
+  void onSearchClearRecentSearches(
+      SearchClearRecentSearches event, Emitter<SearchState> emit) {
+    final List<String> recentSearches = [];
+    _sharedPreferencesNotifier.setValue(
+        SharedPreferencesKeys.recentSearches, recentSearches);
+
+    emit(const SearchRecentLoaded([]));
   }
 
   void onSearchGetRecentSearches(
       SearchGetRecentSearches event, Emitter<SearchState> emit) {
-    final recentSearches = _sharedPreferencesNotifier.getValue(
-        SharedPreferencesKeys.recentSearches, [] as List<String>);
+    final List<String> recentSearches = _sharedPreferencesNotifier
+        .getValue(SharedPreferencesKeys.recentSearches, []);
 
     emit(SearchRecentLoaded(recentSearches));
   }
@@ -83,6 +93,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
 
+    saveLocalRecentSearches(event.keyword);
+
     if (deficiencyResult.foldRight(
           true,
           (acc, b) => b.results.isEmpty,
@@ -110,5 +122,25 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           foodResponse: foodResult.fold((l) => null, (r) => r),
           vitaminResponse: vitaminResult.fold((l) => null, (r) => r)),
     );
+  }
+
+  void saveLocalRecentSearches(String keyword) {
+    // set local recent searches
+
+    final List<String> recentSearches = _sharedPreferencesNotifier
+        .getValue(SharedPreferencesKeys.recentSearches, []);
+
+    if (recentSearches.isNotEmpty) {
+      if (recentSearches.length > 5) return;
+
+      final isExists = recentSearches.where(
+        (element) => element.toLowerCase().contains(keyword.toLowerCase()),
+      );
+
+      if (isExists.isNotEmpty) return;
+    }
+    recentSearches.add(keyword);
+    _sharedPreferencesNotifier.setValue(
+        SharedPreferencesKeys.recentSearches, recentSearches);
   }
 }

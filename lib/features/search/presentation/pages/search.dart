@@ -15,6 +15,12 @@ class _SearchPageState extends State<SearchPage> {
   final TextEditingController searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<SearchBloc>().add(SearchGetRecentSearches());
+  }
+
+  @override
   void dispose() {
     super.dispose();
     searchController.dispose();
@@ -38,13 +44,25 @@ class _SearchPageState extends State<SearchPage> {
             SearchField(
               controller: searchController,
               hintText: "Search",
+              onClearText: () {
+                searchController.clear();
+                setState(() {});
+                context.read<SearchBloc>().add(SearchGetRecentSearches());
+              },
               onSearch: () {
                 if (searchController.text.trim().isNotEmpty) {
-                  context.read<SearchBloc>().add(
-                        SearchTriggerEvent(
-                          searchController.text,
-                        ),
-                      );
+                  FocusScope.of(context).unfocus();
+
+                  Future.delayed(
+                      const Duration(
+                        milliseconds: 500,
+                      ), () {
+                    context.read<SearchBloc>().add(
+                          SearchTriggerEvent(
+                            searchController.text,
+                          ),
+                        );
+                  });
                 }
               },
               onChanged: () {
@@ -89,6 +107,17 @@ class _SearchPageState extends State<SearchPage> {
                         'Something went wrong in our server, please try again later.',
                       ),
                     ),
+                  );
+                }
+
+                if (state is SearchRecentLoaded) {
+                  return RecentSearches(
+                    keywords: state.keywords,
+                    onClearRecent: () {
+                      context
+                          .read<SearchBloc>()
+                          .add(SearchClearRecentSearches());
+                    },
                   );
                 }
 

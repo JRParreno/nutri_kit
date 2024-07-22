@@ -8,6 +8,8 @@ class SharedPreferencesService {
   final _getValueMap = <Type, Function>{
     String: (SharedPreferences prefs, String key) => prefs.getString(key),
     bool: (SharedPreferences prefs, String key) => prefs.getBool(key),
+    List<String>: (SharedPreferences prefs, String key) =>
+        prefs.getStringList(key),
     // Add other data types as needed
   };
 
@@ -16,6 +18,8 @@ class SharedPreferencesService {
         prefs.setString(key, value),
     bool: (SharedPreferences prefs, String key, bool value) =>
         prefs.setBool(key, value),
+    List<String>: (SharedPreferences prefs, String key, List<String> value) =>
+        prefs.setStringList(key, value),
     // Add other data types as needed
   };
 

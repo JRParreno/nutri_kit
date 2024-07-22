@@ -10,12 +10,14 @@ class SearchField extends StatelessWidget {
     required this.onSearch,
     required this.hintText,
     required this.onChanged,
+    required this.onClearText,
   });
 
   final TextEditingController controller;
   final VoidCallback onSearch;
   final String hintText;
   final VoidCallback onChanged;
+  final VoidCallback onClearText;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +56,7 @@ class SearchField extends StatelessWidget {
         prefixIconColor: const Color(0xff666666),
         suffixIcon: controller.text.isNotEmpty
             ? GestureDetector(
-                onTap: () {
-                  controller.clear();
-                  onChanged();
-                },
+                onTap: onClearText,
                 child: const Icon(
                   Icons.clear,
                 ),
