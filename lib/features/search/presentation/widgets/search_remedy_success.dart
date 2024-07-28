@@ -18,7 +18,7 @@ class SearchRemedySuccess extends StatelessWidget {
     if (data!.results.isEmpty) return const SizedBox();
 
     return SearchBaseHeaderSuccess(
-      displayTitle: 'Deficiency',
+      displayTitle: 'Remedy',
       isShowViewAll: data!.results.length > 2,
       onTViewAll: () {},
       children: data!.results

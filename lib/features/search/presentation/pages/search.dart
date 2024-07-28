@@ -118,6 +118,9 @@ class _SearchPageState extends State<SearchPage> {
                           .read<SearchBloc>()
                           .add(SearchClearRecentSearches());
                     },
+                    onTapKeyword: (String value) {
+                      searchController.text = value;
+                    },
                   );
                 }
 

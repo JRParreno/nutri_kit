@@ -8,10 +8,12 @@ class RecentSearches extends StatelessWidget {
     super.key,
     required this.keywords,
     required this.onClearRecent,
+    required this.onTapKeyword,
   });
 
   final List<String> keywords;
   final VoidCallback onClearRecent;
+  final Function(String value) onTapKeyword;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class RecentSearches extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 10),
             child: GestureDetector(
               onTap: () {
+                onTapKeyword(keywords[index]);
                 context.read<SearchBloc>().add(
                       SearchTriggerEvent(
                         keywords[index],

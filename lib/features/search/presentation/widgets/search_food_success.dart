@@ -51,6 +51,7 @@ class SearchFoodSuccess extends StatelessWidget {
                     Radius.circular(16),
                   ),
                 ),
+                margin: const EdgeInsets.only(bottom: 10),
                 padding: const EdgeInsets.all(22),
                 height: 130,
                 child: Row(
