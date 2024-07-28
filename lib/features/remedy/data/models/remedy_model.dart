@@ -1,4 +1,5 @@
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
+
+import 'package:nutri_kit/features/remedy/domain/entities/index.dart';
 
 class RemedyModel extends RemedyEntity {
   const RemedyModel({

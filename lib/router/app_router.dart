@@ -7,12 +7,14 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
+import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/profile.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/update_profile.dart';
+import 'package:nutri_kit/features/remedy/presentation/pages/remedy_detail_page.dart';
 import 'package:nutri_kit/features/search/presentation/pages/search.dart';
 import 'package:nutri_kit/router/index.dart';
 
@@ -34,6 +36,12 @@ GoRouter routerConfig() {
     navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: kDebugMode,
     initialLocation: AppRoutes.login.path,
+    errorPageBuilder: (context, state) {
+      return buildTransitionPage(
+        localKey: state.pageKey,
+        child: const ErrorPage(),
+      );
+    },
     refreshListenable:
         GoRouterRefreshStream(GetIt.instance<AppUserCubit>().stream),
     redirect: (context, state) {
@@ -153,7 +161,20 @@ GoRouter routerConfig() {
             ],
           ),
         ],
-      )
+      ),
+      GoRoute(
+        path: AppRoutes.remedyDetail.path,
+        name: AppRoutes.remedyDetail.name,
+        pageBuilder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: RemedyDetailPage(
+              id: id,
+            ),
+          );
+        },
+      ),
     ],
   );
 }

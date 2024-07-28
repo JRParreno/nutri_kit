@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class RemedyEntity extends Equatable {
+class RemedyEntity {
   final int id;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -16,14 +14,4 @@ class RemedyEntity extends Equatable {
     required this.description,
     this.image,
   });
-
-  @override
-  List<Object?> get props => [
-        id,
-        createdAt,
-        updatedAt,
-        name,
-        description,
-        image,
-      ];
 }

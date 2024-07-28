@@ -22,16 +22,27 @@ class DioInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
-      String refreshToken = _sharedPreferencesNotifier.getValue(
-          SharedPreferencesKeys.refreshToken, '');
-      Map<String, dynamic> userResponse =
-          await GetRefreshToken.refreshToken(refreshToken: refreshToken);
+      try {
+        String refreshToken = _sharedPreferencesNotifier.getValue(
+            SharedPreferencesKeys.refreshToken, '');
+        Map<String, dynamic> userResponse =
+            await GetRefreshToken.refreshToken(refreshToken: refreshToken);
 
-      _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.accessToken,
-          userResponse['accessToken'] as String);
-      _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.refreshToken,
-          userResponse['refreshToken'] as String);
+        _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.accessToken,
+            userResponse['accessToken'] as String);
+        _sharedPreferencesNotifier.setValue(SharedPreferencesKeys.refreshToken,
+            userResponse['refreshToken'] as String);
+
+        final options = err.requestOptions;
+        options.headers['Authorization'] =
+            'Bearer ${userResponse['accessToken']}';
+
+        final response = await Dio().fetch(options);
+
+        handler.resolve(response);
+      } catch (e) {
+        return super.onError(err, handler);
+      }
     }
-    super.onError(err, handler);
   }
 }

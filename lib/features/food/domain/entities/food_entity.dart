@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
+import 'package:nutri_kit/features/food/domain/entities/index.dart';
 
 class FoodEntity extends Equatable {
   final int id;

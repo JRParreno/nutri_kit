@@ -1,7 +1,7 @@
-export 'food_category_model.dart';
-export 'food_model.dart';
-export 'remedy_model.dart';
-export 'vitamin_model.dart';
+export '../../../food/data/models/food_category_model.dart';
+export '../../../food/data/models/food_model.dart';
+export '../../../remedy/data/models/remedy_model.dart';
+export '../../../food/data/models/vitamin_model.dart';
 export 'remedies_response.dart';
 export 'food_response_model.dart';
 export 'vitamin_response_model.dart';
