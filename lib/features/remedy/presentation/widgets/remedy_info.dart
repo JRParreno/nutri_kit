@@ -67,7 +67,7 @@ class RemedyInfo extends StatelessWidget {
               width: 100,
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: ColorName.miniCardBg,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: imageBuild(),

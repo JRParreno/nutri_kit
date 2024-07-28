@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
 import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
 import 'package:nutri_kit/features/remedy/presentation/widgets/index.dart';
@@ -53,12 +54,17 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
               child: Padding(
                 padding: const EdgeInsets.all(35.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RemedyInfo(
                       descrition: data.description,
                       subTitle: data.scientificName,
                       title: data.name,
                       imageUrl: data.image,
+                    ),
+                    const Gap(25),
+                    RemedyRecommendedMeal(
+                      foods: state.remedyDetailEntity.foods,
                     ),
                   ],
                 ),

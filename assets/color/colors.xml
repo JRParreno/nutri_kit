@@ -3,4 +3,6 @@
     <color name="secondary">#1AC2AE</color>
     <color name="link">#7C7C7C</color>
     <color name="card">#FFF8EB</color>
+    <color name="mini_card_bg">#FFF8EE</color>
+    <color name="detail_bg">#78BFAB</color>
 </resources>

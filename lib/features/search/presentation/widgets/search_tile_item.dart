@@ -8,6 +8,7 @@ class SearchTileItem extends StatelessWidget {
     required this.defaultImage,
     required this.title,
     required this.description,
+    this.onTap,
     this.imageUrl,
   });
 
@@ -15,49 +16,53 @@ class SearchTileItem extends StatelessWidget {
   final String title;
   final String description;
   final String? imageUrl;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(16),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
         ),
-      ),
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(22),
-      height: 130,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          remedyImageBuild(imageUrl),
-          const Gap(15),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: textTheme.titleMedium?.copyWith(
-                    color: ColorName.link,
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(22),
+        height: 130,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            remedyImageBuild(imageUrl),
+            const Gap(15),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: textTheme.titleMedium?.copyWith(
+                      color: ColorName.link,
+                    ),
                   ),
-                ),
-                Text(
-                  description,
-                  style: textTheme.titleSmall?.copyWith(
-                    color: Colors.grey.shade500,
-                  ),
-                  textAlign: TextAlign.justify,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                )
-              ],
-            ),
-          )
-        ],
+                  Text(
+                    description,
+                    style: textTheme.titleSmall?.copyWith(
+                      color: Colors.grey.shade500,
+                    ),
+                    textAlign: TextAlign.justify,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
