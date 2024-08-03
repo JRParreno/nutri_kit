@@ -9,8 +9,8 @@ class FoodModel extends FoodEntity {
     required super.createdAt,
     required super.updatedAt,
     required super.name,
-    required super.scientificName,
     required super.description,
+    super.scientificName,
     super.image,
   });
 

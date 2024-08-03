@@ -9,6 +9,7 @@ import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
+import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
@@ -170,6 +171,19 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: RemedyDetailPage(
+              id: id,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.foodDetail.path,
+        name: AppRoutes.foodDetail.name,
+        pageBuilder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: FoodDetailPage(
               id: id,
             ),
           );

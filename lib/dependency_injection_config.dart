@@ -20,4 +20,6 @@ Future<void> initDependencies() async {
   initUpdateProfile(serviceLocator);
   // set Remedy feature
   initRemedy(serviceLocator);
+  // set Food feature
+  foodInit(serviceLocator);
 }

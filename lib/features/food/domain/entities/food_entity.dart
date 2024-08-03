@@ -8,9 +8,9 @@ class FoodEntity extends Equatable {
   final DateTime createdAt;
   final DateTime updatedAt;
   final String name;
-  final String scientificName;
   final String description;
   final String? image;
+  final String? scientificName;
 
   const FoodEntity({
     required this.id,
@@ -19,8 +19,8 @@ class FoodEntity extends Equatable {
     required this.createdAt,
     required this.updatedAt,
     required this.name,
-    required this.scientificName,
     required this.description,
+    this.scientificName,
     this.image,
   });
 

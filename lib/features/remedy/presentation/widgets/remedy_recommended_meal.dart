@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:nutri_kit/features/food/domain/entities/index.dart';
 import 'package:nutri_kit/features/remedy/presentation/widgets/remedy_meal_card.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
+import 'package:nutri_kit/router/index.dart';
 
 class RemedyRecommendedMeal extends StatelessWidget {
   const RemedyRecommendedMeal({
@@ -42,6 +44,12 @@ class RemedyRecommendedMeal extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => RemedyMealCard(
+              onTap: () {
+                context.pushNamed(
+                  AppRoutes.foodDetail.name,
+                  pathParameters: {"id": foods[index].id.toString()},
+                );
+              },
               foodEntity: foods[index],
             ),
             separatorBuilder: (context, index) => const Gap(15),

@@ -7,16 +7,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
+import 'package:nutri_kit/core/blocs/bloc_providers.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/core/theme/theme.dart';
 import 'package:nutri_kit/dependency_injection_config.dart' as di;
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
-import 'package:nutri_kit/features/profile/presentation/bloc/update_profile_bloc.dart';
-import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
-import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
 import 'package:nutri_kit/router/app_router.dart';
 
 void main() async {
@@ -31,26 +27,7 @@ void main() async {
 
   runApp(
     MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => di.serviceLocator<AppUserCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => di.serviceLocator<AuthBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.serviceLocator<TriviaBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.serviceLocator<SearchBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.serviceLocator<UpdateProfileBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.serviceLocator<RemedyDetailBloc>(),
-        ),
-      ],
+      providers: BlocProviders.blocs(di.serviceLocator),
       child: const MyApp(),
     ),
   );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
+import 'package:nutri_kit/router/index.dart';
 
 class SearchFoodSuccess extends StatelessWidget {
   const SearchFoodSuccess({
@@ -44,7 +46,12 @@ class SearchFoodSuccess extends StatelessWidget {
         const Gap(10),
         ...data!.results.take(2).map(
               (e) => GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(
+                    AppRoutes.foodDetail.name,
+                    pathParameters: {"id": e.id.toString()},
+                  );
+                },
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Colors.white,
