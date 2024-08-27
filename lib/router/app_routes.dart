@@ -28,6 +28,10 @@ enum AppRoutes {
     name: 'food_detail',
     path: '/food_detail/:id',
   ),
+  deficiencyDetail(
+    name: 'deficiency_detail',
+    path: '/deficiency_detail/:id',
+  ),
   profile(
     name: 'profile',
     path: '/profile',

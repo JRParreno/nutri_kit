@@ -81,9 +81,14 @@ class FoodInfo extends StatelessWidget {
 
   Widget imageBuilder(String? url) {
     if (url == null) {
-      return Assets.images.placeholder.food.image();
+      return Assets.images.placeholder.food.image(
+        fit: BoxFit.cover,
+      );
     }
 
-    return Image.network(url);
+    return Image.network(
+      url,
+      fit: BoxFit.cover,
+    );
   }
 }

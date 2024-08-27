@@ -120,6 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                     },
                     onTapKeyword: (String value) {
                       searchController.text = value;
+                      setState(() {});
                     },
                   );
                 }

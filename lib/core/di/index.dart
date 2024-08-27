@@ -5,3 +5,4 @@ export 'update_profile_injection.dart';
 export 'search_injection.dart';
 export 'remedy_injection.dart';
 export 'food_injection.dart';
+export 'deficiency_injection.dart';

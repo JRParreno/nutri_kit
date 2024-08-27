@@ -133,7 +133,7 @@ class SearchFoodSuccess extends StatelessWidget {
   }
 
   Widget foodImageBuild(String? url) {
-    if (url == null) return Assets.images.placeholder.deficiency.image();
+    if (url == null) return Assets.images.placeholder.food.image();
 
     return Image.network(url);
   }

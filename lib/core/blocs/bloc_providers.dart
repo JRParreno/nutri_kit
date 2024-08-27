@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:nutri_kit/features/deficiency/presentation/bloc/deficiency_detail_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/food_detail_bloc.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
 import 'package:nutri_kit/features/profile/presentation/bloc/update_profile_bloc.dart';
@@ -31,6 +32,9 @@ class BlocProviders {
       ),
       BlocProvider(
         create: (context) => serviceLocator<FoodDetailBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<DeficiencyDetailBloc>(),
       ),
     ];
   }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
 import 'package:nutri_kit/features/search/presentation/widgets/search_base_header_success.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/search_tile_item.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
+import 'package:nutri_kit/router/index.dart';
 
 class SearchDeficiencySuccess extends StatelessWidget {
   const SearchDeficiencySuccess({
@@ -26,6 +28,12 @@ class SearchDeficiencySuccess extends StatelessWidget {
           .take(2)
           .map(
             (e) => SearchTileItem(
+              onTap: () {
+                context.pushNamed(
+                  AppRoutes.deficiencyDetail.name,
+                  pathParameters: {"id": e.id.toString()},
+                );
+              },
               defaultImage: Assets.images.placeholder.deficiency.image(),
               title: e.name,
               description: e.description,
