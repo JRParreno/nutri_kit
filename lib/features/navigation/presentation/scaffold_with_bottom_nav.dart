@@ -64,6 +64,9 @@ class _ScaffoldWithBottomNavState extends State<ScaffoldWithBottomNav> {
       case 1:
         context.go(AppRoutes.search.path);
         break;
+      case 2:
+        context.go(AppRoutes.meal.path);
+        break;
       case 4:
         context.go(AppRoutes.profile.path);
         break;

@@ -91,6 +91,7 @@ flutter:
     - assets/images/auth/
     - assets/images/on_boarding/
     - assets/images/profile/
+    - assets/images/meal/
     - assets/images/icon/
     - assets/images/placeholder/
     - assets/svgs/

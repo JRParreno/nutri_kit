@@ -24,4 +24,6 @@ Future<void> initDependencies() async {
   foodInit(serviceLocator);
   // set Deficiency detail feature
   initDeficiency(serviceLocator);
+  // set Health child list feature
+  initHealthChildList(serviceLocator);
 }

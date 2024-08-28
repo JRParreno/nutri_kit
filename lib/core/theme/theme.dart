@@ -27,7 +27,8 @@ class AppTheme with ThemeMixin {
       enabledBorder: _instance.border(),
       border: _instance.border(),
       focusedBorder: _instance.border(),
-      errorBorder: _instance.border(),
+      errorBorder: _instance.border(Colors.red),
+      disabledBorder: _instance.border(),
     ),
     chipTheme: const ChipThemeData(
       side: BorderSide.none,

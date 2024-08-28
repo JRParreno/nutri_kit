@@ -44,5 +44,6 @@ class DioInterceptor extends Interceptor {
         return super.onError(err, handler);
       }
     }
+    super.onError(err, handler);
   }
 }

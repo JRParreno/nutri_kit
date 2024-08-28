@@ -12,6 +12,8 @@ import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
+import 'package:nutri_kit/features/meal/presentation/pages/create_child_health_page.dart';
+import 'package:nutri_kit/features/meal/presentation/pages/user_child_list_page.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/profile.dart';
@@ -30,9 +32,10 @@ GoRouter routerConfig() {
       GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorHomeKey');
   final shellNavigatorSearchKey =
       GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorSearchKey');
-
   final shellNavigatorProfileKey =
       GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorProfileKey');
+  final shellNavigatorMealKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorMealKey');
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
@@ -134,6 +137,32 @@ GoRouter routerConfig() {
                   );
                 },
               ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: shellNavigatorMealKey,
+            routes: [
+              GoRoute(
+                  path: AppRoutes.meal.path,
+                  name: AppRoutes.meal.name,
+                  pageBuilder: (context, state) {
+                    return buildTransitionPage(
+                      localKey: state.pageKey,
+                      child: const UserChildListPage(),
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.createChildHealthForm.path,
+                      name: AppRoutes.createChildHealthForm.name,
+                      pageBuilder: (context, state) {
+                        return buildTransitionPage(
+                          localKey: state.pageKey,
+                          child: const CreateChildHealthPage(),
+                        );
+                      },
+                    ),
+                  ]),
             ],
           ),
           StatefulShellBranch(

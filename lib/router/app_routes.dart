@@ -39,6 +39,14 @@ enum AppRoutes {
   updateProfile(
     name: 'update_profile',
     path: 'update_profile',
+  ),
+  meal(
+    name: 'meal',
+    path: '/meal',
+  ),
+  createChildHealthForm(
+    name: 'create_child_health_form',
+    path: 'create_child_health_form',
   );
 
   const AppRoutes({

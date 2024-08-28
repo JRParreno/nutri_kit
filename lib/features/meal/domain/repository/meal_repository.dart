@@ -1,0 +1,18 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:nutri_kit/core/error/failure.dart';
+import 'package:nutri_kit/features/meal/domain/entities/index.dart';
+
+abstract interface class MealRepository {
+  Future<Either<Failure, UserMealPlanResponseEntity>> getChildList({
+    String? next,
+    String? previous,
+  });
+  Future<Either<Failure, UserMealPlanCreationEntity>> createChildHealthForm({
+    required String birthdate,
+    required String height,
+    required String weight,
+    required String gender,
+    required String healthStatus,
+    required String name,
+  });
+}
