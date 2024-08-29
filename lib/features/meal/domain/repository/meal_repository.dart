@@ -15,4 +15,8 @@ abstract interface class MealRepository {
     required String healthStatus,
     required String name,
   });
+  Future<Either<Failure, UserMealPlanDetailEntity>> getChildMealPlanDetail({
+    required String userMealPlanId,
+    required String mealPlanId,
+  });
 }

@@ -6,3 +6,4 @@ export 'meal_plan_model.dart';
 export 'user_meal_plan_model.dart';
 export 'user_meal_plan_response_model.dart';
 export 'user_meal_plan_creation_model.dart';
+export 'user_meal_plan_detail_model.dart';

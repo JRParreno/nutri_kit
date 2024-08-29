@@ -17,6 +17,10 @@ abstract interface class MealRemoteDataSource {
     required String healthStatus,
     required String name,
   });
+  Future<UserMealPlanDetailModel> getChildMealPlanDetail({
+    required String userMealPlanId,
+    required String mealPlanId,
+  });
 }
 
 class MealRemoteDataSourceImpl implements MealRemoteDataSource {
@@ -65,6 +69,26 @@ class MealRemoteDataSourceImpl implements MealRemoteDataSource {
 
       final response = await apiInstance.post(url, data: data);
       return UserMealPlanCreationModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<UserMealPlanDetailModel> getChildMealPlanDetail({
+    required String userMealPlanId,
+    required String mealPlanId,
+  }) async {
+    String url =
+        '$baseUrl/api/meal/plan/child/detail/$userMealPlanId/meal-plan/$mealPlanId/';
+
+    try {
+      final response = await apiInstance.get(url);
+      return UserMealPlanDetailModel.fromJson(response.data);
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',

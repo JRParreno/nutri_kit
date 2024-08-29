@@ -36,27 +36,29 @@ class ChildHealthListBloc
     final state = this.state;
 
     if (state is ChildHealthListSuccess) {
-      emit(state.copyWith(isPaginate: true));
+      if (state.userMealPlanResponseEntity.next != null) {
+        emit(state.copyWith(isPaginate: true));
 
-      final response = await _getChildList.call(GetChildListParams(
-        previous: state.userMealPlanResponseEntity.previous,
-        next: state.userMealPlanResponseEntity.next,
-      ));
+        final response = await _getChildList.call(GetChildListParams(
+          previous: state.userMealPlanResponseEntity.previous,
+          next: state.userMealPlanResponseEntity.next,
+        ));
 
-      response.fold(
-        (l) => emit(ChildHealthListFailure(l.message)),
-        (r) => emit(
-          state.copyWith(
-            userMealPlanResponseEntity: r.copyWith(
-              results: [
-                ...state.userMealPlanResponseEntity.results,
-                ...r.results
-              ],
+        response.fold(
+          (l) => emit(ChildHealthListFailure(l.message)),
+          (r) => emit(
+            state.copyWith(
+              userMealPlanResponseEntity: r.copyWith(
+                results: [
+                  ...state.userMealPlanResponseEntity.results,
+                  ...r.results
+                ],
+              ),
+              isPaginate: false,
             ),
-            isPaginate: false,
           ),
-        ),
-      );
+        );
+      }
     }
   }
 }

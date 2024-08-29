@@ -7,9 +7,9 @@ class HealthStatusEntity {
     required this.description,
   });
 
-  final int? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final String? status;
-  final String? description;
+  final int id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String status;
+  final String description;
 }

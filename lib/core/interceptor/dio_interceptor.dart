@@ -40,6 +40,7 @@ class DioInterceptor extends Interceptor {
         final response = await Dio().fetch(options);
 
         handler.resolve(response);
+        return;
       } catch (e) {
         return super.onError(err, handler);
       }

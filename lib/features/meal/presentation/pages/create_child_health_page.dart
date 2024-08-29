@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
 import 'package:nutri_kit/core/enum/gender.dart';
+import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/create_child_health_form/create_child_health_form_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/widgets/user_child_list/health_status_selection.dart';
 import 'package:nutri_kit/features/meal/presentation/widgets/user_child_list/stepper_text_field.dart';
+import 'package:nutri_kit/router/index.dart';
 import 'package:quickalert/quickalert.dart';
 
 class CreateChildHealthPage extends StatefulWidget {
@@ -64,6 +67,22 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
             Future.delayed(const Duration(milliseconds: 500), () {
               LoadingScreen.instance().hide();
             });
+          }
+
+          if (state is CreateChildHealthFormSuccess) {
+            context
+                .read<ChildHealthListBloc>()
+                .add(OnGetChildHealthListEvent());
+
+            context.replaceNamed(
+              AppRoutes.chidlMealPlanDetailPage.name,
+              pathParameters: {
+                "mealPlanId": state.userMealPlanCreationEntity.mealplanId,
+                "userMealPlanId":
+                    state.userMealPlanCreationEntity.usermealplanId,
+              },
+            );
+            return;
           }
 
           if (state is CreateChildHealthFormFailure) {

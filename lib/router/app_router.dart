@@ -12,7 +12,10 @@ import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
+import 'package:nutri_kit/features/meal/domain/entities/index.dart';
+import 'package:nutri_kit/features/meal/presentation/pages/child_meal_plan_detail_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/create_child_health_page.dart';
+import 'package:nutri_kit/features/meal/presentation/pages/meal_plan_breakdown_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/user_child_list_page.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
@@ -228,6 +231,37 @@ GoRouter routerConfig() {
             localKey: state.pageKey,
             child: DeficiencyDetailPage(
               id: id,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.chidlMealPlanDetailPage.path,
+        name: AppRoutes.chidlMealPlanDetailPage.name,
+        pageBuilder: (context, state) {
+          final userMealPlanId = state.pathParameters['userMealPlanId']!;
+          final mealPlanId = state.pathParameters['mealPlanId']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: ChildMealPlanDetailPage(
+              mealPlanId: mealPlanId,
+              userMealPlanId: userMealPlanId,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.mealBreakdownPage.path,
+        name: AppRoutes.mealBreakdownPage.name,
+        pageBuilder: (context, state) {
+          final dayMealCompletionEntity =
+              state.extra as DayMealCompletionEntity;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: MealPlanBreakdownPage(
+              dayMealCompletionEntity: dayMealCompletionEntity,
             ),
           );
         },

@@ -7,6 +7,7 @@ import 'package:nutri_kit/features/food/presentation/bloc/food_detail_bloc.dart'
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/create_child_health_form/create_child_health_form_bloc.dart';
+import 'package:nutri_kit/features/meal/presentation/blocs/meal_plan_detail/meal_plan_detail_bloc.dart';
 import 'package:nutri_kit/features/profile/presentation/bloc/update_profile_bloc.dart';
 import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
 import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
@@ -43,6 +44,9 @@ class BlocProviders {
       ),
       BlocProvider(
         create: (context) => serviceLocator<CreateChildHealthFormBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<MealPlanDetailBloc>(),
       ),
     ];
   }

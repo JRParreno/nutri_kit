@@ -3,6 +3,7 @@ import 'package:nutri_kit/core/error/exceptions.dart';
 import 'package:nutri_kit/core/error/failure.dart';
 import 'package:nutri_kit/features/meal/data/datasources/meal_remote_data_source.dart';
 import 'package:nutri_kit/features/meal/domain/entities/user_meal_plan_creation_entity.dart';
+import 'package:nutri_kit/features/meal/domain/entities/user_meal_plan_detail_entity.dart';
 import 'package:nutri_kit/features/meal/domain/entities/user_meal_plan_response_entity.dart';
 import 'package:nutri_kit/features/meal/domain/repository/meal_repository.dart';
 
@@ -23,7 +24,7 @@ class MealRepositoryImpl implements MealRepository {
       );
       return right(response);
     } on ServerException catch (e) {
-      return left(Failure(e.toString()));
+      return left(Failure(e.message));
     }
   }
 
@@ -44,6 +45,22 @@ class MealRepositoryImpl implements MealRepository {
         height: height,
         name: name,
         weight: weight,
+      );
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserMealPlanDetailEntity>> getChildMealPlanDetail({
+    required String userMealPlanId,
+    required String mealPlanId,
+  }) async {
+    try {
+      final response = await mealRemoteDataSource.getChildMealPlanDetail(
+        mealPlanId: mealPlanId,
+        userMealPlanId: userMealPlanId,
       );
       return right(response);
     } on ServerException catch (e) {

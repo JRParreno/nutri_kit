@@ -12,8 +12,8 @@ class HealthStatusModel extends HealthStatusEntity {
   factory HealthStatusModel.fromJson(Map<String, dynamic> json) {
     return HealthStatusModel(
       id: json["id"],
-      createdAt: DateTime.tryParse(json["created_at"] ?? ""),
-      updatedAt: DateTime.tryParse(json["updated_at"] ?? ""),
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
       status: json["status"],
       description: json["description"],
     );

@@ -11,7 +11,7 @@ class UserMealPlanModel extends UserMealPlanEntity {
     required super.startDate,
     required super.endDate,
     required super.active,
-    required super.age,
+    required super.birthdate,
     required super.height,
     required super.weight,
     required super.user,
@@ -21,16 +21,14 @@ class UserMealPlanModel extends UserMealPlanEntity {
   factory UserMealPlanModel.fromJson(Map<String, dynamic> json) {
     return UserMealPlanModel(
       id: json["id"],
-      healthStatus: json["health_status"] == null
-          ? null
-          : HealthStatusModel.fromJson(json["health_status"]),
-      createdAt: DateTime.tryParse(json["created_at"] ?? ""),
-      updatedAt: DateTime.tryParse(json["updated_at"] ?? ""),
+      healthStatus: HealthStatusModel.fromJson(json["health_status"]),
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
       name: json["name"],
-      startDate: DateTime.tryParse(json["start_date"] ?? ""),
-      endDate: json["end_date"],
+      startDate: DateTime.parse(json["start_date"]),
+      endDate: DateTime.tryParse(json["end_date"] ?? ""),
       active: json["active"],
-      age: json["age"],
+      birthdate: DateTime.parse(json["birthdate"]),
       height: json["height"],
       weight: json["weight"],
       user: json["user"],
