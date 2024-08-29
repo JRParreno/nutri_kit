@@ -19,4 +19,8 @@ abstract interface class MealRepository {
     required String userMealPlanId,
     required String mealPlanId,
   });
+  Future<Either<Failure, String>> updateDayMealCompletionComplete({
+    required int id,
+    required bool isCompleted,
+  });
 }

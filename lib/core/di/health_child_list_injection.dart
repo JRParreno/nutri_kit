@@ -21,8 +21,14 @@ void initHealthChildList(GetIt serviceLocator) {
     ..registerFactory(() => GetChildList(serviceLocator()))
     ..registerFactory(() => CreateChildHealthForm(serviceLocator()))
     ..registerFactory(() => GetChildMealPlanDetail(serviceLocator()))
+    ..registerFactory(() => UpdateDayMealCompletionComplete(serviceLocator()))
     // bloc
     ..registerFactory(() => ChildHealthListBloc(serviceLocator()))
-    ..registerFactory(() => MealPlanDetailBloc(serviceLocator()))
+    ..registerFactory(
+      () => MealPlanDetailBloc(
+        getChildMealPlanDetail: serviceLocator(),
+        updateDayMealCompletionComplete: serviceLocator(),
+      ),
+    )
     ..registerFactory(() => CreateChildHealthFormBloc(serviceLocator()));
 }

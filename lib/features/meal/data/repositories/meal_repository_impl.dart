@@ -67,4 +67,19 @@ class MealRepositoryImpl implements MealRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> updateDayMealCompletionComplete(
+      {required int id, required bool isCompleted}) async {
+    try {
+      final response =
+          await mealRemoteDataSource.updateDayMealCompletionComplete(
+        id: id,
+        isCompleted: isCompleted,
+      );
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

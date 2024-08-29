@@ -22,3 +22,19 @@ final class GetMealPlanDetailEvent extends MealPlanDetailEvent {
         userMealPlanId,
       ];
 }
+
+final class UpdateMealPlanCompleted extends MealPlanDetailEvent {
+  final int id;
+  final bool isCompleted;
+
+  const UpdateMealPlanCompleted({
+    required this.id,
+    required this.isCompleted,
+  });
+
+  @override
+  List<Object> get props => [
+        id,
+        isCompleted,
+      ];
+}

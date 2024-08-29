@@ -21,6 +21,11 @@ abstract interface class MealRemoteDataSource {
     required String userMealPlanId,
     required String mealPlanId,
   });
+
+  Future<String> updateDayMealCompletionComplete({
+    required int id,
+    required bool isCompleted,
+  });
 }
 
 class MealRemoteDataSourceImpl implements MealRemoteDataSource {
@@ -89,6 +94,24 @@ class MealRemoteDataSourceImpl implements MealRemoteDataSource {
     try {
       final response = await apiInstance.get(url);
       return UserMealPlanDetailModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<String> updateDayMealCompletionComplete(
+      {required int id, required bool isCompleted}) async {
+    String url = '$baseUrl/api/meal/plan/child/complete/$id';
+
+    try {
+      final data = {"completed": isCompleted};
+      await apiInstance.patch(url, data: data);
+      return "Successfully completed!";
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',
