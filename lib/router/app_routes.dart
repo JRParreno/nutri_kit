@@ -16,6 +16,10 @@ enum AppRoutes {
     name: 'home',
     path: '/home',
   ),
+  homePDFViewer(
+    name: 'home_pdf_viewer',
+    path: '/home_pdf_viewer',
+  ),
   search(
     name: 'search',
     path: '/search',

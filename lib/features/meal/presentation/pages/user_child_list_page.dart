@@ -81,16 +81,18 @@ class _UserChildListPageState extends State<UserChildListPage> {
           return false;
         },
         builder: (context, state) {
-          return FloatingActionButton(
-            backgroundColor: Colors.white,
-            onPressed: () {
-              context.pushNamed(AppRoutes.createChildHealthForm.name);
-            },
-            child: const Icon(
-              Icons.add,
-              color: ColorName.secondary,
-            ),
-          );
+          return state
+              ? FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  onPressed: () {
+                    context.pushNamed(AppRoutes.createChildHealthForm.name);
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    color: ColorName.secondary,
+                  ),
+                )
+              : const SizedBox();
         },
       ),
     );

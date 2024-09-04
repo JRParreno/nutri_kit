@@ -12,6 +12,8 @@ import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
+import 'package:nutri_kit/features/home/presentation/pages/pdf_view_sample.dart';
+import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_viewer_page.dart';
 import 'package:nutri_kit/features/meal/domain/entities/index.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/child_meal_plan_detail_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/create_child_health_page.dart';
@@ -262,6 +264,20 @@ GoRouter routerConfig() {
             localKey: state.pageKey,
             child: MealPlanBreakdownPage(
               dayMealCompletionEntity: dayMealCompletionEntity,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.homePDFViewer.path,
+        name: AppRoutes.homePDFViewer.name,
+        pageBuilder: (context, state) {
+          final pdfParams = state.extra as PDFParams;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: PdfViewSample(
+              pdfParams: pdfParams,
             ),
           );
         },
