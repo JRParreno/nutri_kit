@@ -29,7 +29,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
 
   int _index = 0;
   int _selectedHealthStatus = -1;
-  Gender? _gender = Gender.male;
+  Gender _gender = Gender.male;
   final _heightCtrl = TextEditingController();
   final _weightCtrl = TextEditingController();
   final _fullNameCtrl = TextEditingController();
@@ -39,10 +39,10 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
   void initState() {
     super.initState();
     _selectedHealthStatus = 0;
-    _heightCtrl.text = '155';
-    _weightCtrl.text = '55';
+    _heightCtrl.text = '82';
+    _weightCtrl.text = '10';
     _fullNameCtrl.text = 'juan';
-    _birthdateCtrl.text = '08/28/2019';
+    _birthdateCtrl.text = '09/04/2022';
   }
 
   @override
@@ -214,7 +214,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
                 groupValue: _gender,
                 onChanged: (Gender? value) {
                   setState(() {
-                    _gender = value;
+                    _gender = value ?? Gender.male;
                   });
                 },
               ),
@@ -231,7 +231,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
                 groupValue: _gender,
                 onChanged: (Gender? value) {
                   setState(() {
-                    _gender = value;
+                    _gender = value ?? Gender.female;
                   });
                 },
               ),
@@ -373,7 +373,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Gender: ${_gender?.name.toUpperCase()}',
+                'Gender: ${_gender.name.toUpperCase()}',
                 style: TextStyle(
                   color: greyColor,
                   fontSize: 17,
@@ -479,7 +479,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
             height: _heightCtrl.text,
             healthStatus: getHealthStatus(),
             birthdate: _birthdateCtrl.text,
-            gender: _gender!.name,
+            gender: _gender.name,
           ),
         );
   }

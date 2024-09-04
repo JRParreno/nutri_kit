@@ -54,7 +54,7 @@ class EmptyChildList extends StatelessWidget {
             ),
             child: ElevatedButton(
               onPressed: () {
-                context.pushNamed(AppRoutes.createChildHealthForm.name);
+                context.pushNamed(AppRoutes.firstCreateChildHealthForm.name);
               },
               child: const Text(
                 'Continue',

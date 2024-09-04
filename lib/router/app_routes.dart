@@ -49,8 +49,12 @@ enum AppRoutes {
     path: '/meal',
   ),
   createChildHealthForm(
-    name: 'create_child_health_form',
-    path: 'create_child_health_form',
+    name: '/create_child_health_form',
+    path: '/create_child_health_form',
+  ),
+  firstCreateChildHealthForm(
+    name: '/first_create_child_health_form',
+    path: '/first_create_child_health_form',
   ),
   chidlMealPlanDetailPage(
     name: '/child_meal_plan_detail_page',

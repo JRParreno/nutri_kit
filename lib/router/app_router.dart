@@ -17,6 +17,7 @@ import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_vi
 import 'package:nutri_kit/features/meal/domain/entities/index.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/child_meal_plan_detail_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/create_child_health_page.dart';
+import 'package:nutri_kit/features/meal/presentation/pages/first_create_child_health_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/meal_plan_breakdown_page.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/user_child_list_page.dart';
 import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_nav.dart';
@@ -156,18 +157,7 @@ GoRouter routerConfig() {
                       child: const UserChildListPage(),
                     );
                   },
-                  routes: [
-                    GoRoute(
-                      path: AppRoutes.createChildHealthForm.path,
-                      name: AppRoutes.createChildHealthForm.name,
-                      pageBuilder: (context, state) {
-                        return buildTransitionPage(
-                          localKey: state.pageKey,
-                          child: const CreateChildHealthPage(),
-                        );
-                      },
-                    ),
-                  ]),
+                  routes: const []),
             ],
           ),
           StatefulShellBranch(
@@ -279,6 +269,26 @@ GoRouter routerConfig() {
             child: PdfViewSample(
               pdfParams: pdfParams,
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.createChildHealthForm.path,
+        name: AppRoutes.createChildHealthForm.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const CreateChildHealthPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.firstCreateChildHealthForm.path,
+        name: AppRoutes.firstCreateChildHealthForm.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const FirstCreateChildHealthPage(),
           );
         },
       ),

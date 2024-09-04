@@ -8,29 +8,44 @@ class StepperTextField extends StatelessWidget {
     required this.controller,
     this.keyboardType,
     this.enabled = true,
+    this.textColor,
+    this.fillColor,
+    this.border,
   });
   final String hintText;
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final bool enabled;
+  final Color? textColor;
+  final Color? fillColor;
+  final InputBorder? border;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       enabled: enabled,
-      style: const TextStyle(
-        color: Colors.white, // Set the text color for enabled state
+      style: TextStyle(
+        color:
+            textColor ?? Colors.white, // Set the text color for enabled state
         fontFamily: 'Signika',
         fontSize: 17,
         fontWeight: FontWeight.normal, // Set the font weight
       ),
       keyboardType: keyboardType,
       controller: controller,
-      cursorColor: Colors.white,
+      cursorColor: textColor ?? Colors.white,
       decoration: InputDecoration(
+        fillColor: fillColor,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
         hintText: hintText,
+        hintStyle: TextStyle(
+          color: textColor,
+        ),
+        border: border,
+        disabledBorder: border,
+        enabledBorder: border,
+        focusedBorder: border,
       ),
       validator: (value) {
         if (value!.isEmpty) {
