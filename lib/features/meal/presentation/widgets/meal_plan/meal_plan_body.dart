@@ -16,46 +16,48 @@ class MealPlanBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ChildDetail(
-            name: data.userMealPlanDetailEntity.name,
-          ),
-          const Gap(20),
-          HealthProgress(
-            data: data.userMealPlanDetailEntity,
-          ),
-          const Gap(20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: ColorName.titleBg,
-                  borderRadius: BorderRadius.circular(
-                    10,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildDetail(
+              name: data.userMealPlanDetailEntity.name,
+            ),
+            const Gap(20),
+            HealthProgress(
+              data: data.userMealPlanDetailEntity,
+            ),
+            const Gap(20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: ColorName.titleBg,
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
+                  child: const Text(
+                    'Meal Plan Checker',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFF53C1AD),
+                    ),
                   ),
                 ),
-                child: const Text(
-                  'Meal Plan Checker',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xFF53C1AD),
-                  ),
+                const Gap(10),
+                MealPlanProgressList(
+                  dayMealsCompletions:
+                      data.userMealPlanDetailEntity.dayMealCompletion,
                 ),
-              ),
-              const Gap(10),
-              MealPlanProgressList(
-                dayMealsCompletions:
-                    data.userMealPlanDetailEntity.dayMealCompletion,
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

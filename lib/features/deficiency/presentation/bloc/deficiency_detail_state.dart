@@ -13,11 +13,18 @@ final class DeficiencyDetailLoading extends DeficiencyDetailState {}
 
 final class DeficiencyDetailSuccess extends DeficiencyDetailState {
   final DeficiencyDetailEntity deficiencyDetailEntity;
+  final String message;
 
-  const DeficiencyDetailSuccess(this.deficiencyDetailEntity);
+  const DeficiencyDetailSuccess({
+    required this.deficiencyDetailEntity,
+    this.message = '',
+  });
 
   @override
-  List<Object> get props => [deficiencyDetailEntity];
+  List<Object> get props => [
+        deficiencyDetailEntity,
+        message,
+      ];
 }
 
 final class DeficiencyDetailFailure extends DeficiencyDetailState {

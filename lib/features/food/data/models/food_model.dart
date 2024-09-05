@@ -12,6 +12,7 @@ class FoodModel extends FoodEntity {
     required super.description,
     super.scientificName,
     super.image,
+    super.isFavorite,
   });
 
   factory FoodModel.fromJson(Map<String, dynamic> json) => FoodModel(
@@ -25,5 +26,6 @@ class FoodModel extends FoodEntity {
         scientificName: json["scientificName"],
         description: json["description"],
         image: json["image"],
+        isFavorite: json["is_favorite"],
       );
 }

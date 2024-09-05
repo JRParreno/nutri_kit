@@ -13,11 +13,18 @@ final class RemedyDetailLoading extends RemedyDetailState {}
 
 final class RemedyDetailSuccess extends RemedyDetailState {
   final RemedyDetailEntity remedyDetailEntity;
+  final String message;
 
-  const RemedyDetailSuccess(this.remedyDetailEntity);
+  const RemedyDetailSuccess({
+    required this.remedyDetailEntity,
+    this.message = '',
+  });
 
   @override
-  List<Object> get props => [remedyDetailEntity];
+  List<Object> get props => [
+        remedyDetailEntity,
+        message,
+      ];
 }
 
 final class RemedyDetailFailure extends RemedyDetailState {

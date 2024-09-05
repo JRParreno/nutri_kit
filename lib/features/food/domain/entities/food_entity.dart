@@ -11,6 +11,7 @@ class FoodEntity extends Equatable {
   final String description;
   final String? image;
   final String? scientificName;
+  final bool isFavorite;
 
   const FoodEntity({
     required this.id,
@@ -22,6 +23,7 @@ class FoodEntity extends Equatable {
     required this.description,
     this.scientificName,
     this.image,
+    this.isFavorite = false,
   });
 
   @override
@@ -35,5 +37,6 @@ class FoodEntity extends Equatable {
         scientificName,
         description,
         image,
+        isFavorite,
       ];
 }

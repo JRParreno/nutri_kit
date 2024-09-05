@@ -12,6 +12,7 @@ class DeficiencyDetailModel extends DeficiencyDetailEntity {
     required super.updatedAt,
     required super.name,
     required super.description,
+    super.isFavorite,
   });
 
   factory DeficiencyDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -27,5 +28,6 @@ class DeficiencyDetailModel extends DeficiencyDetailEntity {
         updatedAt: DateTime.parse(json['updated_at']),
         name: json['name'] as String,
         description: json['description'] as String,
+        isFavorite: json["is_favorite"],
       );
 }

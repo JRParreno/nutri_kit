@@ -20,6 +20,7 @@ class DeficiencyDetailPage extends StatefulWidget {
 class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
     with TickerProviderStateMixin {
   late TabController tabController;
+  int index = 0;
 
   @override
   void initState() {
@@ -28,7 +29,14 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
       initialIndex: 0,
       length: 2,
       vsync: this,
-    );
+    )..addListener(
+        () {
+          setState(() {
+            index = tabController.index;
+          });
+        },
+      );
+
     context
         .read<DeficiencyDetailBloc>()
         .add(GetDeficiencyDetailEvent(widget.id));
@@ -37,61 +45,90 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<DeficiencyDetailBloc, DeficiencyDetailState>(
-        listener: blocListener,
-        builder: (context, state) {
-          if (state is DeficiencyDetailFailure) {
-            return const Center(
-              child: Text(
-                'Something went wrong in our server, please try again later.',
-              ),
-            );
-          }
-
-          if (state is DeficiencyDetailSuccess) {
-            final data = state.deficiencyDetailEntity;
-
-            return CustomScrollView(
-              slivers: [
-                const SliverAppBar(
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Text('Deficiency'),
-                  ),
+      appBar: AppBar(
+        title: const Text(
+          'Deficiency',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          BlocSelector<DeficiencyDetailBloc, DeficiencyDetailState, bool>(
+            selector: (state) {
+              if (state is DeficiencyDetailSuccess) {
+                return state.deficiencyDetailEntity.isFavorite;
+              }
+              return false;
+            },
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () => handleOnTapFavorite(state),
+                icon: Icon(
+                  state ? Icons.favorite : Icons.favorite_outline,
                 ),
-                SliverToBoxAdapter(
-                  child: DeficiencyInfo(
-                    title: data.name,
-                    description: data.description,
-                  ),
+              );
+            },
+          )
+        ],
+      ),
+      body: SizedBox.expand(
+        child: BlocConsumer<DeficiencyDetailBloc, DeficiencyDetailState>(
+          listener: blocListener,
+          buildWhen: (previous, current) {
+            if (previous is DeficiencyDetailSuccess &&
+                current is DeficiencyDetailSuccess) {
+              return false;
+            }
+            return true;
+          },
+          builder: (context, state) {
+            if (state is DeficiencyDetailFailure) {
+              return const Center(
+                child: Text(
+                  'Something went wrong in our server, please try again later.',
                 ),
-                SliverPersistentHeader(
-                  delegate: DeficiencyTabs(
-                    tabController: tabController,
-                    maxHeight: 120,
-                    minHeight: 100,
-                    remedies: data.remedies,
-                    symptoms: data.symptoms,
-                  ),
-                ),
-              ],
-            );
-          }
+              );
+            }
 
-          return const SizedBox();
-        },
+            if (state is DeficiencyDetailSuccess) {
+              final data = state.deficiencyDetailEntity;
+
+              return Container(
+                padding: const EdgeInsets.all(25),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            DeficiencyInfo(
+                              title: data.name,
+                              description: data.description,
+                            ),
+                            DeficiencyTabs(
+                              tabController: tabController,
+                              remedies: data.remedies,
+                              symptoms: data.symptoms,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (index == 0)
+                      const Text(
+                          "**If symptoms worsen, it's important to seek medical advice from a doctor.**")
+                  ],
+                ),
+              );
+            }
+
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }
-
-  // DeficiencyInfo(
-  //                     title: data.name,
-  //                     description: data.description,
-  //                   ),
-  //                   DeficiencyTabs(
-  //                     tabController: tabController,
-  //                     remedies: data.remedies,
-  //                     symptoms: data.symptoms,
-  //                   ),
 
   void onPageError(String message) {
     Future.delayed(const Duration(milliseconds: 600), () {
@@ -99,6 +136,20 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
         context: context,
         type: QuickAlertType.error,
         title: 'Oops...',
+        text: message,
+      );
+    });
+  }
+
+  void onPageSuccess({
+    required String message,
+    bool isFavorite = false,
+  }) {
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: '${isFavorite ? 'Add' : 'Remove'} Favorite',
         text: message,
       );
     });
@@ -115,8 +166,23 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
       });
     }
 
+    if (state is DeficiencyDetailSuccess && state.message.isNotEmpty) {
+      onPageSuccess(
+        message: state.message,
+        isFavorite: state.deficiencyDetailEntity.isFavorite,
+      );
+    }
+
     if (state is DeficiencyDetailFailure) {
       onPageError(state.message);
     }
+  }
+
+  void handleOnTapFavorite(bool isFavorite) {
+    if (isFavorite) {
+      context.read<DeficiencyDetailBloc>().add(DeleteFavoriteDeficiencyEvent());
+      return;
+    }
+    context.read<DeficiencyDetailBloc>().add(AddFavoriteDeficiencyEvent());
   }
 }

@@ -21,4 +21,28 @@ class DeficiencyRepositoryImpl implements DeficiencyRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> addFavoriteDeficiency(int id) async {
+    try {
+      final response =
+          await deficiencyRemoteDataSource.addFavoriteDeficiency(id);
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteFavoriteDeficiency(int id) async {
+    try {
+      final response =
+          await deficiencyRemoteDataSource.deleteFavoriteDeficiency(id);
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

@@ -35,6 +35,24 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          BlocSelector<FoodDetailBloc, FoodDetailState, bool>(
+            selector: (state) {
+              if (state is FoodDetailSuccess) {
+                return state.foodEntity.isFavorite;
+              }
+              return false;
+            },
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  state ? Icons.favorite : Icons.favorite_outline,
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: BlocConsumer<FoodDetailBloc, FoodDetailState>(
         listener: blocListener,

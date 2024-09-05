@@ -8,6 +8,7 @@ class VitaminModel extends VitaminEntity {
     required super.name,
     required super.description,
     super.image,
+    super.isFavorite,
   });
 
   factory VitaminModel.fromJson(Map<String, dynamic> json) => VitaminModel(
@@ -17,6 +18,7 @@ class VitaminModel extends VitaminEntity {
         name: json["name"],
         description: json["description"],
         image: json["image"],
+        isFavorite: json["is_favorite"],
       );
 
   Map<String, dynamic> toJson() => {

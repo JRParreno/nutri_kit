@@ -1,19 +1,29 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutri_kit/features/remedy/domain/entities/index.dart';
-import 'package:nutri_kit/features/remedy/domain/usecase/get_remedy_detail.dart';
+import 'package:nutri_kit/features/remedy/domain/usecase/index.dart';
 
 part 'remedy_detail_event.dart';
 part 'remedy_detail_state.dart';
 
 class RemedyDetailBloc extends Bloc<RemedyDetailEvent, RemedyDetailState> {
   final GetRemedyDetail _getRemedyDetail;
+  final DeleteFavoriteRemedy _deleteFavoriteRemedy;
+  final AddFavoriteRemedy _addFavoriteRemedy;
 
-  RemedyDetailBloc(GetRemedyDetail getRemedyDetail)
-      : _getRemedyDetail = getRemedyDetail,
+  RemedyDetailBloc({
+    required GetRemedyDetail getRemedyDetail,
+    required DeleteFavoriteRemedy deleteFavoriteRemedy,
+    required AddFavoriteRemedy addFavoriteRemedy,
+  })  : _getRemedyDetail = getRemedyDetail,
+        _deleteFavoriteRemedy = deleteFavoriteRemedy,
+        _addFavoriteRemedy = addFavoriteRemedy,
         super(RemedyDetailInitial()) {
     on<GetRemedyDetailEvent>(onGetRemedyDetailEvent);
-    on<AddRemedyDetailEvent>(onAddRemedyDetailEvent);
+    on<AddFavoriteRemedyEvent>(onAddFavoriteRemedyEvent);
+    on<DeleteFavoriteRemedyEvent>(onDeleteFavoriteRemedyEvent);
   }
 
   Future<void> onGetRemedyDetailEvent(
@@ -25,10 +35,55 @@ class RemedyDetailBloc extends Bloc<RemedyDetailEvent, RemedyDetailState> {
 
     response.fold(
       (l) => emit(RemedyDetailFailure(l.message)),
-      (r) => emit(RemedyDetailSuccess(r)),
+      (r) => emit(RemedyDetailSuccess(remedyDetailEntity: r)),
     );
   }
 
-  Future<void> onAddRemedyDetailEvent(
-      AddRemedyDetailEvent event, Emitter<RemedyDetailState> emit) async {}
+  FutureOr<void> onAddFavoriteRemedyEvent(
+      AddFavoriteRemedyEvent event, Emitter<RemedyDetailState> emit) async {
+    final state = this.state;
+
+    if (state is RemedyDetailSuccess) {
+      emit(RemedyDetailLoading());
+
+      final response = await _addFavoriteRemedy(
+          AddFavoriteRemedyParams(state.remedyDetailEntity.id));
+
+      response.fold(
+        (l) => emit(RemedyDetailFailure(l.message)),
+        (r) => emit(
+          RemedyDetailSuccess(
+            remedyDetailEntity: state.remedyDetailEntity.copyWith(
+              isFavorite: true,
+            ),
+            message: r,
+          ),
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> onDeleteFavoriteRemedyEvent(
+      DeleteFavoriteRemedyEvent event, Emitter<RemedyDetailState> emit) async {
+    final state = this.state;
+
+    if (state is RemedyDetailSuccess) {
+      emit(RemedyDetailLoading());
+
+      final response = await _deleteFavoriteRemedy(
+          DeleteFavoriteRemedyParams(state.remedyDetailEntity.id));
+
+      response.fold(
+        (l) => emit(RemedyDetailFailure(l.message)),
+        (r) => emit(
+          RemedyDetailSuccess(
+            remedyDetailEntity: state.remedyDetailEntity.copyWith(
+              isFavorite: false,
+            ),
+            message: r,
+          ),
+        ),
+      );
+    }
+  }
 }

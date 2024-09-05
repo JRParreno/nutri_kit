@@ -35,9 +35,34 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          BlocSelector<RemedyDetailBloc, RemedyDetailState, bool>(
+            selector: (state) {
+              if (state is RemedyDetailSuccess) {
+                return state.remedyDetailEntity.isFavorite;
+              }
+              return false;
+            },
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () => handleOnTapFavorite(state),
+                icon: Icon(
+                  state ? Icons.favorite : Icons.favorite_outline,
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: BlocConsumer<RemedyDetailBloc, RemedyDetailState>(
         listener: blocListener,
+        buildWhen: (previous, current) {
+          if (previous is RemedyDetailSuccess &&
+              current is RemedyDetailSuccess) {
+            return false;
+          }
+          return true;
+        },
         builder: (context, state) {
           if (state is RemedyDetailFailure) {
             return const Center(
@@ -89,6 +114,20 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
     });
   }
 
+  void onPageSuccess({
+    required String message,
+    bool isFavorite = false,
+  }) {
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: '${isFavorite ? 'Add' : 'Remove'} Favorite',
+        text: message,
+      );
+    });
+  }
+
   void blocListener(BuildContext context, RemedyDetailState state) {
     if (state is RemedyDetailLoading) {
       LoadingScreen.instance().show(context: context);
@@ -100,8 +139,23 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
       });
     }
 
+    if (state is RemedyDetailSuccess && state.message.isNotEmpty) {
+      onPageSuccess(
+        message: state.message,
+        isFavorite: state.remedyDetailEntity.isFavorite,
+      );
+    }
+
     if (state is RemedyDetailFailure) {
       onPageError(state.message);
     }
+  }
+
+  void handleOnTapFavorite(bool isFavorite) {
+    if (isFavorite) {
+      context.read<RemedyDetailBloc>().add(DeleteFavoriteRemedyEvent());
+      return;
+    }
+    context.read<RemedyDetailBloc>().add(AddFavoriteRemedyEvent());
   }
 }

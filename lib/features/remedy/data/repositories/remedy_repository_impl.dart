@@ -19,4 +19,26 @@ class RemedyRepositoryImpl implements RemedyRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> addFavoriteRemedy(int id) async {
+    try {
+      final response = await remedyRemoteDataSource.addFavoriteRemedy(id);
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteFavoriteRemedy(int id) async {
+    try {
+      final response = await remedyRemoteDataSource.deleteFavoriteRemedy(id);
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

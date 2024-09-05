@@ -15,3 +15,7 @@ final class GetDeficiencyDetailEvent extends DeficiencyDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+final class AddFavoriteDeficiencyEvent extends DeficiencyDetailEvent {}
+
+final class DeleteFavoriteDeficiencyEvent extends DeficiencyDetailEvent {}

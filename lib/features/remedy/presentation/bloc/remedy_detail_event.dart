@@ -24,3 +24,7 @@ final class AddRemedyDetailEvent extends RemedyDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+final class AddFavoriteRemedyEvent extends RemedyDetailEvent {}
+
+final class DeleteFavoriteRemedyEvent extends RemedyDetailEvent {}

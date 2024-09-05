@@ -9,6 +9,7 @@ class RemedyDetailModel extends RemedyDetailEntity {
     required super.foods,
     super.image,
     super.scientificName,
+    super.isFavorite,
   });
 
   factory RemedyDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -23,5 +24,6 @@ class RemedyDetailModel extends RemedyDetailEntity {
             (x) => FoodModel.fromJson(x['food']),
           ),
         ),
+        isFavorite: json["is_favorite"],
       );
 }
