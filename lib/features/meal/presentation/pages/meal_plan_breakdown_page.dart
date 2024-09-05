@@ -23,22 +23,13 @@ class MealPlanBreakdownPage extends StatefulWidget {
 
 class _MealPlanBreakdownPageState extends State<MealPlanBreakdownPage> {
   late DayMealCompletionEntity data;
-  late List<MealEntity> meals;
+  List<MealEntity> meals = [];
   bool isCompletedManually = false;
 
   @override
   void initState() {
     super.initState();
-    data = widget.dayMealCompletionEntity;
-    meals = [
-      data.dayMealPlan.breakfast,
-      data.dayMealPlan.midMorningSnack,
-      data.dayMealPlan.lunch,
-      data.dayMealPlan.afternoonSnack,
-      data.dayMealPlan.dinner,
-      data.dayMealPlan.eveningSnack,
-    ];
-    isCompletedManually = data.completed;
+    initSetup();
   }
 
   @override
@@ -154,5 +145,31 @@ class _MealPlanBreakdownPageState extends State<MealPlanBreakdownPage> {
     if (state is MealPlanDetailFailure) {
       onPageError(state.message);
     }
+  }
+
+  void initSetup() {
+    data = widget.dayMealCompletionEntity;
+
+    if (data.dayMealPlan.breakfast != null) {
+      meals.add(data.dayMealPlan.breakfast!);
+    }
+    if (data.dayMealPlan.midMorningSnack != null) {
+      meals.add(data.dayMealPlan.midMorningSnack!);
+    }
+    if (data.dayMealPlan.lunch != null) {
+      meals.add(data.dayMealPlan.lunch!);
+    }
+    if (data.dayMealPlan.afternoonSnack != null) {
+      meals.add(data.dayMealPlan.afternoonSnack!);
+    }
+
+    if (data.dayMealPlan.dinner != null) {
+      meals.add(data.dayMealPlan.dinner!);
+    }
+    if (data.dayMealPlan.eveningSnack != null) {
+      meals.add(data.dayMealPlan.eveningSnack!);
+    }
+    setState(() {});
+    isCompletedManually = data.completed;
   }
 }

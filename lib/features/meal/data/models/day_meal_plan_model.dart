@@ -18,12 +18,21 @@ class DayMealPlanModel extends DayMealPlanEntity {
   factory DayMealPlanModel.fromJson(Map<String, dynamic> json) {
     return DayMealPlanModel(
       id: json["id"],
-      breakfast: MealModel.fromJson(json["breakfast"]),
-      midMorningSnack: MealModel.fromJson(json["mid_morning_snack"]),
-      lunch: MealModel.fromJson(json["lunch"]),
-      afternoonSnack: MealModel.fromJson(json["afternoon_snack"]),
-      dinner: MealModel.fromJson(json["dinner"]),
-      eveningSnack: MealModel.fromJson(json["evening_snack"]),
+      breakfast: json["breakfast"] == null
+          ? null
+          : MealModel.fromJson(json["breakfast"]),
+      midMorningSnack: json["mid_morning_snack"] == null
+          ? null
+          : MealModel.fromJson(json["mid_morning_snack"]),
+      lunch: json["lunch"] == null ? null : MealModel.fromJson(json["lunch"]),
+      afternoonSnack: json["afternoon_snack"] == null
+          ? null
+          : MealModel.fromJson(json["afternoon_snack"]),
+      dinner:
+          json["dinner"] == null ? null : MealModel.fromJson(json["dinner"]),
+      eveningSnack: json["evening_snack"] == null
+          ? null
+          : MealModel.fromJson(json["evening_snack"]),
       createdAt: DateTime.parse(json["created_at"]),
       updatedAt: DateTime.parse(json["updated_at"]),
       dayNumber: json["day_number"],
