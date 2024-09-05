@@ -34,15 +34,6 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
   final _birthdateCtrl = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _heightCtrl.text = '82';
-    _weightCtrl.text = '10';
-    _fullNameCtrl.text = 'juan';
-    _birthdateCtrl.text = '09/04/2022';
-  }
-
-  @override
   void dispose() {
     super.dispose();
     _heightCtrl.dispose();

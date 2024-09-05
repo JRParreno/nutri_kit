@@ -23,6 +23,13 @@ class _LoginPageState extends State<LoginPage> {
   bool isObscureText = true;
 
   @override
+  void dispose() {
+    super.dispose();
+    emailCtrl.dispose();
+    passwordCtrl.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
