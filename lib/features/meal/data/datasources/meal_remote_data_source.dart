@@ -14,7 +14,6 @@ abstract interface class MealRemoteDataSource {
     required String height,
     required String weight,
     required String gender,
-    required String healthStatus,
     required String name,
   });
   Future<UserMealPlanDetailModel> getChildMealPlanDetail({
@@ -57,7 +56,6 @@ class MealRemoteDataSourceImpl implements MealRemoteDataSource {
     required String height,
     required String weight,
     required String gender,
-    required String healthStatus,
     required String name,
   }) async {
     String url = '$baseUrl/api/meal/plan/child/register';
@@ -68,7 +66,6 @@ class MealRemoteDataSourceImpl implements MealRemoteDataSource {
         "birthdate": birthdate,
         "weight": weight,
         "gender": gender,
-        "health_status": healthStatus,
         "name": name,
       };
 

@@ -34,14 +34,12 @@ class MealRepositoryImpl implements MealRepository {
     required String height,
     required String weight,
     required String gender,
-    required String healthStatus,
     required String name,
   }) async {
     try {
       final response = await mealRemoteDataSource.createChildHealthForm(
         birthdate: birthdate,
         gender: gender,
-        healthStatus: healthStatus,
         height: height,
         name: name,
         weight: weight,

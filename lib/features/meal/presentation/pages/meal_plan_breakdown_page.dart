@@ -107,7 +107,8 @@ class _MealPlanBreakdownPageState extends State<MealPlanBreakdownPage> {
   }
 
   bool isDateToday() {
-    return DateUtils.isSameDay(data.date, DateTime.now());
+    return DateUtils.isSameDay(data.date, DateTime.now()) ||
+        data.date.isBefore(DateTime.now());
   }
 
   void onPageError(String message) {

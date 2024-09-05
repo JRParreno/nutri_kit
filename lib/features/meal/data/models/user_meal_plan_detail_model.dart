@@ -4,7 +4,6 @@ import 'package:nutri_kit/features/meal/domain/entities/index.dart';
 class UserMealPlanDetailModel extends UserMealPlanDetailEntity {
   UserMealPlanDetailModel({
     required super.name,
-    required super.healthStatus,
     required super.dayMealCompletion,
     required super.userMealPlan,
   });
@@ -12,7 +11,6 @@ class UserMealPlanDetailModel extends UserMealPlanDetailEntity {
   factory UserMealPlanDetailModel.fromJson(Map<String, dynamic> json) {
     return UserMealPlanDetailModel(
       name: json["name"],
-      healthStatus: HealthStatusModel.fromJson(json["health_status"]),
       dayMealCompletion: List<DayMealCompletionModel>.from(
           json["day_meal_completion"]!
               .map((x) => DayMealCompletionModel.fromJson(x))),

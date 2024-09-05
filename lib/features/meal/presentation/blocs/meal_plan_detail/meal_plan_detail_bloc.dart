@@ -61,7 +61,6 @@ class MealPlanDetailBloc
         MealPlanDetailSuccess(
           UserMealPlanDetailEntity(
             dayMealCompletion: dayMealCompletions,
-            healthStatus: state.userMealPlanDetailEntity.healthStatus,
             name: state.userMealPlanDetailEntity.name,
             userMealPlan: state.userMealPlanDetailEntity.userMealPlan,
           ),

@@ -53,10 +53,11 @@ class BirthdateForm extends StatelessWidget {
   }
 
   void handleOnTapBirthdate(BuildContext context) async {
+    final now = DateTime.now();
     final birthdate = await showDatePicker(
       context: context,
       firstDate: DateTime(1900, 1, 1),
-      lastDate: DateTime.now(),
+      lastDate: DateTime(now.year - 1, now.month, now.day),
       currentDate: DateTime.now(),
     );
 

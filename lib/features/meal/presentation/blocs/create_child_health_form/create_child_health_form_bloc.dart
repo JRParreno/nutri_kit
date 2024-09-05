@@ -26,7 +26,6 @@ class CreateChildHealthFormBloc
       CreateChildHealthFormParams(
         birthdate: event.birthdate,
         gender: event.gender,
-        healthStatus: event.healthStatus,
         height: event.height,
         weight: event.weight,
         name: event.name,

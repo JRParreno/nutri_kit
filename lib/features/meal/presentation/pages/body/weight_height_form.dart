@@ -1,7 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_ruler_picker/flutter_ruler_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:numberpicker/numberpicker.dart';
+
 import 'package:nutri_kit/gen/colors.gen.dart';
 
 class WeightHeightForm extends StatefulWidget {
@@ -9,10 +11,14 @@ class WeightHeightForm extends StatefulWidget {
     super.key,
     required this.heightValue,
     required this.weightValue,
+    this.initialHeight,
+    this.initialWeight,
   });
 
   final Function(double value) heightValue;
   final Function(int value) weightValue;
+  final double? initialHeight;
+  final int? initialWeight;
 
   @override
   State<WeightHeightForm> createState() => _WeightHeightFormState();
@@ -32,6 +38,8 @@ class _WeightHeightFormState extends State<WeightHeightForm> {
   void initState() {
     super.initState();
     _rulerPickerController = RulerPickerController(value: currentValue);
+    currentValue = widget.initialHeight ?? 40;
+    _currentIntValue = widget.initialWeight ?? 15;
   }
 
   bool selected = false;

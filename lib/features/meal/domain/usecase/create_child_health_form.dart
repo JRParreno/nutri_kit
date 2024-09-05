@@ -17,7 +17,6 @@ class CreateChildHealthForm
     return await mealRepository.createChildHealthForm(
       birthdate: params.birthdate,
       gender: params.gender,
-      healthStatus: params.healthStatus,
       height: params.height,
       weight: params.weight,
       name: params.name,
@@ -29,7 +28,6 @@ class CreateChildHealthFormParams {
   final String name;
   final String weight;
   final String height;
-  final String healthStatus;
   final String birthdate;
   final String gender;
 
@@ -37,7 +35,6 @@ class CreateChildHealthFormParams {
     required this.name,
     required this.weight,
     required this.height,
-    required this.healthStatus,
     required this.birthdate,
     required this.gender,
   });

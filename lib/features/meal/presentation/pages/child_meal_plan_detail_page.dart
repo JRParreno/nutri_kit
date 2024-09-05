@@ -12,10 +12,12 @@ class ChildMealPlanDetailPage extends StatefulWidget {
     super.key,
     required this.userMealPlanId,
     required this.mealPlanId,
+    this.isCreated = false,
   });
 
   final String userMealPlanId;
   final String mealPlanId;
+  final bool isCreated;
 
   @override
   State<ChildMealPlanDetailPage> createState() =>
@@ -79,6 +81,17 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
     });
   }
 
+  void onPageSuccess(String message) {
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.warning,
+        title: 'Health Status',
+        text: message,
+      );
+    });
+  }
+
   void blocListener(BuildContext context, MealPlanDetailState state) {
     if (state is MealPlanDetailLoading) {
       LoadingScreen.instance().show(context: context);
@@ -88,6 +101,10 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
       Future.delayed(const Duration(milliseconds: 500), () {
         LoadingScreen.instance().hide();
       });
+    }
+
+    if (state is MealPlanDetailSuccess && widget.isCreated) {
+      onPageSuccess(state.userMealPlanDetailEntity.userMealPlan.healthStatus);
     }
 
     if (state is MealPlanDetailFailure) {

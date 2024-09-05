@@ -1,5 +1,3 @@
-import 'package:nutri_kit/features/meal/domain/entities/index.dart';
-
 class UserMealPlanEntity {
   UserMealPlanEntity({
     required this.id,
@@ -18,7 +16,7 @@ class UserMealPlanEntity {
   });
 
   final int id;
-  final HealthStatusEntity healthStatus;
+  final String healthStatus;
   final DateTime createdAt;
   final DateTime updatedAt;
   final String name;

@@ -40,6 +40,7 @@ class UserChildList extends StatelessWidget {
                       pathParameters: {
                         "mealPlanId": item.mealPlan.toString(),
                         "userMealPlanId": item.id.toString(),
+                        "isCreated": "false",
                       },
                     );
                   },
@@ -64,7 +65,7 @@ class UserChildList extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              item.healthStatus.status,
+                              item.healthStatus,
                               style: const TextStyle(
                                 color: ColorName.secondary,
                                 fontSize: 12,

@@ -58,7 +58,8 @@ enum AppRoutes {
   ),
   chidlMealPlanDetailPage(
     name: '/child_meal_plan_detail_page',
-    path: '/child_meal_plan_detail_page/:userMealPlanId/meal-plan/:mealPlanId',
+    path:
+        '/child_meal_plan_detail_page/:userMealPlanId/meal-plan/:mealPlanId/isCreated/:isCreated',
   ),
   mealBreakdownPage(
     name: '/meal_breakdown_page',

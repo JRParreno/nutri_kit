@@ -7,7 +7,6 @@ import 'package:nutri_kit/core/common/widgets/loader.dart';
 import 'package:nutri_kit/core/enum/gender.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/create_child_health_form/create_child_health_form_bloc.dart';
-import 'package:nutri_kit/features/meal/presentation/widgets/user_child_list/health_status_selection.dart';
 import 'package:nutri_kit/features/meal/presentation/widgets/user_child_list/stepper_text_field.dart';
 import 'package:nutri_kit/router/index.dart';
 import 'package:quickalert/quickalert.dart';
@@ -28,7 +27,6 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
   ];
 
   int _index = 0;
-  int _selectedHealthStatus = -1;
   Gender _gender = Gender.male;
   final _heightCtrl = TextEditingController();
   final _weightCtrl = TextEditingController();
@@ -38,11 +36,19 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
   @override
   void initState() {
     super.initState();
-    _selectedHealthStatus = 0;
     _heightCtrl.text = '82';
     _weightCtrl.text = '10';
     _fullNameCtrl.text = 'juan';
     _birthdateCtrl.text = '09/04/2022';
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _heightCtrl.dispose();
+    _weightCtrl.dispose();
+    _fullNameCtrl.dispose();
+    _birthdateCtrl.dispose();
   }
 
   @override
@@ -80,6 +86,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
                 "mealPlanId": state.userMealPlanCreationEntity.mealplanId,
                 "userMealPlanId":
                     state.userMealPlanCreationEntity.usermealplanId,
+                "isCreated": "true",
               },
             );
             return;
@@ -103,26 +110,25 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
               controlsBuilder: (context, details) {
                 return Row(
                   children: <Widget>[
-                    if (!(_index == 5 && _selectedHealthStatus == -1))
-                      TextButton(
-                        onPressed: details.onStepContinue,
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.blue, // Background color
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8), // Padding
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(10), // Rounded corners
-                          ),
-                        ),
-                        child: Text(
-                          _index == getSteps().length - 1 ? "Submit" : "Next",
-                          style: const TextStyle(
-                            color: Colors.white, // Text color
-                            fontSize: 16,
-                          ),
+                    TextButton(
+                      onPressed: details.onStepContinue,
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.blue, // Background color
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8), // Padding
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10), // Rounded corners
                         ),
                       ),
+                      child: Text(
+                        _index == getSteps().length - 1 ? "Submit" : "Next",
+                        style: const TextStyle(
+                          color: Colors.white, // Text color
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                     const Gap(20),
                     if (_index == getSteps().length - 1)
                       TextButton(
@@ -154,14 +160,11 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
                 });
               },
               onStepContinue: () {
-                if (_index == 6) {
+                if (_index == 5) {
                   handleSubmitForm();
-                }
-
-                if ((_index == 5 && _selectedHealthStatus == -1) ||
-                    _index == 6) {
                   return;
                 }
+
                 if ((_index == 0 || _index == 5 || _index == 6) ||
                     _validate()) {
                   setState(() {
@@ -340,25 +343,6 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
           color: greyColor,
         ),
         title: Text(
-          "Current Child Health Status",
-          style: TextStyle(
-            color: greyColor,
-          ),
-        ),
-        content: Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: HealthStatusSelection(
-            onTapCard: (index) => setState(() => _selectedHealthStatus = index),
-            selectedIndex: _selectedHealthStatus,
-          ),
-        ),
-      ),
-      Step(
-        state: _index > 6 ? StepState.complete : StepState.indexed,
-        stepStyle: StepStyle(
-          color: greyColor,
-        ),
-        title: Text(
           "Complete",
           style: TextStyle(
             color: greyColor,
@@ -407,32 +391,11 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
                   fontSize: 17,
                 ),
               ),
-              Text(
-                "Health Status: ${getHealthStatus()}",
-                style: TextStyle(
-                  color: greyColor,
-                  fontSize: 17,
-                ),
-              ),
             ],
           ),
         ),
       ),
     ];
-  }
-
-  String getHealthStatus() {
-    switch (_selectedHealthStatus) {
-      case 0:
-        return "Underweight";
-      case 1:
-        return "Waisted";
-
-      case 2:
-        return "Stunted";
-      default:
-        return "Obese";
-    }
   }
 
   bool _validate() {
@@ -477,7 +440,6 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
             name: _fullNameCtrl.text,
             weight: _weightCtrl.text,
             height: _heightCtrl.text,
-            healthStatus: getHealthStatus(),
             birthdate: _birthdateCtrl.text,
             gender: _gender.name,
           ),

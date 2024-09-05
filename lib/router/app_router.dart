@@ -233,12 +233,14 @@ GoRouter routerConfig() {
         pageBuilder: (context, state) {
           final userMealPlanId = state.pathParameters['userMealPlanId']!;
           final mealPlanId = state.pathParameters['mealPlanId']!;
+          final isCreated = state.pathParameters['isCreated']!;
 
           return buildTransitionPage(
             localKey: state.pageKey,
             child: ChildMealPlanDetailPage(
               mealPlanId: mealPlanId,
               userMealPlanId: userMealPlanId,
+              isCreated: isCreated == "true",
             ),
           );
         },

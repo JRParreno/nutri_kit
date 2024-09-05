@@ -12,7 +12,6 @@ final class CreateChildHealthFormSubmitEvent
   final String name;
   final String weight;
   final String height;
-  final String healthStatus;
   final String birthdate;
   final String gender;
 
@@ -20,7 +19,6 @@ final class CreateChildHealthFormSubmitEvent
     required this.name,
     required this.weight,
     required this.height,
-    required this.healthStatus,
     required this.birthdate,
     required this.gender,
   });
@@ -30,7 +28,6 @@ final class CreateChildHealthFormSubmitEvent
         name,
         weight,
         height,
-        healthStatus,
         birthdate,
         gender,
       ];
