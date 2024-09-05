@@ -14,12 +14,17 @@ final class MealPlanDetailLoading extends MealPlanDetailState {}
 
 final class MealPlanDetailSuccess extends MealPlanDetailState {
   final UserMealPlanDetailEntity userMealPlanDetailEntity;
+  final bool isUpdatingValue;
 
-  const MealPlanDetailSuccess(this.userMealPlanDetailEntity);
+  const MealPlanDetailSuccess({
+    required this.userMealPlanDetailEntity,
+    this.isUpdatingValue = false,
+  });
 
   @override
   List<Object> get props => [
         userMealPlanDetailEntity,
+        isUpdatingValue,
       ];
 }
 

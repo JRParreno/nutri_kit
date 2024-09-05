@@ -234,6 +234,7 @@ GoRouter routerConfig() {
           final userMealPlanId = state.pathParameters['userMealPlanId']!;
           final mealPlanId = state.pathParameters['mealPlanId']!;
           final isCreated = state.pathParameters['isCreated']!;
+          final healthStatusInfos = state.extra as List<String>?;
 
           return buildTransitionPage(
             localKey: state.pageKey,
@@ -241,6 +242,7 @@ GoRouter routerConfig() {
               mealPlanId: mealPlanId,
               userMealPlanId: userMealPlanId,
               isCreated: isCreated == "true",
+              healthStatusInfos: healthStatusInfos,
             ),
           );
         },

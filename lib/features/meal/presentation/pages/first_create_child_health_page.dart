@@ -5,9 +5,11 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
 import 'package:nutri_kit/core/enum/gender.dart';
+import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_viewer_page.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/create_child_health_form/create_child_health_form_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/pages/body/index.dart';
+import 'package:nutri_kit/gen/assets.gen.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
 import 'package:nutri_kit/router/index.dart';
 import 'package:quickalert/quickalert.dart';
@@ -82,6 +84,7 @@ class _FirstCreateChildHealthPageState
                     state.userMealPlanCreationEntity.usermealplanId,
                 "isCreated": "true",
               },
+              extra: state.userMealPlanCreationEntity.healthStatusInfos,
             );
             return;
           }
@@ -277,6 +280,19 @@ class _FirstCreateChildHealthPageState
         type: QuickAlertType.error,
         title: 'Oops...',
         text: message,
+        onConfirmBtnTap:
+            message.toLowerCase() == 'Child is healthy'.toLowerCase()
+                ? () {
+                    context.pop();
+                    Future.delayed(const Duration(milliseconds: 300), () {
+                      context.replaceNamed(
+                        AppRoutes.homePDFViewer.name,
+                        extra: PDFParams(
+                            title: 'Kids', assetPath: Assets.pdfs.homeKids),
+                      );
+                    });
+                  }
+                : null,
       );
     });
   }

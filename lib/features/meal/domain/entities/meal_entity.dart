@@ -17,7 +17,7 @@ class MealEntity {
   final String name;
   final String description;
   final int calories;
-  final String protein;
-  final String carbs;
-  final String fats;
+  final double protein;
+  final double carbs;
+  final double fats;
 }

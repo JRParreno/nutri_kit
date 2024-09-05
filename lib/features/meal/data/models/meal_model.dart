@@ -21,9 +21,9 @@ class MealModel extends MealEntity {
       name: json["name"],
       description: json["description"],
       calories: json["calories"],
-      protein: json["protein"],
-      carbs: json["carbs"],
-      fats: json["fats"],
+      protein: double.parse(json["protein"]),
+      carbs: double.parse(json["carbs"]),
+      fats: double.parse(json["fats"]),
     );
   }
 }

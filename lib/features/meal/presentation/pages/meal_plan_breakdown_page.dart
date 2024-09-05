@@ -73,6 +73,7 @@ class _MealPlanBreakdownPageState extends State<MealPlanBreakdownPage> {
                         ),
                       ),
                     ),
+                  const Gap(15),
                 ],
               ),
             ),

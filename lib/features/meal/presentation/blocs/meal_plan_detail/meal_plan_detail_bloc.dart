@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutri_kit/core/helper/meal_helper.dart';
 import 'package:nutri_kit/features/meal/domain/entities/index.dart';
 import 'package:nutri_kit/features/meal/domain/usecase/index.dart';
 
@@ -32,7 +33,7 @@ class MealPlanDetailBloc
 
     response.fold(
       (l) => emit(MealPlanDetailFailure(l.message)),
-      (r) => emit(MealPlanDetailSuccess(r)),
+      (r) => emit(MealPlanDetailSuccess(userMealPlanDetailEntity: r)),
     );
   }
 
@@ -47,23 +48,33 @@ class MealPlanDetailBloc
           UpdateDayMealCompletionCompleteParams(
               id: event.id, isCompleted: event.isCompleted));
 
-      final dayMealCompletions = [
+      final mealHelper = MealHelper();
+
+      final tempDayMealCompletions = [
         ...state.userMealPlanDetailEntity.dayMealCompletion
       ];
-      final index = dayMealCompletions.indexWhere(
+      final index = tempDayMealCompletions.indexWhere(
         (element) => element.id == event.id,
       );
 
-      dayMealCompletions[index] =
-          dayMealCompletions[index].copyWith(completed: event.isCompleted);
+      final dayMealCompletions = mealHelper.updateCompletedDailyMeal(
+        data: tempDayMealCompletions,
+        index: index,
+        id: event.id,
+        isCompleted: true,
+      );
+
+      final updatedUserMealPlanDetailEntity =
+          mealHelper.updateDayMealPlanCurrentNutrients(
+        data: state.userMealPlanDetailEntity
+            .copyWith(dayMealCompletion: dayMealCompletions),
+        dayMealCompletionEntity: dayMealCompletions[index],
+      );
 
       emit(
         MealPlanDetailSuccess(
-          UserMealPlanDetailEntity(
-            dayMealCompletion: dayMealCompletions,
-            name: state.userMealPlanDetailEntity.name,
-            userMealPlan: state.userMealPlanDetailEntity.userMealPlan,
-          ),
+          userMealPlanDetailEntity: updatedUserMealPlanDetailEntity,
+          isUpdatingValue: true,
         ),
       );
     }

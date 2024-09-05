@@ -13,11 +13,13 @@ class ChildMealPlanDetailPage extends StatefulWidget {
     required this.userMealPlanId,
     required this.mealPlanId,
     this.isCreated = false,
+    this.healthStatusInfos,
   });
 
   final String userMealPlanId;
   final String mealPlanId;
   final bool isCreated;
+  final List<String>? healthStatusInfos;
 
   @override
   State<ChildMealPlanDetailPage> createState() =>
@@ -47,6 +49,15 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: handleOnTapDelete,
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+          ),
+        ],
       ),
       body: BlocConsumer<MealPlanDetailBloc, MealPlanDetailState>(
         listener: blocListener,
@@ -104,11 +115,33 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
     }
 
     if (state is MealPlanDetailSuccess && widget.isCreated) {
-      onPageSuccess(state.userMealPlanDetailEntity.userMealPlan.healthStatus);
+      if (!state.isUpdatingValue) {
+        String message = 'Your child is ';
+        final healthStatusInfos = widget.healthStatusInfos;
+        if (healthStatusInfos != null && healthStatusInfos.length > 1) {
+          message += '${healthStatusInfos[0]} and ${healthStatusInfos[1]}';
+        } else {
+          message += state.userMealPlanDetailEntity.userMealPlan.healthStatus;
+        }
+        onPageSuccess(message);
+      }
     }
 
     if (state is MealPlanDetailFailure) {
       onPageError(state.message);
     }
+  }
+
+  void handleOnTapDelete() {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.confirm,
+        text: 'You want to delete this child health progress?',
+        confirmBtnText: 'Yes',
+        cancelBtnText: 'No',
+        confirmBtnColor: Colors.red,
+        onConfirmBtnTap: () {
+          // TODO delete
+        });
   }
 }

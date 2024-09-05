@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:nutri_kit/features/meal/domain/entities/index.dart';
 
 class DayMealPlanEntity {
@@ -24,4 +25,30 @@ class DayMealPlanEntity {
   final DateTime createdAt;
   final DateTime updatedAt;
   final int dayNumber;
+
+  DayMealPlanEntity copyWith({
+    int? id,
+    MealEntity? breakfast,
+    MealEntity? midMorningSnack,
+    MealEntity? lunch,
+    MealEntity? afternoonSnack,
+    MealEntity? dinner,
+    MealEntity? eveningSnack,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? dayNumber,
+  }) {
+    return DayMealPlanEntity(
+      id: id ?? this.id,
+      breakfast: breakfast ?? this.breakfast,
+      midMorningSnack: midMorningSnack ?? this.midMorningSnack,
+      lunch: lunch ?? this.lunch,
+      afternoonSnack: afternoonSnack ?? this.afternoonSnack,
+      dinner: dinner ?? this.dinner,
+      eveningSnack: eveningSnack ?? this.eveningSnack,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      dayNumber: dayNumber ?? this.dayNumber,
+    );
+  }
 }
