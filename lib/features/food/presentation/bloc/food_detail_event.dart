@@ -15,3 +15,7 @@ final class GetFoodDetailEvent extends FoodDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+final class AddFavoriteFoodEvent extends FoodDetailEvent {}
+
+final class DeleteFavoriteFoodEvent extends FoodDetailEvent {}

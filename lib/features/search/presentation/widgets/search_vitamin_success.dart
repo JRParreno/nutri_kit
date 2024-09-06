@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/index.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
+import 'package:nutri_kit/router/index.dart';
 
 class SearchVitaminSuccess extends StatelessWidget {
   const SearchVitaminSuccess({
@@ -28,6 +30,12 @@ class SearchVitaminSuccess extends StatelessWidget {
               defaultImage: Assets.images.placeholder.vitamins.image(),
               title: e.name,
               description: e.description,
+              onTap: () {
+                context.pushNamed(
+                  AppRoutes.vitaminDetail.name,
+                  pathParameters: {"id": e.id.toString()},
+                );
+              },
             ),
           )
           .toList(),

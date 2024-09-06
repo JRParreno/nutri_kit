@@ -75,11 +75,12 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
         child: BlocConsumer<DeficiencyDetailBloc, DeficiencyDetailState>(
           listener: blocListener,
           buildWhen: (previous, current) {
-            if (previous is DeficiencyDetailSuccess &&
-                current is DeficiencyDetailSuccess) {
-              return false;
+            if (previous is DeficiencyDetailLoading &&
+                current is DeficiencyDetailSuccess &&
+                current.message.isEmpty) {
+              return true;
             }
-            return true;
+            return false;
           },
           builder: (context, state) {
             if (state is DeficiencyDetailFailure) {
@@ -149,7 +150,7 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
       QuickAlert.show(
         context: context,
         type: QuickAlertType.success,
-        title: '${isFavorite ? 'Add' : 'Remove'} Favorite',
+        title: 'Deficiency',
         text: message,
       );
     });

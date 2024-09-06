@@ -13,12 +13,17 @@ final class FoodDetailLoading extends FoodDetailState {}
 
 final class FoodDetailSuccess extends FoodDetailState {
   final FoodEntity foodEntity;
+  final String message;
 
-  const FoodDetailSuccess(this.foodEntity);
+  const FoodDetailSuccess({
+    required this.foodEntity,
+    this.message = '',
+  });
 
   @override
   List<Object> get props => [
         foodEntity,
+        message,
       ];
 }
 

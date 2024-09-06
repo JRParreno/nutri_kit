@@ -45,7 +45,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
             },
             builder: (context, state) {
               return IconButton(
-                onPressed: () {},
+                onPressed: () => handleOnTapFavorite(state),
                 icon: Icon(
                   state ? Icons.favorite : Icons.favorite_outline,
                 ),
@@ -56,6 +56,14 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
       ),
       body: BlocConsumer<FoodDetailBloc, FoodDetailState>(
         listener: blocListener,
+        buildWhen: (previous, current) {
+          if (previous is FoodDetailLoading &&
+              current is FoodDetailSuccess &&
+              current.message.isEmpty) {
+            return true;
+          }
+          return false;
+        },
         builder: (context, state) {
           if (state is FoodDetailFailure) {
             return const Center(
@@ -84,6 +92,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                     const Gap(25),
                     VitamiListInfo(
                       vitamins: data.vitamins,
+                      isTapEnabled: true,
                     ),
                   ],
                 ),
@@ -108,6 +117,20 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
     });
   }
 
+  void onPageSuccess({
+    required String message,
+    bool isFavorite = false,
+  }) {
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Food',
+        text: message,
+      );
+    });
+  }
+
   void blocListener(BuildContext context, FoodDetailState state) {
     if (state is FoodDetailLoading) {
       LoadingScreen.instance().show(context: context);
@@ -119,8 +142,23 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
       });
     }
 
+    if (state is FoodDetailSuccess && state.message.isNotEmpty) {
+      onPageSuccess(
+        message: state.message,
+        isFavorite: state.foodEntity.isFavorite,
+      );
+    }
+
     if (state is FoodDetailFailure) {
       onPageError(state.message);
     }
+  }
+
+  void handleOnTapFavorite(bool isFavorite) {
+    if (isFavorite) {
+      context.read<FoodDetailBloc>().add(DeleteFavoriteFoodEvent());
+      return;
+    }
+    context.read<FoodDetailBloc>().add(AddFavoriteFoodEvent());
   }
 }

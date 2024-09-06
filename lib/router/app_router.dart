@@ -11,6 +11,7 @@ import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
+import 'package:nutri_kit/features/food/presentation/pages/vitamin_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pdf_view_sample.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_viewer_page.dart';
@@ -209,6 +210,19 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: FoodDetailPage(
+              id: id,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.vitaminDetail.path,
+        name: AppRoutes.vitaminDetail.name,
+        pageBuilder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: VitaminDetailPage(
               id: id,
             ),
           );

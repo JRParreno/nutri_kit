@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
-import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
-import 'package:nutri_kit/features/remedy/presentation/widgets/index.dart';
+import 'package:nutri_kit/features/food/presentation/bloc/vitamin_detail/vitamin_detail_bloc.dart';
+import 'package:nutri_kit/features/food/presentation/widgets/index.dart';
 import 'package:quickalert/quickalert.dart';
 
-class RemedyDetailPage extends StatefulWidget {
-  const RemedyDetailPage({
+class VitaminDetailPage extends StatefulWidget {
+  const VitaminDetailPage({
     super.key,
     required this.id,
   });
@@ -15,14 +14,16 @@ class RemedyDetailPage extends StatefulWidget {
   final String id;
 
   @override
-  State<RemedyDetailPage> createState() => _RemedyDetailPageState();
+  State<VitaminDetailPage> createState() => _VitaminDetailPageState();
 }
 
-class _RemedyDetailPageState extends State<RemedyDetailPage> {
+class _VitaminDetailPageState extends State<VitaminDetailPage> {
   @override
   void initState() {
     super.initState();
-    context.read<RemedyDetailBloc>().add(GetRemedyDetailEvent(widget.id));
+    context.read<VitaminDetailBloc>().add(
+          GetVitaminDetailEvent(widget.id),
+        );
   }
 
   @override
@@ -30,16 +31,16 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Remedy',
+          'Vitamin',
           style: TextStyle(
             color: Colors.white,
           ),
         ),
         actions: [
-          BlocSelector<RemedyDetailBloc, RemedyDetailState, bool>(
+          BlocSelector<VitaminDetailBloc, VitaminDetailState, bool>(
             selector: (state) {
-              if (state is RemedyDetailSuccess) {
-                return state.remedyDetailEntity.isFavorite;
+              if (state is VitaminDetailSuccess) {
+                return state.vitaminEntity.isFavorite;
               }
               return false;
             },
@@ -54,18 +55,18 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
           )
         ],
       ),
-      body: BlocConsumer<RemedyDetailBloc, RemedyDetailState>(
+      body: BlocConsumer<VitaminDetailBloc, VitaminDetailState>(
         listener: blocListener,
         buildWhen: (previous, current) {
-          if (previous is RemedyDetailLoading &&
-              current is RemedyDetailSuccess &&
+          if (previous is VitaminDetailLoading &&
+              current is VitaminDetailSuccess &&
               current.message.isEmpty) {
             return true;
           }
           return false;
         },
         builder: (context, state) {
-          if (state is RemedyDetailFailure) {
+          if (state is VitaminDetailFailure) {
             return const Center(
               child: Text(
                 'Something went wrong in our server, please try again later.',
@@ -73,26 +74,16 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
             );
           }
 
-          if (state is RemedyDetailSuccess) {
-            final data = state.remedyDetailEntity;
+          if (state is VitaminDetailSuccess) {
+            final data = state.vitaminEntity;
 
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(35.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RemedyInfo(
-                      descrition: data.description,
-                      subTitle: data.scientificName,
-                      title: data.name,
-                      imageUrl: data.image,
-                    ),
-                    const Gap(25),
-                    RemedyRecommendedMeal(
-                      foods: state.remedyDetailEntity.foods,
-                    ),
-                  ],
+                child: VitaminInfo(
+                  description: data.description,
+                  title: data.name,
+                  imageUrl: data.image,
                 ),
               ),
             );
@@ -123,40 +114,40 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
       QuickAlert.show(
         context: context,
         type: QuickAlertType.success,
-        title: 'Remedy',
+        title: 'Vitamin',
         text: message,
       );
     });
   }
 
-  void blocListener(BuildContext context, RemedyDetailState state) {
-    if (state is RemedyDetailLoading) {
+  void blocListener(BuildContext context, VitaminDetailState state) {
+    if (state is VitaminDetailLoading) {
       LoadingScreen.instance().show(context: context);
     }
 
-    if (state is RemedyDetailSuccess || state is RemedyDetailFailure) {
+    if (state is VitaminDetailSuccess || state is VitaminDetailFailure) {
       Future.delayed(const Duration(milliseconds: 500), () {
         LoadingScreen.instance().hide();
       });
     }
 
-    if (state is RemedyDetailSuccess && state.message.isNotEmpty) {
+    if (state is VitaminDetailSuccess && state.message.isNotEmpty) {
       onPageSuccess(
         message: state.message,
-        isFavorite: state.remedyDetailEntity.isFavorite,
+        isFavorite: state.vitaminEntity.isFavorite,
       );
     }
 
-    if (state is RemedyDetailFailure) {
+    if (state is VitaminDetailFailure) {
       onPageError(state.message);
     }
   }
 
   void handleOnTapFavorite(bool isFavorite) {
     if (isFavorite) {
-      context.read<RemedyDetailBloc>().add(DeleteFavoriteRemedyEvent());
+      context.read<VitaminDetailBloc>().add(DeleteFavoriteVitaminEvent());
       return;
     }
-    context.read<RemedyDetailBloc>().add(AddFavoriteRemedyEvent());
+    context.read<VitaminDetailBloc>().add(AddFavoriteVitaminEvent());
   }
 }

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:nutri_kit/features/food/domain/entities/index.dart';
+import 'package:nutri_kit/router/index.dart';
 
 class VitamiListInfo extends StatelessWidget {
   const VitamiListInfo({
     super.key,
     required this.vitamins,
+    this.isTapEnabled = false,
   });
 
   final List<VitaminEntity> vitamins;
+  final bool isTapEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +33,26 @@ class VitamiListInfo extends StatelessWidget {
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Chip(
-                  padding: const EdgeInsets.all(1),
-                  label: Text(
-                    vitamins[index].name,
-                    style: textTheme.labelSmall?.copyWith(
-                      color: Colors.grey.shade500,
+                return GestureDetector(
+                  onTap: isTapEnabled
+                      ? () {
+                          context.pushNamed(
+                            AppRoutes.vitaminDetail.name,
+                            pathParameters: {
+                              "id": vitamins[index].id.toString()
+                            },
+                          );
+                        }
+                      : null,
+                  child: Chip(
+                    padding: const EdgeInsets.all(1),
+                    label: Text(
+                      vitamins[index].name,
+                      style: textTheme.labelSmall?.copyWith(
+                        color: Colors.grey.shade500,
+                      ),
+                      maxLines: 1,
                     ),
-                    maxLines: 1,
                   ),
                 );
               },

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class VitaminEntity extends Equatable {
@@ -29,4 +30,24 @@ class VitaminEntity extends Equatable {
         image,
         isFavorite,
       ];
+
+  VitaminEntity copyWith({
+    int? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? name,
+    String? description,
+    String? image,
+    bool? isFavorite,
+  }) {
+    return VitaminEntity(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      image: image ?? this.image,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }

@@ -32,6 +32,10 @@ enum AppRoutes {
     name: 'food_detail',
     path: '/food_detail/:id',
   ),
+  vitaminDetail(
+    name: 'vitamin_detail',
+    path: '/vitamin_detail/:id',
+  ),
   deficiencyDetail(
     name: 'deficiency_detail',
     path: '/deficiency_detail/:id',
