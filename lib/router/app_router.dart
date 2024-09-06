@@ -10,6 +10,9 @@ import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
+import 'package:nutri_kit/features/favorite/presentation/pages/deficiency_favorite_list_page.dart';
+import 'package:nutri_kit/features/favorite/presentation/pages/favorite_page.dart';
+import 'package:nutri_kit/features/favorite/presentation/pages/remedy_favorite_list_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/vitamin_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
@@ -43,7 +46,8 @@ GoRouter routerConfig() {
       GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorProfileKey');
   final shellNavigatorMealKey =
       GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorMealKey');
-
+  final shellNavigatorFavoriteKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorFavoriteKey');
   return GoRouter(
     navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: kDebugMode,
@@ -165,26 +169,42 @@ GoRouter routerConfig() {
             navigatorKey: shellNavigatorProfileKey,
             routes: [
               GoRoute(
-                  path: AppRoutes.profile.path,
-                  name: AppRoutes.profile.name,
+                path: AppRoutes.profile.path,
+                name: AppRoutes.profile.name,
+                pageBuilder: (context, state) {
+                  return buildTransitionPage(
+                    localKey: state.pageKey,
+                    child: const ProfilePage(),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.updateProfile.path,
+                    name: AppRoutes.updateProfile.name,
+                    pageBuilder: (context, state) {
+                      return buildTransitionPage(
+                        localKey: state.pageKey,
+                        child: const UpdateProfilePage(),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: shellNavigatorFavoriteKey,
+            routes: [
+              GoRoute(
+                  path: AppRoutes.favorite.path,
+                  name: AppRoutes.favorite.name,
                   pageBuilder: (context, state) {
                     return buildTransitionPage(
                       localKey: state.pageKey,
-                      child: const ProfilePage(),
+                      child: const FavoritePage(),
                     );
                   },
-                  routes: [
-                    GoRoute(
-                      path: AppRoutes.updateProfile.path,
-                      name: AppRoutes.updateProfile.name,
-                      pageBuilder: (context, state) {
-                        return buildTransitionPage(
-                          localKey: state.pageKey,
-                          child: const UpdateProfilePage(),
-                        );
-                      },
-                    ),
-                  ]),
+                  routes: const []),
             ],
           ),
         ],
@@ -307,6 +327,26 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: const FirstCreateChildHealthPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.favoriteDeficiency.path,
+        name: AppRoutes.favoriteDeficiency.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const DeficiencyFavoriteListPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.favoriteRemedy.path,
+        name: AppRoutes.favoriteRemedy.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const RemedyFavoriteListPage(),
           );
         },
       ),

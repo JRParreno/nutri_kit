@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/remedy/favorite_remedy_bloc.dart';
 import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
 import 'package:nutri_kit/features/remedy/presentation/widgets/index.dart';
 import 'package:quickalert/quickalert.dart';
@@ -119,6 +120,8 @@ class _RemedyDetailPageState extends State<RemedyDetailPage> {
     required String message,
     bool isFavorite = false,
   }) {
+    context.read<FavoriteRemedyBloc>().add(GetFavoriteRemedyEvent());
+
     Future.delayed(const Duration(milliseconds: 600), () {
       QuickAlert.show(
         context: context,

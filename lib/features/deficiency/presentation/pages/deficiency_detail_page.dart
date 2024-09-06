@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
 import 'package:nutri_kit/features/deficiency/presentation/bloc/deficiency_detail_bloc.dart';
 import 'package:nutri_kit/features/deficiency/presentation/widgets/index.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/deficiency/favorite_deficiency_bloc.dart';
 import 'package:quickalert/quickalert.dart';
 
 class DeficiencyDetailPage extends StatefulWidget {
@@ -146,6 +147,8 @@ class _DeficiencyDetailPageState extends State<DeficiencyDetailPage>
     required String message,
     bool isFavorite = false,
   }) {
+    context.read<FavoriteDeficiencyBloc>().add(GetFavoriteDeficiencyEvent());
+
     Future.delayed(const Duration(milliseconds: 600), () {
       QuickAlert.show(
         context: context,

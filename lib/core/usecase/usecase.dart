@@ -18,3 +18,13 @@ class SearchParams {
     this.previous,
   });
 }
+
+class ListParams {
+  final String? next;
+  final String? previous;
+
+  const ListParams({
+    this.next,
+    this.previous,
+  });
+}

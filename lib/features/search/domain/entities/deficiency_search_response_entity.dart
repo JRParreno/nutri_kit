@@ -9,4 +9,14 @@ class DeficiencySearchResponseEntity {
     required this.listResponse,
     required this.results,
   });
+
+  DeficiencySearchResponseEntity copyWith({
+    ListResponse? listResponse,
+    List<DeficiencySearchEntity>? results,
+  }) {
+    return DeficiencySearchResponseEntity(
+      listResponse: listResponse ?? this.listResponse,
+      results: results ?? this.results,
+    );
+  }
 }

@@ -7,3 +7,4 @@ export 'remedy_injection.dart';
 export 'food_injection.dart';
 export 'deficiency_injection.dart';
 export 'health_child_list_injection.dart';
+export 'favorite_enjection.dart';

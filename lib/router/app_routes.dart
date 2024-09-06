@@ -48,6 +48,18 @@ enum AppRoutes {
     name: 'update_profile',
     path: 'update_profile',
   ),
+  favorite(
+    name: 'favorite',
+    path: '/favorite',
+  ),
+  favoriteDeficiency(
+    name: 'favorite-deficiency',
+    path: '/favorite/deficiency',
+  ),
+  favoriteRemedy(
+    name: 'favorite-remedy',
+    path: '/favorite/remedy',
+  ),
   meal(
     name: 'meal',
     path: '/meal',
