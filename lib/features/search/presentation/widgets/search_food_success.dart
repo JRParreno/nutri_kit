@@ -11,9 +11,11 @@ class SearchFoodSuccess extends StatelessWidget {
   const SearchFoodSuccess({
     super.key,
     this.data,
+    required this.keyword,
   });
 
   final FoodResponseEntity? data;
+  final String keyword;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,14 @@ class SearchFoodSuccess extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            if (data!.results.length > 3)
+            if (data!.results.length > 2)
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(
+                    AppRoutes.searchFood.name,
+                    pathParameters: {"keyword": keyword},
+                  );
+                },
                 child: Text(
                   'View All',
                   style: textTheme.titleMedium?.copyWith(color: ColorName.link),

@@ -5,6 +5,7 @@ import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_slider/trivia_selected_slider_cubit.dart';
+import 'package:nutri_kit/features/home/presentation/pages/body/deficiency_home.dart';
 import 'package:nutri_kit/features/home/presentation/pages/body/pinggang_pinoy.dart';
 import 'package:nutri_kit/features/home/presentation/widgets/trivia_slider.dart';
 import 'package:nutri_kit/features/home/presentation/widgets/user_information.dart';
@@ -60,6 +61,8 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            DeficiencyHome(),
+                            Gap(15),
                             PinggangPinoy(),
                           ],
                         ),

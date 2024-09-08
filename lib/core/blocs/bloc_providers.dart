@@ -20,6 +20,10 @@ import 'package:nutri_kit/features/meal/presentation/blocs/meal_plan_detail/meal
 import 'package:nutri_kit/features/profile/presentation/bloc/update_profile_bloc.dart';
 import 'package:nutri_kit/features/remedy/presentation/bloc/remedy_detail_bloc.dart';
 import 'package:nutri_kit/features/search/presentation/blocs/search/search_bloc.dart';
+import 'package:nutri_kit/features/search/presentation/blocs/search_deficiency/search_deficiency_bloc.dart';
+import 'package:nutri_kit/features/search/presentation/blocs/search_food/search_food_bloc.dart';
+import 'package:nutri_kit/features/search/presentation/blocs/search_remedy/search_remedy_bloc.dart';
+import 'package:nutri_kit/features/search/presentation/blocs/search_vitamin/search_vitamin_bloc.dart';
 
 class BlocProviders {
   static blocs(GetIt serviceLocator) {
@@ -74,6 +78,18 @@ class BlocProviders {
       ),
       BlocProvider(
         create: (context) => serviceLocator<FavoriteVitaminBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<SearchDeficiencyBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<SearchFoodBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<SearchRemedyBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<SearchVitaminBloc>(),
       ),
       BlocProvider(
         create: (context) => ForgotPasswordBloc(

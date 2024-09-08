@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,9 +11,11 @@ class SearchRemedySuccess extends StatelessWidget {
   const SearchRemedySuccess({
     super.key,
     this.data,
+    required this.keyword,
   });
 
   final RemediesResponseEntity? data;
+  final String keyword;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,12 @@ class SearchRemedySuccess extends StatelessWidget {
     return SearchBaseHeaderSuccess(
       displayTitle: 'Remedy',
       isShowViewAll: data!.results.length > 2,
-      onTViewAll: () {},
+      onTViewAll: () {
+        context.pushNamed(
+          AppRoutes.searchRemedy.name,
+          pathParameters: {"keyword": keyword},
+        );
+      },
       children: data!.results
           .take(2)
           .map(

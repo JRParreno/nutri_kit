@@ -28,6 +28,22 @@ enum AppRoutes {
     name: 'search',
     path: '/search',
   ),
+  searchDeficiency(
+    name: 'search_deficiency',
+    path: '/search_deficiency/:keyword',
+  ),
+  searchRemedy(
+    name: 'search_remedy',
+    path: '/search_remedy/:keyword',
+  ),
+  searchFood(
+    name: 'search_food',
+    path: '/search_food/:keyword',
+  ),
+  searchVitamin(
+    name: 'search_vitamin',
+    path: '/search_vitamin/:keyword',
+  ),
   remedyDetail(
     name: 'remedy_detail',
     path: '/remedy_detail/:id',
@@ -100,6 +116,10 @@ enum AppRoutes {
   mealBreakdownPage(
     name: '/meal_breakdown_page',
     path: '/meal_breakdown_page',
+  ),
+  deficiencyViewPage(
+    name: '/deficiency_view_page',
+    path: '/deficiency_view_page/:health_status',
   );
 
   const AppRoutes({

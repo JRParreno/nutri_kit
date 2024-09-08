@@ -19,6 +19,7 @@ import 'package:nutri_kit/features/favorite/presentation/pages/vitamin_favorite_
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/vitamin_detail_page.dart';
 import 'package:nutri_kit/features/forgot_password/forgot_password_page.dart';
+import 'package:nutri_kit/features/home/presentation/pages/deficiency_view_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pdf_view_sample.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_viewer_page.dart';
@@ -34,7 +35,11 @@ import 'package:nutri_kit/features/profile/presentation/pages/profile.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/update_profile.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/update_profile_picture_page.dart';
 import 'package:nutri_kit/features/remedy/presentation/pages/remedy_detail_page.dart';
+import 'package:nutri_kit/features/search/presentation/pages/deficiency_list_page.dart';
+import 'package:nutri_kit/features/search/presentation/pages/food_list_page.dart';
+import 'package:nutri_kit/features/search/presentation/pages/remedy_list_page.dart';
 import 'package:nutri_kit/features/search/presentation/pages/search.dart';
+import 'package:nutri_kit/features/search/presentation/pages/vitamin_list_page.dart';
 import 'package:nutri_kit/router/index.dart';
 
 import '../features/auth/presentation/pages/index.dart';
@@ -402,6 +407,76 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: const ChangePasswordScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.deficiencyViewPage.path,
+        name: AppRoutes.deficiencyViewPage.name,
+        pageBuilder: (context, state) {
+          final healthStatus = state.pathParameters['health_status']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: DeficiencyViewPage(
+              healthStatus: healthStatus,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.searchDeficiency.path,
+        name: AppRoutes.searchDeficiency.name,
+        pageBuilder: (context, state) {
+          final keyword = state.pathParameters['keyword']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: DeficiencyListPage(
+              keyword: keyword,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.searchRemedy.path,
+        name: AppRoutes.searchRemedy.name,
+        pageBuilder: (context, state) {
+          final keyword = state.pathParameters['keyword']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: RemedyListPage(
+              keyword: keyword,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.searchFood.path,
+        name: AppRoutes.searchFood.name,
+        pageBuilder: (context, state) {
+          final keyword = state.pathParameters['keyword']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: FoodListPage(
+              keyword: keyword,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.searchVitamin.path,
+        name: AppRoutes.searchVitamin.name,
+        pageBuilder: (context, state) {
+          final keyword = state.pathParameters['keyword']!;
+
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: VitaminListPage(
+              keyword: keyword,
+            ),
           );
         },
       ),

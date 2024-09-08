@@ -132,18 +132,22 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SearchDeficiencySuccess(
                             data: state.deficiencyResponse,
+                            keyword: searchController.value.text,
                           ),
                           const Gap(20),
                           SearchFoodSuccess(
                             data: state.foodResponse,
+                            keyword: searchController.value.text,
                           ),
                           const Gap(20),
                           SearchRemedySuccess(
                             data: state.remediesResponse,
+                            keyword: searchController.value.text,
                           ),
                           const Gap(20),
                           SearchVitaminSuccess(
                             data: state.vitaminResponse,
+                            keyword: searchController.value.text,
                           ),
                           const Gap(40),
                         ],

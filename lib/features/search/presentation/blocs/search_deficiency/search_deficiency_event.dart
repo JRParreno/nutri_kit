@@ -6,3 +6,21 @@ sealed class SearchDeficiencyEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class GetSearchDeficiencyEvent extends SearchDeficiencyEvent {
+  final String keyword;
+
+  const GetSearchDeficiencyEvent(this.keyword);
+
+  @override
+  List<Object> get props => [keyword];
+}
+
+final class PaginateSearchDeficiencyEvent extends SearchDeficiencyEvent {
+  final String keyword;
+
+  const PaginateSearchDeficiencyEvent(this.keyword);
+
+  @override
+  List<Object> get props => [keyword];
+}

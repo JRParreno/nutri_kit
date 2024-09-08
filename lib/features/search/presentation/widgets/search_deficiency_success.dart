@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nutri_kit/features/search/domain/entities/index.dart';
 
+import 'package:nutri_kit/features/search/domain/entities/index.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/search_base_header_success.dart';
 import 'package:nutri_kit/features/search/presentation/widgets/search_tile_item.dart';
 import 'package:nutri_kit/gen/assets.gen.dart';
@@ -11,9 +12,11 @@ class SearchDeficiencySuccess extends StatelessWidget {
   const SearchDeficiencySuccess({
     super.key,
     this.data,
+    required this.keyword,
   });
 
   final DeficiencySearchResponseEntity? data;
+  final String keyword;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,12 @@ class SearchDeficiencySuccess extends StatelessWidget {
     return SearchBaseHeaderSuccess(
       displayTitle: 'Deficiency',
       isShowViewAll: data!.results.length > 2,
-      onTViewAll: () {},
+      onTViewAll: () {
+        context.pushNamed(
+          AppRoutes.searchDeficiency.name,
+          pathParameters: {"keyword": keyword},
+        );
+      },
       children: data!.results
           .take(2)
           .map(

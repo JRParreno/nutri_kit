@@ -9,14 +9,31 @@ sealed class SearchDeficiencyState extends Equatable {
 
 final class SearchDeficiencyInitial extends SearchDeficiencyState {}
 
-final class SearchDeficiencyLoaded extends SearchDeficiencyState {
-  final DeficiencyResponseEntity deficiencyResponse;
+final class SearchDeficiencyLoading extends SearchDeficiencyState {}
 
-  const SearchDeficiencyLoaded(this.deficiencyResponse);
+final class SearchListDeficiencySuccess extends SearchDeficiencyState {
+  final DeficiencySearchResponseEntity data;
+  final bool isPaginate;
+
+  const SearchListDeficiencySuccess({
+    required this.data,
+    this.isPaginate = false,
+  });
+
+  SearchListDeficiencySuccess copyWith({
+    bool? isPaginate,
+    DeficiencySearchResponseEntity? data,
+  }) {
+    return SearchListDeficiencySuccess(
+      isPaginate: isPaginate ?? this.isPaginate,
+      data: data ?? this.data,
+    );
+  }
 
   @override
   List<Object> get props => [
-        deficiencyResponse,
+        data,
+        isPaginate,
       ];
 }
 

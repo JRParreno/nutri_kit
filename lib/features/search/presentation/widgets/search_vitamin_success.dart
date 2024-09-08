@@ -10,10 +10,11 @@ class SearchVitaminSuccess extends StatelessWidget {
   const SearchVitaminSuccess({
     super.key,
     this.data,
+    required this.keyword,
   });
 
   final VitaminResponseEntity? data;
-
+  final String keyword;
   @override
   Widget build(BuildContext context) {
     if (data == null) return const SizedBox();
@@ -22,7 +23,12 @@ class SearchVitaminSuccess extends StatelessWidget {
     return SearchBaseHeaderSuccess(
       displayTitle: 'Vitamin',
       isShowViewAll: data!.results.length > 2,
-      onTViewAll: () {},
+      onTViewAll: () {
+        context.pushNamed(
+          AppRoutes.searchVitamin.name,
+          pathParameters: {"keyword": keyword},
+        );
+      },
       children: data!.results
           .take(2)
           .map(
