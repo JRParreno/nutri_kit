@@ -26,6 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 50),
               const ProfileInfo(),
               const SizedBox(height: 30),
               Padding(

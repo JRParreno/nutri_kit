@@ -28,4 +28,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> updatePhoto({
+    required String path,
+    required String pk,
+  }) async {
+    try {
+      final response =
+          await profileRemoteDataSource.updatePhoto(path: path, pk: pk);
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

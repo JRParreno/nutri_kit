@@ -59,6 +59,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             });
           }
 
+          if (state is UpdateProfileSuccess) {
+            onPageSuccess('Successfully updated.');
+          }
+
           if (state is UpdateProfileFailure) {
             onFormError(state.message);
           }
@@ -136,6 +140,17 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         context: context,
         type: QuickAlertType.error,
         title: 'Oops...',
+        text: message,
+      );
+    });
+  }
+
+  void onPageSuccess(String message) {
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Profile',
         text: message,
       );
     });

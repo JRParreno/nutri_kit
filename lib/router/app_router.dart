@@ -30,6 +30,7 @@ import 'package:nutri_kit/features/navigation/presentation/scaffold_with_bottom_
 import 'package:nutri_kit/features/on_boarding/on_boarding.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/profile.dart';
 import 'package:nutri_kit/features/profile/presentation/pages/update_profile.dart';
+import 'package:nutri_kit/features/profile/presentation/pages/update_profile_picture_page.dart';
 import 'package:nutri_kit/features/remedy/presentation/pages/remedy_detail_page.dart';
 import 'package:nutri_kit/features/search/presentation/pages/search.dart';
 import 'package:nutri_kit/router/index.dart';
@@ -369,6 +370,16 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: const VitaminFavoriteListPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.updatePhoto.path,
+        name: AppRoutes.updatePhoto.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const UpdateProfilePciturePage(),
           );
         },
       ),

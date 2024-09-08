@@ -26,28 +26,6 @@ class UserModel extends User {
     );
   }
 
-  UserModel copyWith({
-    String? pk,
-    String? username,
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? profilePk,
-    String? profilePhoto,
-    int? age,
-  }) {
-    return UserModel(
-      pk: pk ?? this.pk,
-      username: username ?? this.username,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      email: email ?? this.email,
-      profilePk: profilePk ?? this.profilePk,
-      profilePhoto: profilePhoto ?? this.profilePhoto,
-      age: age ?? this.age,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'pk': pk,

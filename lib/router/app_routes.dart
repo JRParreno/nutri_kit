@@ -48,6 +48,10 @@ enum AppRoutes {
     name: 'update_profile',
     path: 'update_profile',
   ),
+  updatePhoto(
+    name: '/update_photo',
+    path: '/update_photo',
+  ),
   favorite(
     name: 'favorite',
     path: '/favorite',

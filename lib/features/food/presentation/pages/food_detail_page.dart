@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/food/favorite_food_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/food_detail_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/widgets/index.dart';
 import 'package:quickalert/quickalert.dart';
@@ -121,6 +122,8 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
     required String message,
     bool isFavorite = false,
   }) {
+    context.read<FavoriteFoodBloc>().add(GetFavoriteFoodEvent());
+
     Future.delayed(const Duration(milliseconds: 600), () {
       QuickAlert.show(
         context: context,

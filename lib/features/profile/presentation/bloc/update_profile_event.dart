@@ -7,7 +7,7 @@ sealed class UpdateProfileEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class UpdateProfileTrigger extends UpdateProfileEvent {
+final class UpdateProfileTrigger extends UpdateProfileEvent {
   final String firstName;
   final String lastName;
   final String email;
@@ -24,4 +24,13 @@ class UpdateProfileTrigger extends UpdateProfileEvent {
         lastName,
         email,
       ];
+}
+
+final class UpdatePhotoTrigger extends UpdateProfileEvent {
+  final String path;
+
+  const UpdatePhotoTrigger(this.path);
+
+  @override
+  List<Object> get props => [path];
 }

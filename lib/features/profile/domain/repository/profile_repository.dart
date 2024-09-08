@@ -8,4 +8,9 @@ abstract interface class ProfileRepository {
     required String lastName,
     required String email,
   });
+
+  Future<Either<Failure, String>> updatePhoto({
+    required String path,
+    required String pk,
+  });
 }
