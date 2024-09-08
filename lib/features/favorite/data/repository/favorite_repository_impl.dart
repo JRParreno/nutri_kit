@@ -39,4 +39,34 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
       return left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, FoodResponseEntity>> getListFavoriteFood(
+      {String? next, String? previous}) async {
+    try {
+      final response = await favoriteRemoteDataSource.getListFavoriteFood(
+        next: next,
+        previous: previous,
+      );
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, VitaminResponseEntity>> getListFavoriteVitamin(
+      {String? next, String? previous}) async {
+    try {
+      final response = await favoriteRemoteDataSource.getListFavoriteVitamin(
+        next: next,
+        previous: previous,
+      );
+
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

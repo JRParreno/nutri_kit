@@ -4,7 +4,9 @@ import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nutri_kit/features/deficiency/presentation/bloc/deficiency_detail_bloc.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/deficiency/favorite_deficiency_bloc.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/food/favorite_food_bloc.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/remedy/favorite_remedy_bloc.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/vitamin/favorite_vitamin_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/food_detail_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/vitamin_detail/vitamin_detail_bloc.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
@@ -62,6 +64,12 @@ class BlocProviders {
       ),
       BlocProvider(
         create: (context) => serviceLocator<FavoriteRemedyBloc>(),
+      ),
+       BlocProvider(
+        create: (context) => serviceLocator<FavoriteFoodBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => serviceLocator<FavoriteVitaminBloc>(),
       ),
     ];
   }

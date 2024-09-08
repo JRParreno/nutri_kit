@@ -12,4 +12,12 @@ abstract interface class FavoriteRepository {
     String? next,
     String? previous,
   });
+  Future<Either<Failure, FoodResponseEntity>> getListFavoriteFood({
+    String? next,
+    String? previous,
+  });
+  Future<Either<Failure, VitaminResponseEntity>> getListFavoriteVitamin({
+    String? next,
+    String? previous,
+  });
 }

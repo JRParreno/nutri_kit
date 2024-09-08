@@ -60,6 +60,14 @@ enum AppRoutes {
     name: 'favorite-remedy',
     path: '/favorite/remedy',
   ),
+  favoriteFood(
+    name: 'favorite-food',
+    path: '/favorite/food',
+  ),
+  favoriteVitamin(
+    name: 'favorite-vitamin',
+    path: '/favorite/vitamin',
+  ),
   meal(
     name: 'meal',
     path: '/meal',

@@ -12,7 +12,9 @@ import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/deficiency_favorite_list_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/favorite_page.dart';
+import 'package:nutri_kit/features/favorite/presentation/pages/food_favorite_list_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/remedy_favorite_list_page.dart';
+import 'package:nutri_kit/features/favorite/presentation/pages/vitamin_favorite_list_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/vitamin_detail_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
@@ -347,6 +349,26 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: const RemedyFavoriteListPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.favoriteFood.path,
+        name: AppRoutes.favoriteFood.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const FoodFavoriteListPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.favoriteVitamin.path,
+        name: AppRoutes.favoriteVitamin.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const VitaminFavoriteListPage(),
           );
         },
       ),

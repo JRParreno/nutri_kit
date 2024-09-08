@@ -14,6 +14,14 @@ abstract interface class FavoriteRemoteDataSource {
     String? next,
     String? previous,
   });
+  Future<FoodResponseModel> getListFavoriteFood({
+    String? next,
+    String? previous,
+  });
+  Future<VitaminResponseModel> getListFavoriteVitamin({
+    String? next,
+    String? previous,
+  });
 }
 
 class FavoriteRemoteDataSourceImpl implements FavoriteRemoteDataSource {
@@ -45,6 +53,40 @@ class FavoriteRemoteDataSourceImpl implements FavoriteRemoteDataSource {
     try {
       final response = await apiInstance.get(next ?? previous ?? url);
       return RemediesResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<FoodResponseModel> getListFavoriteFood(
+      {String? next, String? previous}) async {
+    String url = '$baseUrl/api/food-favorite/list/';
+
+    try {
+      final response = await apiInstance.get(next ?? previous ?? url);
+      return FoodResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<VitaminResponseModel> getListFavoriteVitamin(
+      {String? next, String? previous}) async {
+    String url = '$baseUrl/api/vitamin-favorite/list/';
+
+    try {
+      final response = await apiInstance.get(next ?? previous ?? url);
+      return VitaminResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',

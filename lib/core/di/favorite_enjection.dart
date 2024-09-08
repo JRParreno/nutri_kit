@@ -4,7 +4,9 @@ import 'package:nutri_kit/features/favorite/data/repository/favorite_repository_
 import 'package:nutri_kit/features/favorite/domain/repository/favorite_repository.dart';
 import 'package:nutri_kit/features/favorite/domain/usecase/index.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/deficiency/favorite_deficiency_bloc.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/food/favorite_food_bloc.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/remedy/favorite_remedy_bloc.dart';
+import 'package:nutri_kit/features/favorite/presentation/blocs/vitamin/favorite_vitamin_bloc.dart';
 
 void initFavorite(GetIt serviceLocator) {
   // datasources
@@ -23,11 +25,23 @@ void initFavorite(GetIt serviceLocator) {
     ..registerFactory(
       () => GetListFavoriteRemedy(serviceLocator()),
     )
+    ..registerFactory(
+      () => GetListFavoriteFood(serviceLocator()),
+    )
+    ..registerFactory(
+      () => GetListFavoriteVitamin(serviceLocator()),
+    )
     // bloc
     ..registerFactory(
       () => FavoriteDeficiencyBloc(serviceLocator()),
     )
     ..registerFactory(
       () => FavoriteRemedyBloc(serviceLocator()),
+    )
+    ..registerFactory(
+      () => FavoriteFoodBloc(serviceLocator()),
+    )
+    ..registerFactory(
+      () => FavoriteVitaminBloc(serviceLocator()),
     );
 }
