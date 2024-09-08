@@ -38,3 +38,14 @@ final class MealPlanDetailFailure extends MealPlanDetailState {
         message,
       ];
 }
+
+final class MealPlanDetailDelete extends MealPlanDetailState {
+  final String message;
+
+  const MealPlanDetailDelete(this.message);
+
+  @override
+  List<Object> get props => [
+        message,
+      ];
+}

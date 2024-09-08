@@ -22,4 +22,5 @@ abstract interface class MealRepository {
     required int id,
     required bool isCompleted,
   });
+  Future<Either<Failure, String>> deleteUserMealPlan(int id);
 }

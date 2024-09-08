@@ -80,4 +80,14 @@ class MealRepositoryImpl implements MealRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteUserMealPlan(int id) async {
+    try {
+      final response = await mealRemoteDataSource.deleteUserMealPlan(id);
+      return right(response);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

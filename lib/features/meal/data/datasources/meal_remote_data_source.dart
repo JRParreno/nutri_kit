@@ -25,6 +25,7 @@ abstract interface class MealRemoteDataSource {
     required int id,
     required bool isCompleted,
   });
+  Future<String> deleteUserMealPlan(int id);
 }
 
 class MealRemoteDataSourceImpl implements MealRemoteDataSource {
@@ -109,6 +110,22 @@ class MealRemoteDataSourceImpl implements MealRemoteDataSource {
       final data = {"completed": isCompleted};
       await apiInstance.patch(url, data: data);
       return "Successfully completed!";
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['error_message'] ?? 'Something went wrong.',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<String> deleteUserMealPlan(int id) async {
+    String url = '$baseUrl/api/meal/plan/child/delete/$id';
+
+    try {
+      await apiInstance.delete(url);
+      return "Successfully deleted!";
     } on DioException catch (e) {
       throw ServerException(
         e.response?.data['error_message'] ?? 'Something went wrong.',

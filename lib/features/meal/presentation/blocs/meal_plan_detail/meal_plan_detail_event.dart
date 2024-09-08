@@ -38,3 +38,14 @@ final class UpdateMealPlanCompleted extends MealPlanDetailEvent {
         isCompleted,
       ];
 }
+
+final class DeleteUserMealPlanEvent extends MealPlanDetailEvent {
+  final int id;
+
+  const DeleteUserMealPlanEvent(this.id);
+
+  @override
+  List<Object> get props => [
+        id,
+      ];
+}

@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nutri_kit/core/common/widgets/loader.dart';
+import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/meal_plan_detail/meal_plan_detail_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/widgets/meal_plan/index.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
@@ -108,7 +110,9 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
       LoadingScreen.instance().show(context: context);
     }
 
-    if (state is MealPlanDetailSuccess || state is MealPlanDetailFailure) {
+    if (state is MealPlanDetailSuccess ||
+        state is MealPlanDetailFailure ||
+        state is MealPlanDetailDelete) {
       Future.delayed(const Duration(milliseconds: 500), () {
         LoadingScreen.instance().hide();
       });
@@ -127,6 +131,10 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
       }
     }
 
+    if (state is MealPlanDetailDelete) {
+      onDeleteSuccess(state.message);
+    }
+
     if (state is MealPlanDetailFailure) {
       onPageError(state.message);
     }
@@ -141,7 +149,33 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
         cancelBtnText: 'No',
         confirmBtnColor: Colors.red,
         onConfirmBtnTap: () {
-          // TODO delete
+          context.pop();
+          Future.delayed(const Duration(milliseconds: 300), () {
+            context.read<MealPlanDetailBloc>().add(
+                  DeleteUserMealPlanEvent(
+                    int.parse(widget.userMealPlanId),
+                  ),
+                );
+          });
         });
+  }
+
+  void onDeleteSuccess(String message) {
+    context.read<ChildHealthListBloc>().add(OnGetChildHealthListEvent());
+
+    Future.delayed(const Duration(milliseconds: 600), () {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Delete Child',
+        text: message,
+        onConfirmBtnTap: () {
+          context.pop();
+          Future.delayed(const Duration(milliseconds: 300), () {
+            context.pop();
+          });
+        },
+      );
+    });
   }
 }

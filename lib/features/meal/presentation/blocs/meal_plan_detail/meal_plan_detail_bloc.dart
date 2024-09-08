@@ -11,15 +11,36 @@ class MealPlanDetailBloc
     extends Bloc<MealPlanDetailEvent, MealPlanDetailState> {
   final GetChildMealPlanDetail _getChildMealPlanDetail;
   final UpdateDayMealCompletionComplete _updateDayMealCompletionComplete;
+  final DeleteUserMealPlan _deleteUserMealPlan;
 
-  MealPlanDetailBloc(
-      {required GetChildMealPlanDetail getChildMealPlanDetail,
-      required UpdateDayMealCompletionComplete updateDayMealCompletionComplete})
-      : _getChildMealPlanDetail = getChildMealPlanDetail,
+  MealPlanDetailBloc({
+    required GetChildMealPlanDetail getChildMealPlanDetail,
+    required UpdateDayMealCompletionComplete updateDayMealCompletionComplete,
+    required DeleteUserMealPlan deleteUserMealPlan,
+  })  : _getChildMealPlanDetail = getChildMealPlanDetail,
+        _deleteUserMealPlan = deleteUserMealPlan,
         _updateDayMealCompletionComplete = updateDayMealCompletionComplete,
         super(MealPlanDetailInitial()) {
     on<GetMealPlanDetailEvent>(onGetMealPlanDetailEvent);
     on<UpdateMealPlanCompleted>(onUpdateMealPlanCompleted);
+    on<DeleteUserMealPlanEvent>(onDeleteUserMealPlanEvent);
+  }
+
+  Future<void> onDeleteUserMealPlanEvent(
+      DeleteUserMealPlanEvent event, Emitter<MealPlanDetailState> emit) async {
+    final state = this.state;
+
+    if (state is MealPlanDetailSuccess) {
+      emit(MealPlanDetailLoading());
+      final response = await _deleteUserMealPlan.call(
+        DeleteUserMealPlanParams(event.id),
+      );
+
+      response.fold(
+        (l) => emit(MealPlanDetailFailure(l.message)),
+        (r) => emit(MealPlanDetailDelete(r)),
+      );
+    }
   }
 
   Future<void> onGetMealPlanDetailEvent(
