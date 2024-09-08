@@ -8,6 +8,10 @@ enum AppRoutes {
     name: 'login',
     path: '/login',
   ),
+  forgotPassword(
+    name: 'forgot_password',
+    path: '/forgot_password',
+  ),
   signup(
     name: 'signup',
     path: '/signup',
@@ -43,6 +47,10 @@ enum AppRoutes {
   profile(
     name: 'profile',
     path: '/profile',
+  ),
+  changePassword(
+    name: 'change_password',
+    path: '/change_password',
   ),
   updateProfile(
     name: 'update_profile',

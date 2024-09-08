@@ -40,6 +40,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     const SizedBox(height: 15),
                     ProfileListTile(
+                      iconData: Icons.password,
+                      onTap: handleGoToChangePassword,
+                      title: 'Change Password',
+                    ),
+                    const SizedBox(height: 15),
+                    ProfileListTile(
                       iconData: Icons.star,
                       onTap: () {},
                       title: 'Contact a Nutrionist',
@@ -101,5 +107,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void handleGoToUpdateProfile() {
     context.pushNamed(AppRoutes.updateProfile.name);
+  }
+
+  void handleGoToChangePassword() {
+    context.pushNamed(AppRoutes.changePassword.name);
   }
 }

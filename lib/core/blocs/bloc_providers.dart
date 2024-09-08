@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:nutri_kit/features/change_password/data/blocs/bloc/change_password_bloc.dart';
+import 'package:nutri_kit/features/change_password/data/repository/change_password_repository_impl.dart';
 import 'package:nutri_kit/features/deficiency/presentation/bloc/deficiency_detail_bloc.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/deficiency/favorite_deficiency_bloc.dart';
 import 'package:nutri_kit/features/favorite/presentation/blocs/food/favorite_food_bloc.dart';
@@ -9,6 +11,8 @@ import 'package:nutri_kit/features/favorite/presentation/blocs/remedy/favorite_r
 import 'package:nutri_kit/features/favorite/presentation/blocs/vitamin/favorite_vitamin_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/food_detail_bloc.dart';
 import 'package:nutri_kit/features/food/presentation/bloc/vitamin_detail/vitamin_detail_bloc.dart';
+import 'package:nutri_kit/features/forgot_password/data/blocs/bloc/forgot_password_bloc.dart';
+import 'package:nutri_kit/features/forgot_password/data/repository/forgot_password_repository_impl.dart';
 import 'package:nutri_kit/features/home/presentation/bloc/trivia_bloc/trivia_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/child_health_list/child_health_list_bloc.dart';
 import 'package:nutri_kit/features/meal/presentation/blocs/create_child_health_form/create_child_health_form_bloc.dart';
@@ -65,11 +69,21 @@ class BlocProviders {
       BlocProvider(
         create: (context) => serviceLocator<FavoriteRemedyBloc>(),
       ),
-       BlocProvider(
+      BlocProvider(
         create: (context) => serviceLocator<FavoriteFoodBloc>(),
       ),
       BlocProvider(
         create: (context) => serviceLocator<FavoriteVitaminBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => ForgotPasswordBloc(
+          forgotPasswordRepository: ForgotPasswordRepositoryImpl(),
+        ),
+      ),
+      BlocProvider(
+        create: (context) => ChangePasswordBloc(
+          changePasswordRepository: ChangePasswordRepositoryImpl(),
+        ),
       ),
     ];
   }

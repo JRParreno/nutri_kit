@@ -9,6 +9,7 @@ import 'package:nutri_kit/core/common/cubits/cubit/app_user_cubit.dart';
 import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
+import 'package:nutri_kit/features/change_password/presentation/pages/change_password_screen.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/deficiency_favorite_list_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/favorite_page.dart';
@@ -17,6 +18,7 @@ import 'package:nutri_kit/features/favorite/presentation/pages/remedy_favorite_l
 import 'package:nutri_kit/features/favorite/presentation/pages/vitamin_favorite_list_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/food_detail_page.dart';
 import 'package:nutri_kit/features/food/presentation/pages/vitamin_detail_page.dart';
+import 'package:nutri_kit/features/forgot_password/forgot_password_page.dart';
 import 'package:nutri_kit/features/home/presentation/pages/home.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pdf_view_sample.dart';
 import 'package:nutri_kit/features/home/presentation/pages/pinggang_pinoy_pdf_viewer_page.dart';
@@ -380,6 +382,26 @@ GoRouter routerConfig() {
           return buildTransitionPage(
             localKey: state.pageKey,
             child: const UpdateProfilePciturePage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.forgotPassword.path,
+        name: AppRoutes.forgotPassword.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const ForgotPasswordPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.changePassword.path,
+        name: AppRoutes.changePassword.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const ChangePasswordScreen(),
           );
         },
       ),

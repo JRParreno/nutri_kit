@@ -10,11 +10,13 @@ class AuthField extends StatelessWidget {
     required this.controller,
     this.isObscureText = false,
     this.suffixIcon,
+    this.validator,
   });
 
   final TextEditingController controller;
   final bool isObscureText;
   final Widget? suffixIcon;
+  final String? Function(String? value)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,13 @@ class AuthField extends StatelessWidget {
         hintText: hintText,
         suffixIcon: suffixIcon,
       ),
-      validator: (value) {
-        if (value!.isEmpty) {
-          return '$hintText is missing';
-        }
-        return null;
-      },
+      validator: validator ??
+          (value) {
+            if (value!.isEmpty) {
+              return '$hintText is missing';
+            }
+            return null;
+          },
     );
   }
 }

@@ -80,6 +80,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        router.pushNamed(AppRoutes.forgotPassword.name);
+                      },
+                      child: const Text('Forgot password'),
+                    ),
+                  ),
+                  const SizedBox(
                     height: 26,
                   ),
                   ElevatedButton(
