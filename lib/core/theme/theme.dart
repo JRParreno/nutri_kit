@@ -23,7 +23,6 @@ class AppTheme with ThemeMixin {
       ),
       fillColor: ColorName.secondary,
       filled: true,
-      contentPadding: const EdgeInsets.all(27),
       enabledBorder: _instance.border(),
       border: _instance.border(),
       focusedBorder: _instance.border(),

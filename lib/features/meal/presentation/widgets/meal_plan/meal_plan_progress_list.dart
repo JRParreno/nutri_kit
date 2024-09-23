@@ -34,31 +34,58 @@ class MealPlanProgressList extends StatelessWidget {
                   );
                 },
                 child: Container(
+                  height: 62,
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    color: e.completed ? const Color(0xFF66C0AB) : Colors.white,
+                    borderRadius: BorderRadius.circular(25),
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Day ${e.dayMealPlan.dayNumber.toString()}',
-                        style: textStyle(),
-                      ),
-                      Chip(
-                        padding: EdgeInsets.zero,
-                        backgroundColor: e.completed ? Colors.blue : Colors.red,
-                        label: Text(
-                          '${e.completed ? '' : 'Not'} Completed',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
+                  child: e.completed
+                      ? Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            const Text(
+                              'Completed',
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                            Positioned(
+                              left: 0,
+                              child: Text(
+                                'Day ${e.dayMealPlan.dayNumber.toString()}',
+                                style: textStyle()
+                                    .copyWith(color: const Color(0xFFFFFFFF)),
+                              ),
+                            )
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Day ${e.dayMealPlan.dayNumber.toString()}',
+                              style: textStyle(),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(13),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: const Color(0xFF66C0AB),
+                              ),
+                              child: Text(
+                                '${e.completed ? '' : 'Not'} Completed',
+                                style: const TextStyle(
+                                  color: Color(0xFFF1E2D4),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
                 ),
               ),
               const SizedBox(height: 10)

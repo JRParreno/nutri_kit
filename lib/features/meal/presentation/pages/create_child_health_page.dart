@@ -189,6 +189,28 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
           color: greyColor,
         ),
         title: Text(
+          "Child's Name",
+          style: TextStyle(
+            color: greyColor,
+          ),
+        ),
+        content: Form(
+          key: _formKeys[0],
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: StepperTextField(
+              controller: _fullNameCtrl,
+              hintText: 'Full name',
+            ),
+          ),
+        ),
+      ),
+      Step(
+        state: _index > 1 ? StepState.complete : StepState.indexed,
+        stepStyle: StepStyle(
+          color: greyColor,
+        ),
+        title: Text(
           'Gender',
           style: TextStyle(
             color: greyColor,
@@ -237,53 +259,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
         ),
       ),
       Step(
-        state: _index > 1 ? StepState.complete : StepState.indexed,
-        stepStyle: StepStyle(
-          color: greyColor,
-        ),
-        title: Text(
-          'Height',
-          style: TextStyle(
-            color: greyColor,
-          ),
-        ),
-        content: Form(
-          key: _formKeys[0],
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: StepperTextField(
-              keyboardType: TextInputType.number,
-              controller: _heightCtrl,
-              hintText: 'Height in CM',
-            ),
-          ),
-        ),
-      ),
-      Step(
         state: _index > 2 ? StepState.complete : StepState.indexed,
-        stepStyle: StepStyle(
-          color: greyColor,
-        ),
-        title: Text(
-          'Weight',
-          style: TextStyle(
-            color: greyColor,
-          ),
-        ),
-        content: Form(
-          key: _formKeys[1],
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: StepperTextField(
-              keyboardType: TextInputType.number,
-              controller: _weightCtrl,
-              hintText: 'Weight in Kg',
-            ),
-          ),
-        ),
-      ),
-      Step(
-        state: _index > 3 ? StepState.complete : StepState.indexed,
         stepStyle: StepStyle(
           color: greyColor,
         ),
@@ -294,7 +270,7 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
           ),
         ),
         content: Form(
-          key: _formKeys[2],
+          key: _formKeys[1],
           child: Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: GestureDetector(
@@ -310,12 +286,35 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
         ),
       ),
       Step(
+        state: _index > 3 ? StepState.complete : StepState.indexed,
+        stepStyle: StepStyle(
+          color: greyColor,
+        ),
+        title: Text(
+          'Weight',
+          style: TextStyle(
+            color: greyColor,
+          ),
+        ),
+        content: Form(
+          key: _formKeys[2],
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: StepperTextField(
+              keyboardType: TextInputType.number,
+              controller: _weightCtrl,
+              hintText: 'Weight in Kg',
+            ),
+          ),
+        ),
+      ),
+      Step(
         state: _index > 4 ? StepState.complete : StepState.indexed,
         stepStyle: StepStyle(
           color: greyColor,
         ),
         title: Text(
-          "Child's Name",
+          'Height',
           style: TextStyle(
             color: greyColor,
           ),
@@ -325,8 +324,9 @@ class _CreateChildHealthPageState extends State<CreateChildHealthPage> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: StepperTextField(
-              controller: _fullNameCtrl,
-              hintText: 'Full name',
+              keyboardType: TextInputType.number,
+              controller: _heightCtrl,
+              hintText: 'Height in CM',
             ),
           ),
         ),

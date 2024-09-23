@@ -12,10 +12,13 @@ class MealDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const chipColor = Color(0xFFF3EBE5);
+    const fontColor = Color(0xFF66C0AB);
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFFF3EBE5),
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.all(15),
@@ -29,59 +32,75 @@ class MealDetails extends StatelessWidget {
           const Divider(
             color: ColorName.primary,
           ),
-          Wrap(
-            spacing: 8,
-            alignment: WrapAlignment.spaceBetween,
-            children: [
-              Chip(
-                padding: EdgeInsets.zero,
-                backgroundColor: Colors.brown,
-                label: Text(
-                  'Carbs ${mealEntity.carbs}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xFF66C0AB),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  mealEntity.description,
+                  style: titleStyle()
+                      .copyWith(fontSize: 14, color: const Color(0xFFF3EBE5)),
                 ),
-              ),
-              Chip(
-                padding: EdgeInsets.zero,
-                backgroundColor: Colors.lightGreen,
-                label: Text(
-                  'Calories ${mealEntity.calories}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
+                Wrap(
+                  spacing: 8,
+                  alignment: WrapAlignment.start,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  runAlignment: WrapAlignment.start,
+                  children: [
+                    Chip(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: chipColor,
+                      label: Text(
+                        'Carbs ${mealEntity.carbs}',
+                        style: const TextStyle(
+                          color: fontColor,
+                          fontSize: 8,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: chipColor,
+                      label: Text(
+                        'Calories ${mealEntity.calories}',
+                        style: const TextStyle(
+                          color: fontColor,
+                          fontSize: 8,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: chipColor,
+                      label: Text(
+                        'Fats ${mealEntity.fats}',
+                        style: const TextStyle(
+                          color: fontColor,
+                          fontSize: 8,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: chipColor,
+                      label: Text(
+                        'Protein ${mealEntity.protein}',
+                        style: const TextStyle(
+                          color: fontColor,
+                          fontSize: 8,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Chip(
-                padding: EdgeInsets.zero,
-                backgroundColor: Colors.blue,
-                label: Text(
-                  'Fats ${mealEntity.fats}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              Chip(
-                padding: EdgeInsets.zero,
-                backgroundColor: const Color(0xFF7F00FF),
-                label: Text(
-                  'Protein ${mealEntity.protein}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Text(
-            mealEntity.description,
-            style: titleStyle(),
+              ],
+            ),
           ),
         ],
       ),

@@ -29,9 +29,8 @@ class MealPlanBody extends StatelessWidget {
             HealthProgress(
               data: data.userMealPlanDetailEntity,
             ),
-            const Gap(20),
+            const Gap(30),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   padding: const EdgeInsets.all(10),
