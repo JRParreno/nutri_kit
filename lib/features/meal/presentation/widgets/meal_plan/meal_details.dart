@@ -60,7 +60,7 @@ class MealDetails extends StatelessWidget {
                         'Carbs ${mealEntity.carbs}',
                         style: const TextStyle(
                           color: fontColor,
-                          fontSize: 8,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -71,7 +71,7 @@ class MealDetails extends StatelessWidget {
                         'Calories ${mealEntity.calories}',
                         style: const TextStyle(
                           color: fontColor,
-                          fontSize: 8,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -82,7 +82,7 @@ class MealDetails extends StatelessWidget {
                         'Fats ${mealEntity.fats}',
                         style: const TextStyle(
                           color: fontColor,
-                          fontSize: 8,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -93,7 +93,7 @@ class MealDetails extends StatelessWidget {
                         'Protein ${mealEntity.protein}',
                         style: const TextStyle(
                           color: fontColor,
-                          fontSize: 8,
+                          fontSize: 10,
                         ),
                       ),
                     ),

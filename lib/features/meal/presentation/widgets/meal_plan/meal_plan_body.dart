@@ -23,6 +23,9 @@ class MealPlanBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ChildDetail(
+              isMale: data.userMealPlanDetailEntity.userMealPlan.gender
+                      .toLowerCase() ==
+                  "male",
               name: data.userMealPlanDetailEntity.name,
             ),
             const Gap(20),

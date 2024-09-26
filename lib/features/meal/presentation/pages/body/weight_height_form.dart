@@ -25,21 +25,30 @@ class WeightHeightForm extends StatefulWidget {
 }
 
 class _WeightHeightFormState extends State<WeightHeightForm> {
-  RulerPickerController? _rulerPickerController;
+  late RulerPickerController _rulerPickerController;
   num currentValue = 40;
-
   int _currentIntValue = 15;
 
+  bool isInitLoad = false;
+
   List<RulerRange> ranges = const [
-    RulerRange(begin: 0, end: 200, scale: 0.5),
+    RulerRange(begin: 0, end: 10, scale: 0.1),
+    RulerRange(begin: 10, end: 100, scale: 1),
+    RulerRange(begin: 100, end: 1000, scale: 10),
+    RulerRange(begin: 1000, end: 10000, scale: 100),
+    RulerRange(begin: 10000, end: 100000, scale: 1000)
   ];
 
   @override
   void initState() {
     super.initState();
     _rulerPickerController = RulerPickerController(value: currentValue);
-    currentValue = widget.initialHeight ?? 40;
     _currentIntValue = widget.initialWeight ?? 15;
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   setState(() {
+    //     isInitLoad = true;
+    //   });
+    // });
   }
 
   bool selected = false;
@@ -119,7 +128,7 @@ class _WeightHeightFormState extends State<WeightHeightForm> {
         const Gap(10),
         RulerPicker(
           rulerBackgroundColor: ColorName.primary,
-          controller: _rulerPickerController!,
+          controller: _rulerPickerController,
           onBuildRulerScaleText: (index, value) {
             return value.toInt().toString();
           },
@@ -169,7 +178,7 @@ class _WeightHeightFormState extends State<WeightHeightForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '${currentValue.toStringAsFixed(1)} ',
+              '${getDisplayCm()} ',
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -189,5 +198,10 @@ class _WeightHeightFormState extends State<WeightHeightForm> {
         )
       ],
     );
+  }
+
+  String getDisplayCm() {
+    final temp = currentValue.toDouble();
+    return temp > 0 ? (temp - (!isInitLoad ? 5 : 0.5)).toStringAsFixed(1) : "0";
   }
 }

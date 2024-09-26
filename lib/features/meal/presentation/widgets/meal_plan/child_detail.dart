@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nutri_kit/gen/assets.gen.dart';
 import 'package:nutri_kit/gen/colors.gen.dart';
 
 class ChildDetail extends StatelessWidget {
   const ChildDetail({
     super.key,
     required this.name,
+    this.isMale = false,
   });
 
   final String name;
+  final bool isMale;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,11 @@ class ChildDetail extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
-            Icons.person_outline,
-            color: ColorName.secondary,
-            size: 45,
-          ),
+          if (isMale) ...[
+            Assets.images.icon.boy.image(height: 45, width: 45)
+          ] else ...[
+            Assets.images.icon.girl.image(height: 45, width: 45)
+          ],
           Column(
             children: [
               Text(

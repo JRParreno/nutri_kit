@@ -9,6 +9,7 @@ import 'package:nutri_kit/features/home/presentation/pages/body/deficiency_home.
 import 'package:nutri_kit/features/home/presentation/pages/body/pinggang_pinoy.dart';
 import 'package:nutri_kit/features/home/presentation/widgets/trivia_slider.dart';
 import 'package:nutri_kit/features/home/presentation/widgets/user_information.dart';
+import 'package:nutri_kit/gen/colors.gen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isDeficiency = true;
+
   @override
   void initState() {
     super.initState();
@@ -56,14 +59,40 @@ class _HomePageState extends State<HomePage> {
                         child: const TriviaSlider(),
                       ),
                       const Gap(15),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            DeficiencyHome(),
-                            Gap(15),
-                            PinggangPinoy(),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  child: titleHome(
+                                    title: 'Deficiency',
+                                    isSelected: isDeficiency,
+                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      isDeficiency = true;
+                                    });
+                                  },
+                                ),
+                                const Gap(10),
+                                GestureDetector(
+                                  child: titleHome(
+                                      title: 'Pinggang Pinoy',
+                                      isSelected: !isDeficiency),
+                                  onTap: () {
+                                    setState(() {
+                                      isDeficiency = false;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            if (isDeficiency) const DeficiencyHome(),
+                            if (!isDeficiency) const PinggangPinoy(),
+                            const Gap(25)
                           ],
                         ),
                       )
@@ -109,6 +138,24 @@ class _HomePageState extends State<HomePage> {
               return const SizedBox();
             },
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget titleHome({required String title, required bool isSelected}) {
+    return Container(
+      padding: const EdgeInsets.all(13),
+      decoration: BoxDecoration(
+        color: isSelected ? ColorName.secondary : ColorName.card,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: !isSelected ? ColorName.secondary : ColorName.card,
+          fontSize: 16,
+          letterSpacing: 0.24,
         ),
       ),
     );

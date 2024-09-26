@@ -15,6 +15,7 @@ class UserMealPlanModel extends UserMealPlanEntity {
     required super.weight,
     required super.user,
     required super.mealPlan,
+    required super.gender,
   });
 
   factory UserMealPlanModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +33,7 @@ class UserMealPlanModel extends UserMealPlanEntity {
       weight: json["weight"],
       user: json["user"],
       mealPlan: json["meal_plan"],
+      gender: json["gender"],
     );
   }
 }

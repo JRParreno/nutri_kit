@@ -15,9 +15,6 @@ class DeficiencyHome extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TitleTextWidget(
-          title: 'Deficiency',
-        ),
         const Gap(10),
         Wrap(
           alignment: WrapAlignment.spaceBetween,

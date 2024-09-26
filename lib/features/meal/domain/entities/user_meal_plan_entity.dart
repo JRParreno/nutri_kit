@@ -12,6 +12,7 @@ class UserMealPlanEntity {
     required this.weight,
     required this.user,
     required this.mealPlan,
+    required this.gender,
     this.endDate,
   });
 
@@ -28,4 +29,5 @@ class UserMealPlanEntity {
   final String weight;
   final int user;
   final int mealPlan;
+  final String gender;
 }

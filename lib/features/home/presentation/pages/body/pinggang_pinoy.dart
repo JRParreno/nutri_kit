@@ -15,9 +15,6 @@ class PinggangPinoy extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TitleTextWidget(
-          title: 'Pinggang Pinoy',
-        ),
         const Gap(10),
         Wrap(
           alignment: WrapAlignment.spaceBetween,

@@ -26,7 +26,7 @@ class NicknameForm extends StatelessWidget {
         const Gap(10),
         StepperTextField(
           controller: controller,
-          hintText: "Enter your Chil's nickname",
+          hintText: "Enter your Child's nickname",
           fillColor: Colors.white,
           textColor: ColorName.secondary,
           border: OutlineInputBorder(
