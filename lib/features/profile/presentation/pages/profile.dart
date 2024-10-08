@@ -47,7 +47,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(height: 15),
                     ProfileListTile(
                       iconData: Icons.star,
-                      onTap: () {},
+                      onTap: () {
+                        context.pushNamed(AppRoutes.contactNutrionistPage.name);
+                      },
                       title: 'Contact a Nutrionist',
                     ),
                     const SizedBox(height: 15),
@@ -65,7 +67,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(height: 20),
                     ProfileListTile(
                       iconData: Icons.star,
-                      onTap: () {},
+                      onTap: () {
+                        context.pushNamed(AppRoutes.termsConditions.name);
+                      },
                       title: 'Terms & Privacy Policy',
                     ),
                     const SizedBox(height: 15),

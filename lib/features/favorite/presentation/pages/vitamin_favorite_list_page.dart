@@ -30,7 +30,7 @@ class _VitaminFavoriteListPageState extends State<VitaminFavoriteListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Favorite Vitamin',
+          'Favorite Nutrients',
           style: TextStyle(
             color: Colors.white,
           ),

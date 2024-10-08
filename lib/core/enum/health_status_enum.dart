@@ -1,1 +1,1 @@
-enum HealthStatusEnum { underweight, waisted, stunted, obese }
+enum HealthStatusEnum { underweight, waisted, stunted, overweight, obese }

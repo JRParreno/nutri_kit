@@ -22,7 +22,8 @@ class DeficiencyHome extends StatelessWidget {
           runSpacing: 32,
           children: [
             HomeCardWidget(
-              image: Assets.images.meal.underweight.image(),
+              title: 'Underweight',
+              image: Assets.images.meal.underweight.image(fit: BoxFit.cover),
               onTap: () => handleOnTap(
                 title: 'Underweight',
                 context: context,
@@ -30,7 +31,8 @@ class DeficiencyHome extends StatelessWidget {
               ),
             ),
             HomeCardWidget(
-              image: Assets.images.meal.waisted.image(),
+              title: 'Waisted',
+              image: Assets.images.meal.waisted.image(fit: BoxFit.cover),
               onTap: () => handleOnTap(
                 title: 'Waisted',
                 context: context,
@@ -38,7 +40,8 @@ class DeficiencyHome extends StatelessWidget {
               ),
             ),
             HomeCardWidget(
-              image: Assets.images.meal.stunted.image(),
+              title: 'Stunted',
+              image: Assets.images.meal.stunted.image(fit: BoxFit.cover),
               onTap: () => handleOnTap(
                 title: 'Stunted',
                 context: context,
@@ -46,7 +49,17 @@ class DeficiencyHome extends StatelessWidget {
               ),
             ),
             HomeCardWidget(
-              image: Assets.images.meal.obese.image(),
+              title: 'Overweight',
+              image: Assets.images.meal.overweight.image(fit: BoxFit.cover),
+              onTap: () => handleOnTap(
+                title: 'Overweight',
+                context: context,
+                heathStatus: HealthStatusEnum.overweight,
+              ),
+            ),
+            HomeCardWidget(
+              title: 'Obese',
+              image: Assets.images.meal.obese.image(fit: BoxFit.cover),
               onTap: () => handleOnTap(
                 title: 'Older Persons',
                 context: context,

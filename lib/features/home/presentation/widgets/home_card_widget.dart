@@ -8,10 +8,12 @@ class HomeCardWidget extends StatelessWidget {
     super.key,
     required this.image,
     required this.onTap,
+    this.title,
   });
 
   final Image image;
   final VoidCallback onTap;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,21 @@ class HomeCardWidget extends StatelessWidget {
           color: ColorName.card,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: image,
+        child: Column(
+          children: [
+            Flexible(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: image,
+              ),
+            ),
+            if (title != null) ...[
+              Text(
+                title!,
+                style: const TextStyle(color: ColorName.detailBg),
+              )
+            ],
+          ],
         ),
       ),
     );

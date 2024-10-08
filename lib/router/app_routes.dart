@@ -120,6 +120,14 @@ enum AppRoutes {
   deficiencyViewPage(
     name: '/deficiency_view_page',
     path: '/deficiency_view_page/:health_status',
+  ),
+  contactNutrionistPage(
+    name: '/contact_nutrionist_page',
+    path: '/contact_nutrionist_page',
+  ),
+  termsConditions(
+    name: '/terms_condition_page',
+    path: '/terms_condition_page',
   );
 
   const AppRoutes({

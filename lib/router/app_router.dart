@@ -10,6 +10,7 @@ import 'package:nutri_kit/core/config/shared_prefences_keys.dart';
 import 'package:nutri_kit/core/error/error_page.dart';
 import 'package:nutri_kit/core/notifier/shared_preferences_notifier.dart';
 import 'package:nutri_kit/features/change_password/presentation/pages/change_password_screen.dart';
+import 'package:nutri_kit/features/contact_nutrionist/contact_nutrionist_page.dart';
 import 'package:nutri_kit/features/deficiency/presentation/pages/deficiency_detail_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/deficiency_favorite_list_page.dart';
 import 'package:nutri_kit/features/favorite/presentation/pages/favorite_page.dart';
@@ -40,6 +41,7 @@ import 'package:nutri_kit/features/search/presentation/pages/food_list_page.dart
 import 'package:nutri_kit/features/search/presentation/pages/remedy_list_page.dart';
 import 'package:nutri_kit/features/search/presentation/pages/search.dart';
 import 'package:nutri_kit/features/search/presentation/pages/vitamin_list_page.dart';
+import 'package:nutri_kit/features/terms_and_conditions/terms_and_conditions_page.dart';
 import 'package:nutri_kit/router/index.dart';
 
 import '../features/auth/presentation/pages/index.dart';
@@ -477,6 +479,26 @@ GoRouter routerConfig() {
             child: VitaminListPage(
               keyword: keyword,
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.contactNutrionistPage.path,
+        name: AppRoutes.contactNutrionistPage.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const ContactNutrionistPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.termsConditions.path,
+        name: AppRoutes.termsConditions.name,
+        pageBuilder: (context, state) {
+          return buildTransitionPage(
+            localKey: state.pageKey,
+            child: const TermsAndConditionsPage(),
           );
         },
       ),

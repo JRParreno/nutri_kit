@@ -29,6 +29,13 @@ class MealPlanBody extends StatelessWidget {
               name: data.userMealPlanDetailEntity.name,
             ),
             const Gap(20),
+            Text(
+              'Reminder: Check if your child is allergic to any foods before following the meal plan.',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.7),
+              ),
+            ),
+            const Gap(20),
             HealthProgress(
               data: data.userMealPlanDetailEntity,
             ),

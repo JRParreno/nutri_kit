@@ -43,7 +43,7 @@ class _FavoritePageState extends State<FavoritePage> {
             ),
             const Gap(10),
             itemTile(
-              title: 'Vitamin',
+              title: 'Nutrients',
               onTap: () => handleOnTap(AppRoutes.favoriteVitamin.name),
             ),
             const Gap(10),

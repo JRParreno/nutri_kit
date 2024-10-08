@@ -127,6 +127,11 @@ class _ChildMealPlanDetaiPageState extends State<ChildMealPlanDetailPage> {
         } else {
           message += state.userMealPlanDetailEntity.userMealPlan.healthStatus;
         }
+
+        if (message.contains('obese') || message.contains('overweight')) {
+          message +=
+              '\nNote: Your child is overweight or obese. Consult a Nutritionist or Dietitian for proper guidance.';
+        }
         onPageSuccess(message);
       }
     }

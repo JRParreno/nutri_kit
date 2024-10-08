@@ -64,11 +64,14 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              spacing: 32,
+                              runSpacing: 32,
                               children: [
                                 GestureDetector(
                                   child: titleHome(
-                                    title: 'Deficiency',
+                                    title: 'Deficiencies',
                                     isSelected: isDeficiency,
                                   ),
                                   onTap: () {
@@ -77,7 +80,6 @@ class _HomePageState extends State<HomePage> {
                                     });
                                   },
                                 ),
-                                const Gap(10),
                                 GestureDetector(
                                   child: titleHome(
                                       title: 'Pinggang Pinoy',
@@ -90,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
+                            const Gap(10),
                             if (isDeficiency) const DeficiencyHome(),
                             if (!isDeficiency) const PinggangPinoy(),
                             const Gap(25)
@@ -144,18 +147,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget titleHome({required String title, required bool isSelected}) {
+    final size = (MediaQuery.of(context).size.width - 96) / 2;
+
     return Container(
+      width: size,
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
         color: isSelected ? ColorName.secondary : ColorName.card,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: !isSelected ? ColorName.secondary : ColorName.card,
-          fontSize: 16,
-          letterSpacing: 0.24,
+      child: Center(
+        child: Text(
+          title,
+          style: TextStyle(
+            color: !isSelected ? ColorName.secondary : ColorName.card,
+            fontSize: 16,
+            letterSpacing: 0.24,
+          ),
         ),
       ),
     );
