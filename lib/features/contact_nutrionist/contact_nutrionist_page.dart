@@ -36,55 +36,41 @@ class _ContactNutrionistPageState extends State<ContactNutrionistPage> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: 125,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         imageCard(Assets.images.contact.firstContact
                             .image(fit: BoxFit.cover)),
                         const SizedBox(width: 8),
-                        detailCard(address: '', contactNumber: '', name: ''),
+                        Expanded(
+                          child: detailCard(
+                              address:
+                                  'Clinical Dietitian Nutrition & Dietetics Section Bicol Regional Hospital & Medical Center Daraga,Albay',
+                              contactNumber: '09940761264',
+                              name: 'CECILE B. BELEN,RND'),
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 40),
                   SizedBox(
-                    height: 125,
                     width: double.infinity,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         imageCard(Assets.images.contact.secondContact
                             .image(fit: BoxFit.cover)),
                         const SizedBox(width: 8),
-                        detailCard(address: '', contactNumber: '', name: ''),
+                        Expanded(
+                          child: detailCard(
+                              address: 'CHO of ligao city',
+                              contactNumber: '0966684377',
+                              name: 'Maria Elena P. Iglesia, RND'),
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 40),
-                  SizedBox(
-                    height: 125,
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        imageCard(Assets.images.contact.thirdContact
-                            .image(fit: BoxFit.cover)),
-                        const SizedBox(width: 8),
-                        detailCard(address: '', contactNumber: '', name: ''),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  SizedBox(
-                    height: 125,
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        imageCard(Assets.images.contact.fourthContact
-                            .image(fit: BoxFit.cover)),
-                        const SizedBox(width: 8),
-                        detailCard(address: '', contactNumber: '', name: ''),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -111,44 +97,33 @@ class _ContactNutrionistPageState extends State<ContactNutrionistPage> {
     required String address,
     required String contactNumber,
   }) {
-    return Expanded(
-      child: Container(
-        height: 125,
-        padding: const EdgeInsets.all(13),
-        decoration: BoxDecoration(
-          color: ColorName.secondary.withOpacity(0.8),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                'Name: ______________',
-                maxLines: 1,
-                style: TextStyle(color: ColorName.titleBg),
-              ),
-            ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                'Business Address: ______',
-                maxLines: 1,
-                style: TextStyle(color: ColorName.titleBg),
-              ),
-            ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                'Mobile Number: _________',
-                maxLines: 1,
-                style: TextStyle(color: ColorName.titleBg),
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      width: 500, // Set a fixed width or let it adapt to the screen size
+      padding: const EdgeInsets.all(13),
+      decoration: BoxDecoration(
+        color: ColorName.secondary.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Name: $name',
+            style: const TextStyle(color: ColorName.titleBg),
+          ),
+          const SizedBox(height: 10), // Space between texts
+          Text(
+            'Business Address: $address',
+            style: const TextStyle(color: ColorName.titleBg),
+            softWrap: true, // Ensure the text can wrap
+          ),
+          const SizedBox(height: 10), // Space between texts
+          Text(
+            'Mobile Number: $contactNumber',
+            style: const TextStyle(color: ColorName.titleBg),
+          ),
+        ],
       ),
     );
   }

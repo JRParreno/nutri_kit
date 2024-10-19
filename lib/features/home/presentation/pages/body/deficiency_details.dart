@@ -57,7 +57,7 @@ class DeficiencyDetails extends StatelessWidget {
     String text = '';
     switch (healthStatus) {
       case 'UNDERWEIGHT':
-        text = 'Wasting (Low Weight-for-Height)';
+        text = 'Underweight (Low Weight-for-Height)';
         break;
       case 'STUNTED':
         text = 'Stunting (Low Height-for-Age)';

@@ -67,6 +67,7 @@ dependencies:
   percent_indicator: ^4.2.3
   image_picker: ^1.1.2
   email_validator: ^3.0.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -101,7 +102,7 @@ flutter:
     - assets/images/meal/
     - assets/images/icon/
     - assets/images/placeholder/
-    -  assets/images/contact/
+    - assets/images/contact/
     - assets/images/home/
     - assets/svgs/
     - assets/pdfs/

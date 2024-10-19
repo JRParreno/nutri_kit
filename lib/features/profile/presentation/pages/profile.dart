@@ -10,6 +10,7 @@ import 'package:nutri_kit/features/profile/presentation/widgets/profile/profile_
 import 'package:nutri_kit/gen/colors.gen.dart';
 import 'package:nutri_kit/router/index.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -55,7 +56,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(height: 15),
                     ProfileListTile(
                       iconData: Icons.settings,
-                      onTap: () {},
+                      onTap: () {
+                        _launchFacebook();
+                      },
                       title: 'Community',
                     ),
                     const SizedBox(height: 20),
@@ -115,5 +118,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void handleGoToChangePassword() {
     context.pushNamed(AppRoutes.changePassword.name);
+  }
+
+  void _launchFacebook() async {
+    final Uri url = Uri.parse(
+        'https://www.facebook.com/share/g/6jLHGPuc1gqVoSAb/'); // Replace with your FB link
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
