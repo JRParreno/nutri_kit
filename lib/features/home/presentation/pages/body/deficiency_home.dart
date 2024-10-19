@@ -31,10 +31,10 @@ class DeficiencyHome extends StatelessWidget {
               ),
             ),
             HomeCardWidget(
-              title: 'Waisted',
+              title: 'Wasted',
               image: Assets.images.meal.waisted.image(fit: BoxFit.cover),
               onTap: () => handleOnTap(
-                title: 'Waisted',
+                title: 'Wasted',
                 context: context,
                 heathStatus: HealthStatusEnum.waisted,
               ),

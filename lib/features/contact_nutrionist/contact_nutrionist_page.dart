@@ -63,7 +63,7 @@ class _ContactNutrionistPageState extends State<ContactNutrionistPage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: detailCard(
-                              address: 'CHO of ligao city',
+                              address: 'City Health Office of Ligao City',
                               contactNumber: '0966684377',
                               name: 'Maria Elena P. Iglesia, RND'),
                         ),

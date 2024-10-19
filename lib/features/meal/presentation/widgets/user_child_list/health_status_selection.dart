@@ -25,7 +25,7 @@ class HealthStatusSelection extends StatelessWidget {
           onTap: () => onTapCard(1),
           isSelected: selectedIndex == 1,
           image: Assets.images.meal.waisted.image(),
-          title: 'Waisted',
+          title: 'Wasted',
         ),
         imageButton(
           onTap: () => onTapCard(2),

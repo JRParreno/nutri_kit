@@ -63,7 +63,7 @@ class DeficiencyDetails extends StatelessWidget {
         text = 'Stunting (Low Height-for-Age)';
         break;
       case 'WAISTED':
-        text = 'Waisted';
+        text = 'Wasted';
         break;
       case 'OVERWEIGHT':
         text = 'Overweight';

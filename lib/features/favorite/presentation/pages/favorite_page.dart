@@ -27,16 +27,16 @@ class _FavoritePageState extends State<FavoritePage> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            itemTile(
-              title: 'Deficiency',
-              onTap: () => handleOnTap(AppRoutes.favoriteDeficiency.name),
-            ),
-            const Gap(10),
-            itemTile(
-              title: 'Remedy',
-              onTap: () => handleOnTap(AppRoutes.favoriteRemedy.name),
-            ),
-            const Gap(10),
+            // itemTile(
+            //   title: 'Deficiency',
+            //   onTap: () => handleOnTap(AppRoutes.favoriteDeficiency.name),
+            // ),
+            // const Gap(10),
+            // itemTile(
+            //   title: 'Remedy',
+            //   onTap: () => handleOnTap(AppRoutes.favoriteRemedy.name),
+            // ),
+            // const Gap(10),
             itemTile(
               title: 'Food',
               onTap: () => handleOnTap(AppRoutes.favoriteFood.name),

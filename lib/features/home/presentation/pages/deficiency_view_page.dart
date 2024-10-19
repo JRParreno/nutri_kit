@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_kit/core/enum/health_status_enum.dart';
 import 'package:nutri_kit/features/home/presentation/pages/body/deficiency_details.dart';
 
 class DeficiencyViewPage extends StatefulWidget {
@@ -19,7 +20,9 @@ class _DeficiencyViewPageState extends State<DeficiencyViewPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.healthStatus.toUpperCase(),
+          HealthStatusEnum.waisted.name == widget.healthStatus
+              ? 'WASTED'
+              : widget.healthStatus.toLowerCase(),
           style: const TextStyle(
             color: Colors.white,
           ),

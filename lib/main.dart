@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     checkInternetConnection();
     checkIsUserLoggedIn();
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 10), () {
       FlutterNativeSplash.remove();
     });
   }
