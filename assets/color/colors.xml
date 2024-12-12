@@ -6,4 +6,5 @@
     <color name="mini_card_bg">#FFF8EE</color>
     <color name="detail_bg">#78BFAB</color>
     <color name="title_bg">#F1E2D4</color>
+    <color name="black_font">#414141</color>
 </resources>

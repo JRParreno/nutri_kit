@@ -25,6 +25,7 @@ class _DeficiencyViewPageState extends State<DeficiencyViewPage> {
               : widget.healthStatus.toLowerCase(),
           style: const TextStyle(
             color: Colors.white,
+            fontSize: 25,
           ),
         ),
       ),

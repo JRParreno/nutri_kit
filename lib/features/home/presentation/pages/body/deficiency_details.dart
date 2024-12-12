@@ -76,7 +76,7 @@ class DeficiencyDetails extends StatelessWidget {
       text,
       style: const TextStyle(
         color: ColorName.miniCardBg,
-        fontSize: 16,
+        fontSize: 18,
         letterSpacing: 0.24,
       ),
     );
@@ -88,7 +88,7 @@ class DeficiencyDetails extends StatelessWidget {
       text: TextSpan(
         text: "• $title",
         style: const TextStyle(
-          fontSize: 13,
+          fontSize: 17,
           color: Color(0xFF0C644A),
         ),
         children: [
@@ -96,7 +96,7 @@ class DeficiencyDetails extends StatelessWidget {
             text: description,
             style: const TextStyle(
               color: ColorName.miniCardBg,
-              fontSize: 13,
+              fontSize: 17,
             ),
           )
         ],
@@ -153,18 +153,19 @@ class DeficiencyDetails extends StatelessWidget {
   }
 
   Widget descriptionText(String healthStatus) {
+    const fontSize = 17.0;
     switch (healthStatus) {
       case 'UNDERWEIGHT':
         return const Text(
             style: TextStyle(
-              fontSize: 13,
+              fontSize: fontSize,
               color: ColorName.miniCardBg,
             ),
             "Underweight refers to a condition where an individual, especially a child, has low weight for their age. This can be a result of both acute and chronic malnutrition, signifying that the body isn't receiving the necessary nutrients to support healthy growth and development. Underweight can be a combination of both wasting (acute malnutrition) and stunting (chronic malnutrition).");
       case 'STUNTED':
         return const Text(
             style: TextStyle(
-              fontSize: 13,
+              fontSize: fontSize,
               color: ColorName.miniCardBg,
             ),
             "Stunting refers to a condition where a child is shorter than expected for their age, indicating chronic malnutrition. This form of undernutrition typically results from long-term insufficient nutrient intake and recurrent illness, particularly during critical periods of growth in early childhood.");
@@ -172,21 +173,21 @@ class DeficiencyDetails extends StatelessWidget {
       case 'WAISTED':
         return const Text(
             style: TextStyle(
-              fontSize: 13,
+              fontSize: fontSize,
               color: ColorName.miniCardBg,
             ),
             "Wasting refers to a condition in which an individual, particularly a child, has low weight relative to their height. It indicates acute malnutrition, often resulting from recent, severe weight loss. Wasting suggests that the body is not receiving enough nutrients to sustain normal bodily functions and growth.");
       case 'OVERWEIGHT':
         return const Text(
             style: TextStyle(
-              fontSize: 13,
+              fontSize: fontSize,
               color: ColorName.miniCardBg,
             ),
             "Overweight is defined as having more body weight than is considered healthy for a given height. A person is classified as overweight when their Body Mass Index (BMI) is between 25 and 29.9. This condition typically results from an imbalance between calories consumed and calories expended through physical activity.");
       default:
         return const Text(
             style: TextStyle(
-              fontSize: 13,
+              fontSize: fontSize,
               color: ColorName.miniCardBg,
             ),
             "Obesity is a more severe form of being overweight, characterized by excessive body fat accumulation that poses significant health risks. It is typically defined as having a BMI of 30 or higher. Obesity is associated with a higher risk of chronic diseases, including diabetes, heart disease, and certain cancers.");
